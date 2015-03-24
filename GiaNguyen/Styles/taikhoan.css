@@ -1,0 +1,42 @@
+﻿.taikhoan
+{
+    width: 200px;
+    border: #ddd solid 1px;
+    padding: 5px;
+}
+.txtViolet {
+color: #6d388f;
+font-weight: bold;
+}
+.lineGrey {
+border-bottom: #cdcdcd solid 1px;
+height: 0;
+overflow: hidden;
+}
+.marT5 {
+margin-top: 5px;
+clear: both;
+}
+.thongTinTaiKhoan {
+padding: 5px 0 0 10px;
+font-size: 11px;
+color: #666;
+}
+.thongTinTaiKhoan a {
+font-size: 11px;
+color: #666;
+}
+.thongTinTaiKhoan b {
+font-size: 11px;
+color: #666;
+}
+.thoat {
+float:right;
+}
+.thoat a {
+background: url(../Images/sprites_v2014.gif) 0px -839px no-repeat;
+padding: 0 0 0 13px;
+color: #959595;
+font-size: 12px;
+font-weight: normal;
+}

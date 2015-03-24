@@ -1,0 +1,9 @@
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\TruyenHinhK.dll
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\TruyenHinhK.pdb
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\Controller.dll
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\Model.dll
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\Controller.pdb
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\bin\Model.pdb
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\obj\Debug\TruyenHinhK.csprojResolveAssemblyReference.cache
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\obj\Debug\TruyenHinhK.dll
+D:\ThanhPT\Truyen_Hinh_K\truyen_hinh_k\GiaNguyen\obj\Debug\TruyenHinhK.pdb

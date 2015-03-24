@@ -1,0 +1,9 @@
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\CatTrang.dll
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\CatTrang.pdb
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\Controller.dll
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\Model.dll
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\Controller.pdb
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\bin\Model.pdb
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\obj\Debug\CatTrang.csprojResolveAssemblyReference.cache
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\obj\Debug\CatTrang.dll
+D:\ThanhPT\Cat_Trang\cat_trang_web\GiaNguyen\obj\Debug\CatTrang.pdb

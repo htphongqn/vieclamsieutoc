@@ -1,0 +1,9 @@
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\KimHome.dll
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\KimHome.pdb
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\Controller.dll
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\Model.dll
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\Controller.pdb
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\bin\Model.pdb
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\obj\Debug\KimHome.csprojResolveAssemblyReference.cache
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\obj\Debug\KimHome.dll
+D:\ThanhPT\Kim_Home\kim_home_web\GiaNguyen\obj\Debug\KimHome.pdb

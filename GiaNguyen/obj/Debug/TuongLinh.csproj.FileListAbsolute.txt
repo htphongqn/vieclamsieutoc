@@ -1,0 +1,9 @@
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\TuongLinh.dll
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\TuongLinh.pdb
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\Controller.dll
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\Model.dll
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\Controller.pdb
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\bin\Model.pdb
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\obj\Debug\TuongLinh.csprojResolveAssemblyReference.cache
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\obj\Debug\TuongLinh.dll
+D:\ThanhPT\TuongLinh\tuong_linh_web\GiaNguyen\obj\Debug\TuongLinh.pdb

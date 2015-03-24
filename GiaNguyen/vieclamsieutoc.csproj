@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{91A20496-DA04-4246-9492-3E4EF7F69DB9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CatTrang</RootNamespace>
+    <AssemblyName>CatTrang</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="CollectionPager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CollectionPager.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentArt.Web.UI, Version=2010.1.2637.35, Culture=neutral, PublicKeyToken=9bc9f846553156bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ComponentArt.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Data.v12.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxEditors.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Web.ASPxEditors.v12.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Web.ASPxTreeList.v12.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Web.v12.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Intelligencia.UrlRewriter, Version=2.0.0.9, Culture=neutral, PublicKeyToken=0573f3650687980d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Intelligencia.UrlRewriter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MSCaptcha, Version=4.0.4250.31585, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MSCaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="vpro.functions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\vpro.functions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ajax\ajax-dynamic-content.js" />
+    <Content Include="ajax\ajax-tooltip.js" />
+    <Content Include="ajax\ajax.js" />
+    <Content Include="ajax\vi-vnToolTip.aspx" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\CatTrang.pdb" />
+    <Content Include="bin\CollectionPager.dll" />
+    <Content Include="bin\ComponentArt.Web.UI.dll" />
+    <Content Include="bin\Controller.dll" />
+    <Content Include="bin\Controller.pdb" />
+    <Content Include="bin\DevExpress.Data.v12.1.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxEditors.v12.1.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxTreeList.v12.1.dll" />
+    <Content Include="bin\DevExpress.Web.v12.1.dll" />
+    <Content Include="bin\Intelligencia.UrlRewriter.dll" />
+    <Content Include="bin\Model.dll" />
+    <Content Include="bin\Model.pdb" />
+    <Content Include="bin\MSCaptcha.dll" />
+    <Content Include="bin\vpro.functions.dll" />
+    <Content Include="data\aditems\126\thiet-ke-thi-cong-bien-laptop-plaza-cong-ty-nam-a.jpg" />
+    <Content Include="data\aditems\128\thiet-ke-thi-cong-showroom-2.png" />
+    <Content Include="data\aditems\129\thiet_ke_thi_cong_noi_that_nha_pho.jpg" />
+    <Content Include="data\aditems\135\44201462slide2.png" />
+    <Content Include="data\aditems\134\bdg1352079669.jpg" />
+    <Content Include="data\aditems\132\idh1357095236.jpg" />
+    <Content Include="data\aditems\133\oxf1347074662.jpg" />
+    <Content Include="data\configs\22\logo.png" />
+    <Content Include="data\configs\28\logo.png" />
+    <Content Include="data\configs\29\name_company.png" />
+    <Content Include="data\configs\25\Untitled-1.png" />
+    <Content Include="data\contact\contact-vi.htm" />
+    <Content Include="data\news\1124\Thiet ke thi cong noi that showroom.jpg" />
+    <Content Include="data\news\1127\1127-vi.htm" />
+    <Content Include="data\news\1127\17012012002.JPG" />
+    <Content Include="data\news\1128\drff334.jpg" />
+    <Content Include="data\news\1373\1.jpg" />
+    <Content Include="data\news\1373\10.jpg" />
+    <Content Include="data\news\1373\11.jpg" />
+    <Content Include="data\news\1373\2.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-1.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-10.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-11.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-2.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-3.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-4.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-5.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-6.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-7.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-8.jpg" />
+    <Content Include="data\news\1373\200x150-images-san-pham-cua-sat-cua-sat-9.jpg" />
+    <Content Include="data\news\1373\3.jpg" />
+    <Content Include="data\news\1373\4.jpg" />
+    <Content Include="data\news\1373\5.jpg" />
+    <Content Include="data\news\1373\6.jpg" />
+    <Content Include="data\news\1373\7.jpg" />
+    <Content Include="data\news\1373\8.jpg" />
+    <Content Include="data\news\1373\9.jpg" />
+    <Content Include="data\news\1373\dautruyennhiet_800_x_933.jpg" />
+    <Content Include="data\news\1407\11620121825153.png" />
+    <Content Include="data\footer\footer-vi.htm" />
+    <Content Include="data\news\1403\asd.jpg" />
+    <Content Include="data\news\1408\thiet-ke-thi-cong-showroom.jpg" />
+    <Content Include="data\news\1409\1409-vi.htm" />
+    <Content Include="data\news\1409\thiet-ke-thi-cong-showroom-2.png" />
+    <Content Include="default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="html\Images\ads03.png" />
+    <Content Include="html\Images\ads_01.jpg" />
+    <Content Include="html\Images\ads_02.jpg" />
+    <Content Include="html\Images\arrow_l_bg_rec.png" />
+    <Content Include="html\Images\arrow_l_rec.png" />
+    <Content Include="html\Images\arrow_l_rec01.png" />
+    <Content Include="html\Images\arr_left.png" />
+    <Content Include="html\Images\back_to_top.png" />
+    <Content Include="html\Images\banner1.jpg" />
+    <Content Include="html\Images\banner2.jpg" />
+    <Content Include="html\Images\bglinavx.png" />
+    <Content Include="html\Images\bgrightphone.png" />
+    <Content Include="html\Images\btnHuyNhanTin.png" />
+    <Content Include="html\Images\btnNopHS.gif" />
+    <Content Include="html\Images\btnUpAnh.gif" />
+    <Content Include="html\Images\btn_login.png" />
+    <Content Include="html\Images\bullets.png" />
+    <Content Include="html\Images\chiase_btn2.gif" />
+    <Content Include="html\Images\click.gif" />
+    <Content Include="html\Images\greenBg.jpg" />
+    <Content Include="html\Images\greenBg02.jpg" />
+    <Content Include="html\Images\grey_lineBg.jpg" />
+    <Content Include="html\Images\icon-email-share.gif" />
+    <Content Include="html\Images\iconCalendar.gif" />
+    <Content Include="html\Images\iconYahoo.gif" />
+    <Content Include="html\Images\icon_backToHome.png" />
+    <Content Include="html\Images\icon_home.png" />
+    <Content Include="html\Images\icon_login.png" />
+    <Content Include="html\Images\icon_phone.png" />
+    <Content Include="html\Images\icon_phones.png" />
+    <Content Include="html\Images\images1.jpg" />
+    <Content Include="html\Images\img2.png" />
+    <Content Include="html\Images\listtype.png" />
+    <Content Include="html\Images\logo.png" />
+    <Content Include="html\Images\noimage.jpg" />
+    <Content Include="html\Images\person.jpg" />
+    <Content Include="html\Images\phone_icon.png" />
+    <Content Include="html\Images\security_image.php.jpg" />
+    <Content Include="html\Images\share.png" />
+    <Content Include="html\Images\sprites.gif" />
+    <Content Include="html\Images\sprites_icon.png" />
+    <Content Include="html\Images\sprites_ntd.gif" />
+    <Content Include="html\Images\txtBg.gif" />
+    <Content Include="html\Images\ui-icons_222222_256x240.png" />
+    <Content Include="html\Images\ui-icons_454545_256x240.png" />
+    <Content Include="html\Images\Untitled-18.png" />
+    <Content Include="html\Images\user-img.jpg" />
+    <Content Include="html\nguoi_tim_viec\chitiet_camnagtimviec.html" />
+    <Content Include="html\nguoi_tim_viec\chitiet_vieclam_tuyendung.html" />
+    <Content Include="html\nguoi_tim_viec\dangky_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\danhsach_vieclam.html" />
+    <Content Include="html\nguoi_tim_viec\danhsach_vieclam_nganhnghe.html" />
+    <Content Include="html\nguoi_tim_viec\danhsach_vieclam_tuyendung.html" />
+    <Content Include="html\nguoi_tim_viec\doimatkhau_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\hosocanhan_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\hosodadang_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\index_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\NTDcuatoi_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\NTDdaxemhoso_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\quanlytimviec_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\taohosotimviec_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\thongbaotubanquantri_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\thongtincanhan_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\viecdaluu_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\viecdaungtuyen_nguoitimviec.html" />
+    <Content Include="html\nhatuyendung\chitiet_thongtin_ungvien.html" />
+    <Content Include="html\nhatuyendung\dangky_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\danhsach_ungvien.html" />
+    <Content Include="html\nhatuyendung\doimatkhau_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\index_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\phanhoituNTV_nhatuyendung .html" />
+    <Content Include="html\nhatuyendung\quanlyhosoungvien_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\quanlytuyendung_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\taotintuyendungmoi_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\thongbaotubanquantri_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\thongtinnhatuyendung_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\tintuyendungdadang_nhatuyendung.html" />
+    <Content Include="html\Scripts\ddsmoothmenu.js" />
+    <Content Include="html\Scripts\jquery-ui.js" />
+    <Content Include="html\Scripts\jquery.hovercard.min.js" />
+    <Content Include="html\Scripts\jquery.lightbox_me.js" />
+    <Content Include="html\Scripts\jquery.min.1.8.1.js" />
+    <Content Include="html\Scripts\jquery.quick.pagination.min.js" />
+    <Content Include="html\Scripts\jquery.tools.min.js" />
+    <Content Include="html\Scripts\recruitment.js" />
+    <Content Include="html\Scripts\scrolltopcontrol.js" />
+    <Content Include="html\Scripts\stickytooltip.js" />
+    <Content Include="html\Styles\block.css" />
+    <Content Include="html\Styles\jquery-ui.css" />
+    <Content Include="html\Styles\recruitment.css" />
+    <Content Include="html\Styles\shopping.css" />
+    <Content Include="html\Styles\style_split.css" />
+    <Content Include="html\Styles\template.css" />
+    <Content Include="Images\ads03.png" />
+    <Content Include="Images\ads_01.jpg" />
+    <Content Include="Images\ads_02.jpg" />
+    <Content Include="Images\arrow_l_bg_rec.png" />
+    <Content Include="Images\arrow_l_rec.png" />
+    <Content Include="Images\arrow_l_rec01.png" />
+    <Content Include="Images\arr_left.png" />
+    <Content Include="Images\back_to_top.png" />
+    <Content Include="Images\banner1.jpg" />
+    <Content Include="Images\banner2.jpg" />
+    <Content Include="Images\bglinavx.png" />
+    <Content Include="Images\bgrightphone.png" />
+    <Content Include="Images\btnHuyNhanTin.png" />
+    <Content Include="Images\btnUpAnh.gif" />
+    <Content Include="Images\btn_login.png" />
+    <Content Include="Images\bullets.png" />
+    <Content Include="Images\calendar_icon.jpg" />
+    <Content Include="Images\chiase_btn2.gif" />
+    <Content Include="Images\click.gif" />
+    <Content Include="Images\cross_icon_normal.png" />
+    <Content Include="Images\greenBg.jpg" />
+    <Content Include="Images\greenBg02.jpg" />
+    <Content Include="Images\grey_lineBg.jpg" />
+    <Content Include="Images\icon-email-share.gif" />
+    <Content Include="Images\iconCalendar.gif" />
+    <Content Include="Images\iconYahoo.gif" />
+    <Content Include="Images\icon_backToHome.png" />
+    <Content Include="Images\icon_home.png" />
+    <Content Include="Images\icon_login.png" />
+    <Content Include="Images\icon_phone.png" />
+    <Content Include="Images\icon_phones.png" />
+    <Content Include="Images\img2.png" />
+    <Content Include="Images\info.gif" />
+    <Content Include="Images\listtype.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\noimage.jpg" />
+    <Content Include="Images\person.jpg" />
+    <Content Include="Images\phone_icon.png" />
+    <Content Include="Images\security_image.php.jpg" />
+    <Content Include="Images\share.png" />
+    <Content Include="Images\sprites_icon.png" />
+    <Content Include="Images\txtBg.gif" />
+    <Content Include="Images\ui-icons_222222_256x240.png" />
+    <Content Include="Images\ui-icons_454545_256x240.png" />
+    <Content Include="Images\Untitled-18.png" />
+    <Content Include="Scripts\BeatPicker.min.js" />
+    <Content Include="Scripts\ddsmoothmenu.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.hovercard.min.js" />
+    <Content Include="Scripts\jquery.lightbox_me.js" />
+    <Content Include="Scripts\jquery.min.1.8.1.js" />
+    <Content Include="Scripts\jquery.quick.pagination.min.js" />
+    <Content Include="Scripts\jquery.tools.min.js" />
+    <Content Include="Scripts\recruitment.js" />
+    <Content Include="Scripts\scrolltopcontrol.js" />
+    <Content Include="Scripts\stickytooltip.js" />
+    <Content Include="Scripts\UtilitiesCpanel.js" />
+    <Content Include="Styles\BeatPicker.min.css" />
+    <Content Include="Styles\block.css" />
+    <Content Include="Styles\jquery-ui.css" />
+    <Content Include="Styles\Popup.css" />
+    <Content Include="Styles\recruitment.css" />
+    <Content Include="Styles\shopping.css" />
+    <Content Include="Styles\style_split.css" />
+    <Content Include="Styles\taikhoan.css" />
+    <Content Include="Styles\template.css" />
+    <Content Include="UIs\BannerHomeNTV.ascx" />
+    <Content Include="UIs\BannerTopNTV.ascx" />
+    <Content Include="UIs\boxPhone.ascx" />
+    <Content Include="UIs\chitietvieclamNTV.ascx" />
+    <Content Include="UIs\chitiettin.ascx" />
+    <Content Include="UIs\BannerTopNTD.ascx" />
+    <Content Include="UIs\MessageBox.ascx" />
+    <Content Include="UIs\MessageBox_Review.ascx" />
+    <Content Include="UIs\sidebar_NTD.ascx" />
+    <Content Include="UIs\menutop_NTD.ascx" />
+    <Content Include="UIs\footer.ascx" />
+    <Content Include="UIs\header_NTV.ascx" />
+    <Content Include="UIs\menutop_NTV.ascx" />
+    <Content Include="UIs\sidebar_NTV.ascx" />
+    <Content Include="UIs\path_vi.ascx" />
+    <Content Include="UIs\Toolbar.ascx" />
+    <Content Include="UIs\vieclamtheonganhngheNTV.ascx" />
+    <Content Include="vi-vn\contactus.aspx" />
+    <Content Include="vi-vn\quanlytuyendungNTD.aspx" />
+    <Content Include="vi-vn\phanhoitunguoitimviecNTD.aspx" />
+    <Content Include="vi-vn\dangkyNTD.aspx" />
+    <Content Include="vi-vn\doimatkhauNTD.aspx" />
+    <Content Include="vi-vn\thongtinnhatuyendungNTD.aspx" />
+    <Content Include="vi-vn\thongbaotubanquantriNTD.aspx" />
+    <Content Include="vi-vn\timkiemungviensieutocNTD.aspx" />
+    <Content Include="vi-vn\tintuyendungdadangNTD.aspx" />
+    <Content Include="vi-vn\Page_Default_NTD.aspx" />
+    <Content Include="vi-vn\HomeNTD.aspx" />
+    <Content Include="vi-vn\PrintPage.aspx" />
+    <Content Include="vi-vn\timkiemvieclamsieutocNTV.aspx" />
+    <Content Include="vi-vn\vieclamnhieunguoixemNTV.aspx" />
+    <Content Include="vi-vn\vieclamhotNTV.aspx" />
+    <Content Include="vi-vn\hoantatdangkyNTV.aspx" />
+    <Content Include="vi-vn\laylaimatkhauNTV.aspx" />
+    <Content Include="vi-vn\quenmatkhau.aspx" />
+    <Content Include="vi-vn\doimatkhauNTV.aspx" />
+    <Content Include="vi-vn\filter.aspx" />
+    <Content Include="vi-vn\Filter_test.aspx" />
+    <Content Include="vi-vn\hosocanhanNTV.aspx" />
+    <Content Include="vi-vn\nhatuyendungcuatoiNTV.aspx" />
+    <Content Include="vi-vn\nhatuyendungdaxemhosoNTV.aspx" />
+    <Content Include="vi-vn\quanlytimviecNTV.aspx" />
+    <Content Include="vi-vn\taohosotimviecNTV.aspx" />
+    <Content Include="vi-vn\vieclamdaungtuyenNTV.aspx" />
+    <Content Include="vi-vn\dangkyNTV.aspx" />
+    <Content Include="vi-vn\HomeNTV.aspx" />
+    <Content Include="vi-vn\hosodadangNTV.aspx" />
+    <Content Include="vi-vn\CImage.aspx" />
+    <Content Include="vi-vn\Page_Default_NTV.aspx" />
+    <Content Include="vi-vn\thongbaotubanquantriNTV.aspx" />
+    <Content Include="vi-vn\thongtincanhanNTV.aspx" />
+    <Content Include="vi-vn\vieclamdaluuNTV.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ajax\vi-vnToolTip.aspx.cs">
+      <DependentUpon>vi-vnToolTip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax\vi-vnToolTip.aspx.designer.cs">
+      <DependentUpon>vi-vnToolTip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\clsFormat.cs" />
+    <Compile Include="Components\Cost.cs" />
+    <Compile Include="Components\OutlookDotComMail.cs" />
+    <Compile Include="Components\Pageindex_chage.cs" />
+    <Compile Include="Components\RandomImage.cs" />
+    <Compile Include="Components\SendMail.cs" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Booking_result.cs" />
+    <Compile Include="Components\SendMailSMTP.cs" />
+    <Compile Include="Master\NTD.Master.cs">
+      <DependentUpon>NTD.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\NTD.Master.designer.cs">
+      <DependentUpon>NTD.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\NTV.Master.cs">
+      <DependentUpon>NTV.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\NTV.Master.designer.cs">
+      <DependentUpon>NTV.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIs\BannerHomeNTV.ascx.cs">
+      <DependentUpon>BannerHomeNTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\BannerHomeNTV.ascx.designer.cs">
+      <DependentUpon>BannerHomeNTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\BannerTopNTV.ascx.cs">
+      <DependentUpon>BannerTopNTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\BannerTopNTV.ascx.designer.cs">
+      <DependentUpon>BannerTopNTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\boxPhone.ascx.cs">
+      <DependentUpon>boxPhone.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\boxPhone.ascx.designer.cs">
+      <DependentUpon>boxPhone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\chitietvieclamNTV.ascx.cs">
+      <DependentUpon>chitietvieclamNTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\chitietvieclamNTV.ascx.designer.cs">
+      <DependentUpon>chitietvieclamNTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\chitiettin.ascx.cs">
+      <DependentUpon>chitiettin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\chitiettin.ascx.designer.cs">
+      <DependentUpon>chitiettin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\BannerTopNTD.ascx.cs">
+      <DependentUpon>BannerTopNTD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\BannerTopNTD.ascx.designer.cs">
+      <DependentUpon>BannerTopNTD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\MessageBox.ascx.cs">
+      <DependentUpon>MessageBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\MessageBox.ascx.designer.cs">
+      <DependentUpon>MessageBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\MessageBox_Review.ascx.cs">
+      <DependentUpon>MessageBox_Review.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\MessageBox_Review.ascx.designer.cs">
+      <DependentUpon>MessageBox_Review.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\sidebar_NTD.ascx.cs">
+      <DependentUpon>sidebar_NTD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\sidebar_NTD.ascx.designer.cs">
+      <DependentUpon>sidebar_NTD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\menutop_NTD.ascx.cs">
+      <DependentUpon>menutop_NTD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\menutop_NTD.ascx.designer.cs">
+      <DependentUpon>menutop_NTD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\footer.ascx.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\footer.ascx.designer.cs">
+      <DependentUpon>footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\header_NTV.ascx.cs">
+      <DependentUpon>header_NTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\header_NTV.ascx.designer.cs">
+      <DependentUpon>header_NTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\menutop_NTV.ascx.cs">
+      <DependentUpon>menutop_NTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\menutop_NTV.ascx.designer.cs">
+      <DependentUpon>menutop_NTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\sidebar_NTV.ascx.cs">
+      <DependentUpon>sidebar_NTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\sidebar_NTV.ascx.designer.cs">
+      <DependentUpon>sidebar_NTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\path_vi.ascx.cs">
+      <DependentUpon>path_vi.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\path_vi.ascx.designer.cs">
+      <DependentUpon>path_vi.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\Toolbar.ascx.cs">
+      <DependentUpon>Toolbar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\Toolbar.ascx.designer.cs">
+      <DependentUpon>Toolbar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\vieclamtheonganhngheNTV.ascx.cs">
+      <DependentUpon>vieclamtheonganhngheNTV.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\vieclamtheonganhngheNTV.ascx.designer.cs">
+      <DependentUpon>vieclamtheonganhngheNTV.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\contactus.aspx.cs">
+      <DependentUpon>contactus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\contactus.aspx.designer.cs">
+      <DependentUpon>contactus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\quanlytuyendungNTD.aspx.cs">
+      <DependentUpon>quanlytuyendungNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\quanlytuyendungNTD.aspx.designer.cs">
+      <DependentUpon>quanlytuyendungNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\phanhoitunguoitimviecNTD.aspx.cs">
+      <DependentUpon>phanhoitunguoitimviecNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\phanhoitunguoitimviecNTD.aspx.designer.cs">
+      <DependentUpon>phanhoitunguoitimviecNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\dangkyNTD.aspx.cs">
+      <DependentUpon>dangkyNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\dangkyNTD.aspx.designer.cs">
+      <DependentUpon>dangkyNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\doimatkhauNTD.aspx.cs">
+      <DependentUpon>doimatkhauNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\doimatkhauNTD.aspx.designer.cs">
+      <DependentUpon>doimatkhauNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\thongtinnhatuyendungNTD.aspx.cs">
+      <DependentUpon>thongtinnhatuyendungNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\thongtinnhatuyendungNTD.aspx.designer.cs">
+      <DependentUpon>thongtinnhatuyendungNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\thongbaotubanquantriNTD.aspx.cs">
+      <DependentUpon>thongbaotubanquantriNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\thongbaotubanquantriNTD.aspx.designer.cs">
+      <DependentUpon>thongbaotubanquantriNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\timkiemungviensieutocNTD.aspx.cs">
+      <DependentUpon>timkiemungviensieutocNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\timkiemungviensieutocNTD.aspx.designer.cs">
+      <DependentUpon>timkiemungviensieutocNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\tintuyendungdadangNTD.aspx.cs">
+      <DependentUpon>tintuyendungdadangNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\tintuyendungdadangNTD.aspx.designer.cs">
+      <DependentUpon>tintuyendungdadangNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\Page_Default_NTD.aspx.cs">
+      <DependentUpon>Page_Default_NTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\Page_Default_NTD.aspx.designer.cs">
+      <DependentUpon>Page_Default_NTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\HomeNTD.aspx.cs">
+      <DependentUpon>HomeNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\HomeNTD.aspx.designer.cs">
+      <DependentUpon>HomeNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\PrintPage.aspx.cs">
+      <DependentUpon>PrintPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\PrintPage.aspx.designer.cs">
+      <DependentUpon>PrintPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\timkiemvieclamsieutocNTV.aspx.cs">
+      <DependentUpon>timkiemvieclamsieutocNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\timkiemvieclamsieutocNTV.aspx.designer.cs">
+      <DependentUpon>timkiemvieclamsieutocNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\vieclamnhieunguoixemNTV.aspx.cs">
+      <DependentUpon>vieclamnhieunguoixemNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\vieclamnhieunguoixemNTV.aspx.designer.cs">
+      <DependentUpon>vieclamnhieunguoixemNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\vieclamhotNTV.aspx.cs">
+      <DependentUpon>vieclamhotNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\vieclamhotNTV.aspx.designer.cs">
+      <DependentUpon>vieclamhotNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\hoantatdangkyNTV.aspx.cs">
+      <DependentUpon>hoantatdangkyNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\hoantatdangkyNTV.aspx.designer.cs">
+      <DependentUpon>hoantatdangkyNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\laylaimatkhauNTV.aspx.cs">
+      <DependentUpon>laylaimatkhauNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\laylaimatkhauNTV.aspx.designer.cs">
+      <DependentUpon>laylaimatkhauNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\quenmatkhau.aspx.cs">
+      <DependentUpon>quenmatkhau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\quenmatkhau.aspx.designer.cs">
+      <DependentUpon>quenmatkhau.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\doimatkhauNTV.aspx.cs">
+      <DependentUpon>doimatkhauNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\doimatkhauNTV.aspx.designer.cs">
+      <DependentUpon>doimatkhauNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\Filter_test.aspx.cs">
+      <DependentUpon>Filter_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\Filter_test.aspx.designer.cs">
+      <DependentUpon>Filter_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\hosocanhanNTV.aspx.cs">
+      <DependentUpon>hosocanhanNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\hosocanhanNTV.aspx.designer.cs">
+      <DependentUpon>hosocanhanNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\nhatuyendungcuatoiNTV.aspx.cs">
+      <DependentUpon>nhatuyendungcuatoiNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\nhatuyendungcuatoiNTV.aspx.designer.cs">
+      <DependentUpon>nhatuyendungcuatoiNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\nhatuyendungdaxemhosoNTV.aspx.cs">
+      <DependentUpon>nhatuyendungdaxemhosoNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\nhatuyendungdaxemhosoNTV.aspx.designer.cs">
+      <DependentUpon>nhatuyendungdaxemhosoNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\quanlytimviecNTV.aspx.cs">
+      <DependentUpon>quanlytimviecNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\quanlytimviecNTV.aspx.designer.cs">
+      <DependentUpon>quanlytimviecNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\taohosotimviecNTV.aspx.cs">
+      <DependentUpon>taohosotimviecNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\taohosotimviecNTV.aspx.designer.cs">
+      <DependentUpon>taohosotimviecNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\vieclamdaungtuyenNTV.aspx.cs">
+      <DependentUpon>vieclamdaungtuyenNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\vieclamdaungtuyenNTV.aspx.designer.cs">
+      <DependentUpon>vieclamdaungtuyenNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\dangkyNTV.aspx.cs">
+      <DependentUpon>dangkyNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\dangkyNTV.aspx.designer.cs">
+      <DependentUpon>dangkyNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\HomeNTV.aspx.cs">
+      <DependentUpon>HomeNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\HomeNTV.aspx.designer.cs">
+      <DependentUpon>HomeNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\hosodadangNTV.aspx.cs">
+      <DependentUpon>hosodadangNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\hosodadangNTV.aspx.designer.cs">
+      <DependentUpon>hosodadangNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\CImage.aspx.cs">
+      <DependentUpon>CImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\CImage.aspx.designer.cs">
+      <DependentUpon>CImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\Page_Default_NTV.aspx.cs">
+      <DependentUpon>Page_Default_NTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\Page_Default_NTV.aspx.designer.cs">
+      <DependentUpon>Page_Default_NTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\thongbaotubanquantriNTV.aspx.cs">
+      <DependentUpon>thongbaotubanquantriNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\thongbaotubanquantriNTV.aspx.designer.cs">
+      <DependentUpon>thongbaotubanquantriNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\thongtincanhanNTV.aspx.cs">
+      <DependentUpon>thongtincanhanNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\thongtincanhanNTV.aspx.designer.cs">
+      <DependentUpon>thongtincanhanNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\vieclamdaluuNTV.aspx.cs">
+      <DependentUpon>vieclamdaluuNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\vieclamdaluuNTV.aspx.designer.cs">
+      <DependentUpon>vieclamdaluuNTV.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="data\configs\24\" />
+    <Folder Include="data\customer\giayphep\" />
+    <Folder Include="data\customer\logo\" />
+    <Folder Include="data\news\1049\" />
+    <Folder Include="Htm\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\ComponentArt.UIFramework.lic" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Logfiles\Error.log" />
+    <Content Include="Master\NTV.Master" />
+    <Content Include="Master\NTD.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{CE1DABDD-1283-4F83-98FB-AFF7BBFAFFB1}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{A559BB6D-EC09-4E9B-88C3-40893DF23721}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5727</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

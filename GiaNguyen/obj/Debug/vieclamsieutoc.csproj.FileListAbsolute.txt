@@ -1,0 +1,9 @@
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\CatTrang.dll
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\CatTrang.pdb
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\Controller.dll
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\Model.dll
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\Controller.pdb
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\bin\Model.pdb
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\obj\Debug\vieclamsieutoc.csprojResolveAssemblyReference.cache
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\obj\Debug\CatTrang.dll
+D:\PhongHT\Websites\dev\vieclamsieutoc\GiaNguyen\obj\Debug\CatTrang.pdb
