@@ -335,6 +335,7 @@
     <Content Include="UIs\Toolbar.ascx" />
     <Content Include="UIs\vieclamtheonganhngheNTV.ascx" />
     <Content Include="vi-vn\contactus.aspx" />
+    <Content Include="vi-vn\quanlyhosoungvienNTD.aspx" />
     <Content Include="vi-vn\quanlytuyendungNTD.aspx" />
     <Content Include="vi-vn\phanhoitunguoitimviecNTD.aspx" />
     <Content Include="vi-vn\dangkyNTD.aspx" />
@@ -546,6 +547,13 @@
     </Compile>
     <Compile Include="vi-vn\contactus.aspx.designer.cs">
       <DependentUpon>contactus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\quanlyhosoungvienNTD.aspx.cs">
+      <DependentUpon>quanlyhosoungvienNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\quanlyhosoungvienNTD.aspx.designer.cs">
+      <DependentUpon>quanlyhosoungvienNTD.aspx</DependentUpon>
     </Compile>
     <Compile Include="vi-vn\quanlytuyendungNTD.aspx.cs">
       <DependentUpon>quanlytuyendungNTD.aspx</DependentUpon>

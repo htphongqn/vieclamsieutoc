@@ -10,7 +10,7 @@
             <li class="active"><a href="/ntd-quan-ly-tuyen-dung">Quản lý tuyển dụng</a></li>
             <li><a href="/ntd-tin-tuyen-dung-da-dang">Tin TD đã đăng</a></li>
             <li><a href="taotintuyendungmoi_nhatuyendung.html">Tạo tin TD mới</a></li>
-            <li><a href="quanlyhosoungvien_nhatuyendung.html">Quản lý hồ sơ ứng viên</a></li>
+            <li><a href="/ntd-quan-ly-ho-so-ung-vien">Quản lý hồ sơ ứng viên</a></li>
             <li><a href="/ntd-xem-phan-hoi-tu-nguoi-tim-viec">Phản hồi của NTV</a></li>
             <li><a href="/ntd-thong-tin-tai-khoan">Thông tin NTD</a></li>
             <li><a href="/ntd-thong-bao-tu-ban-quan-tri">Thông báo của BQT</a></li>

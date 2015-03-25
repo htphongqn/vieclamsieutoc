@@ -274,7 +274,7 @@ namespace CatTrang.vi_vn
         {
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = 0;
-            var list = news.GetCustomerViewByCustomerId(customerId, newsId);
+            var list = news.GetCustomerByCustomerId(customerId, newsId, 4);
 
             GridItemListNTDXemHoso.DataSource = list;
             GridItemListNTDXemHoso.DataBind();

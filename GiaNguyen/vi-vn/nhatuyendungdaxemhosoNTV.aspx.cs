@@ -41,7 +41,7 @@ namespace CatTrang.vi_vn
         {
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(ddlHoso.SelectedValue);
-            var list = news.GetCustomerViewByCustomerId(customerId, newsId);
+            var list = news.GetCustomerByCustomerId(customerId, newsId, 4);
             Session["NewsList"] = DataUtil.LINQToDataTable(list);
             
             GridItemList.DataSource = list;

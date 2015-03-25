@@ -91,7 +91,7 @@ namespace Controller
                 return null;
             }
         }
-        public List<VL_CUSTOMER_ESHOP_NEW> GetCustomerViewByCustomerId(int customerId, int newsId)
+        public List<VL_CUSTOMER_ESHOP_NEW> GetCustomerByCustomerId(int customerId, int newsId, int type)//4 ntd đã xem hồ sơ
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Controller
                             where a.CUSTOMER_ID == customerId
                             && (a.NEWS_ID == newsId || newsId == 0)
                             && a.NEWS_SHOWTYPE == 1
-                            && b.TYPE == 4//ntd đã xem hồ sơ
+                            && b.TYPE == type
                             select b).ToList();
 
                 return list;
