@@ -6,7 +6,7 @@
             <li><a href="/"><em class="iconHome"><img src="../images/icon_home.png" /></em></a></li>
             <li><a href="/">Cho người tìm việc</a></li>
             <li><a href="/nha-tuyen-dung/">Cho nhà tuyển dụng</a></li>
-            <li><a>Hổ trợ :12345</a></li>
+            <li><a href="javascript:void(0)">Hổ trợ: 0908 169 044</a></li>
             <li><a>Góp ý</a></li>
             <li><a>Hướng dẫn sử dụng</a></li>
             <li class="bth"><a href="#backtohome">Về đầu trang<em class="icon_bth"><img src="../Images/icon_backToHome.png" /></em></a></li>          </ul>

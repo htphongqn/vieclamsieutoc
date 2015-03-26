@@ -139,13 +139,13 @@ namespace CatTrang.vi_vn {
         protected global::System.Web.UI.WebControls.Button btnHuytimkiem;
         
         /// <summary>
-        /// ckhblTrangthaiHoso control.
+        /// ckhblLoaiTin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList ckhblTrangthaiHoso;
+        protected global::System.Web.UI.WebControls.CheckBoxList ckhblLoaiTin;
         
         /// <summary>
         /// ckhbMucluong control.

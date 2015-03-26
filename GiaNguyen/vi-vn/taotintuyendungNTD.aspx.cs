@@ -4,15 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using vpro.functions;
-using Controller;
-using GiaNguyen.Components;
 using Model;
-using System.Collections;
+using System.Web.UI.HtmlControls;
+using Controller;
+using CatTrang.Components;
 
 namespace CatTrang.vi_vn
 {
-    public partial class taohosotimviecNTV : System.Web.UI.Page
+    public partial class taotintuyendungNTD : System.Web.UI.Page
     {
         dbVuonRauVietDataContext db = new dbVuonRauVietDataContext();
         private VL_Category vl = new VL_Category();
@@ -20,17 +21,18 @@ namespace CatTrang.vi_vn
         {
             if (!IsPostBack)
             {
-                if (Session["user"] != null && Session["user_fullname"] != null && Session["user_quyen"] != null && Utils.CIntDef(Session["user_quyen"]) == 1)
+                if (Session["user"] != null && Session["user_fullname"] != null && Session["user_quyen"] != null && Utils.CIntDef(Session["user_quyen"]) == Cost.QUYEN_NTD)
                 {
                     Load_VL_Category();
                     LoadThongtincanhan();
-                    AddQuatrinhlamviec();
-                    AddThamkhao();
-
+                    
+                    string logoUrl = GetCusLogo(Utils.CIntDef(Session["userId"]));
+                    lbLogo.Text = "<img width='104' height='79' src='" + logoUrl + "'>";
                 }
                 else
                 {
-                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản người tìm việc!');location.href='/trang-chu.html'</script>");
+                    Session.Abandon();
+                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản nhà tuyển dụng!');location.href='/nha-tuyen-dung.html'</script>");
                 }
             }
         }
@@ -46,24 +48,14 @@ namespace CatTrang.vi_vn
             ddlHinhthuclamviec.DataBind();
             ddlMucluongmongmuon.DataSource = vl.GetAllMucluong();
             ddlMucluongmongmuon.DataBind();
-            ddlTrinhdohocvan.DataSource = vl.GetAllTrinhdohocvan();
-            ddlTrinhdohocvan.DataBind();
-            LoadNamtotnghiep();
-            ddlTruongtotnghiep.DataSource = vl.GetAllTruongtotnghiep();
-            ddlTruongtotnghiep.DataBind();
-            ddlNgoaingu.DataSource = vl.GetAllNgoaingu();
-            ddlNgoaingu.DataBind();
-            ddlTrinhdongoaingu.DataSource = vl.GetAllTrinhdoNgoaingu();
-            ddlTrinhdongoaingu.DataBind();
             ddKinhnghiem.DataSource = vl.GetAllKinhnghiem();
             ddKinhnghiem.DataBind();
-        }
-        private void LoadNamtotnghiep()
-        {
-            for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 20; i--)
-            {
-                ddlNamtotnghiep.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            }
+            ddlTrinhdohocvan.DataSource = vl.GetAllTrinhdohocvan();
+            ddlTrinhdohocvan.DataBind();
+            ddlDotuoi.DataSource = vl.GetAllDotuoi();
+            ddlDotuoi.DataBind();
+            ddlHinhthucnophoso.DataSource = vl.GetAllHinhthucnophoso();
+            ddlHinhthucnophoso.DataBind();
         }
         private void LoadThongtincanhan()
         {
@@ -71,76 +63,55 @@ namespace CatTrang.vi_vn
             var item = db.ESHOP_CUSTOMERs.Where(c => c.CUSTOMER_ID == customerId);
             if (item != null && item.ToList().Count > 0)
             {
-                lbFullname.Text = item.ToList()[0].CUSTOMER_FULLNAME;
-                lbBirthday.Text = Utils.CDateDef(item.ToList()[0].CUSTOMER_BIRTHDAY, DateTime.MinValue).ToString("dd/MM/yyyy");
-                lbSex.Text = Utils.CIntDef(item.ToList()[0].CUSTOMER_SEX, 3) == 1 ? "Nam" : (Utils.CIntDef(item.ToList()[0].CUSTOMER_SEX, 3) == 2 ? "Nữ" : "Khác");
-                lbTinhtranghonnha.Text = Utils.CIntDef(item.ToList()[0].CUSTOMER_HONNHAN) == 1 ? "Độc thân" : "Đã có gia đình";
+                lbCompanyname.Text = item.ToList()[0].CUSTOMER_FULLNAME;
+                lbQuymocongty.Text = GetQuymocongty(item.ToList()[0].VL_QUYMOCONGTY_ID);
+                lbSoluoccongty.Text = item.ToList()[0].CUSTOMER_SOLUOC;
+                lbDiachicongty.Text = item.ToList()[0].CUSTOMER_ADDRESS;
+                lbMasothue.Text = item.ToList()[0].CUSTOMER_MASOTHUE;
+                lbWebsite.Text = item.ToList()[0].CUSTOMER_WEBSITE;
 
-                lbContactName.Text = item.ToList()[0].CUSTOMER_CONTACTNAME;
-                lbContactAddress.Text = item.ToList()[0].CUSTOMER_ADDRESS;
-                lbContactEmail.Text = item.ToList()[0].CUSTOMER_EMAIL;
-                lbContactPhone.Text = item.ToList()[0].CUSTOMER_PHONE1;
+                lbNguoilienhe.Text = item.ToList()[0].CUSTOMER_CONTACTNAME;
+                lbDiachilienhe.Text = item.ToList()[0].CUSTOMER_ADDRESS;
+                lbEmailLienhe.Text = item.ToList()[0].CUSTOMER_EMAIL;
+                lbDienthoailienhe.Text = item.ToList()[0].CUSTOMER_PHONE1;
             }
         }
-        private void AddQuatrinhlamviec()
+        public string GetQuymocongty(object oid)
         {
-            string s = "";
-            s += "Tên công ty:\n";
-            s += "Vị trí công việc:\n";
-            s += "Ngành nghề:\n";
-            s += "Thời gian bắt đầu:\n";
-            s += "Thời gian kết thúc:\n";
-            s += "Mô tả công việc:\n";
-            s += "Lý do thôi việc:\n";
-            s += "Thành tích đạt được:\n";
-            s += "Mức lương:\n";
-            txt_kinh_nghiem.Value = s;
+            int id = Utils.CIntDef(oid);
+            var item = db.VL_QUYMOCONGTies.Where(n => n.ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                return item.ToList()[0].NAME;
+            }
+            return "";
         }
-        private void AddThamkhao()
+        public string GetCusLogo(object oid)
         {
-            string s = "";
-            s += "Họ và tên:\n";
-            s += "Địa chỉ:\n";
-            s += "Điện thoại:\n";
-            s += "Nghề nghiệp:\n";
-            s += "Quan hệ:\n";
-            s += "Thời gian quen biết:\n";
-            txt_nguon_tham_khao.Value = s;
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                if (item.ToList()[0].CUSTOMER_LOGO != "" && item.ToList()[0].CUSTOMER_LOGO != null)
+                    return "/data/customer/logo/" + item.ToList()[0].CUSTOMER_LOGO;
+            }
+            return "../Images/person.jpg";
         }
-
-        protected void lnkAddKinhnghiem_Click(object sender, EventArgs e)
+        public string GetShortName(object obj, int lenght)
         {
-            string s = "=========================================================\n";
-            s += "Tên công ty:\n";
-            s += "Vị trí công việc:\n";
-            s += "Ngành nghề:\n";
-            s += "Thời gian bắt đầu:\n";
-            s += "Thời gian kết thúc:\n";
-            s += "Mô tả công việc:\n";
-            s += "Lý do thôi việc:\n";
-            s += "Thành tích đạt được:\n";
-            s += "Mức lương:\n";
-            txt_kinh_nghiem.Value += s;
+            string strObj = Utils.CStrDef(obj);
+            if (strObj.Length >= lenght)
+            {
+                return strObj.Substring(0, lenght - 3) + "...";
+            }
+            return strObj;
         }
-
-        protected void lnkAddThamkhao_Click(object sender, EventArgs e)
-        {
-            string s = "=========================================================\n";
-            s += "Họ và tên:\n";
-            s += "Địa chỉ:\n";
-            s += "Điện thoại:\n";
-            s += "Nghề nghiệp:\n";
-            s += "Quan hệ:\n";
-            s += "Thời gian quen biết:\n";
-            txt_nguon_tham_khao.Value += s;
-        }
-
         protected void cblRdoOptionNganhngheDislay_SelectedIndexChanged(object sender, EventArgs e)
         {
             string valueSelect = cblRdoOptionNganhnghe.SelectedValue;
             if (cblRdoOptionNganhngheDislay.SelectedValue == "1")
             {
-                cblRdoOptionNganhnghe.DataSource = vl.GetAllNganhnghe().Where(n=>n.CAT_ID == Utils.CIntDef(valueSelect));
+                cblRdoOptionNganhnghe.DataSource = vl.GetAllNganhnghe().Where(n => n.CAT_ID == Utils.CIntDef(valueSelect));
                 cblRdoOptionNganhnghe.DataBind();
                 if (!string.IsNullOrEmpty(valueSelect))
                     cblRdoOptionNganhnghe.SelectedValue = valueSelect;
@@ -149,7 +120,7 @@ namespace CatTrang.vi_vn
             {
                 cblRdoOptionNganhnghe.DataSource = vl.GetAllNganhnghe();
                 cblRdoOptionNganhnghe.DataBind();
-                if(!string.IsNullOrEmpty(valueSelect))
+                if (!string.IsNullOrEmpty(valueSelect))
                     cblRdoOptionNganhnghe.SelectedValue = valueSelect;
             }
         }
@@ -157,11 +128,11 @@ namespace CatTrang.vi_vn
         protected void cblRdoOptionDiadiemDislay_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<decimal> arr = new List<decimal>();
-            for(int i =0;i<cblChkOptionDiadiem.Items.Count;i++)
-	        {
+            for (int i = 0; i < cblChkOptionDiadiem.Items.Count; i++)
+            {
                 if (cblChkOptionDiadiem.Items[i].Selected)
                     arr.Add(Utils.CDecDef(cblChkOptionDiadiem.Items[i].Value));
-	        }
+            }
             if (cblRdoOptionDiadiemDislay.SelectedValue == "1")
             {
                 cblChkOptionDiadiem.DataSource = vl.GetAllArea().Where(n => arr.Contains(n.ARE_ID));
@@ -175,41 +146,21 @@ namespace CatTrang.vi_vn
             for (int i = 0; i < cblChkOptionDiadiem.Items.Count; i++)
             {
                 for (int j = 0; j < arr.Count; j++)
-			    {
+                {
                     if (cblChkOptionDiadiem.Items[i].Value == Utils.CStrDef(arr[j]))
                         cblChkOptionDiadiem.Items[i].Selected = true;
-			    }                
+                }
             }
         }
-
-        protected void ddlTruongtotnghiepDislay_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnDangtuyen_Click(object sender, EventArgs e)
         {
-            string valueSelect = ddlTruongtotnghiep.SelectedValue;
-            if (ddlTruongtotnghiepDislay.SelectedValue == "1")
-            {
-                ddlTruongtotnghiep.DataSource = vl.GetAllTruongtotnghiep().Where(n => n.ID == Utils.CIntDef(valueSelect));
-                ddlTruongtotnghiep.DataBind();
-                if (!string.IsNullOrEmpty(valueSelect))
-                    ddlTruongtotnghiep.SelectedValue = valueSelect;
-            }
-            else if (ddlTruongtotnghiepDislay.SelectedValue == "2")
-            {
-                ddlTruongtotnghiep.DataSource = vl.GetAllTruongtotnghiep();
-                ddlTruongtotnghiep.DataBind();
-                if (!string.IsNullOrEmpty(valueSelect))
-                    ddlTruongtotnghiep.SelectedValue = valueSelect;
-            }
-        }
-
-        protected void btnDanghoso_Click(object sender, EventArgs e)
-        {
-            DangHoso(1);
+            DangTuyen(1);
         }
         protected void btnLuutam_Click(object sender, EventArgs e)
         {
-            DangHoso(4);
+            DangTuyen(4);
         }
-        private void DangHoso(int tthoso)
+        private void DangTuyen(int tthoso)
         {
             if (this.txt_ma_xac_minh.Value != this.Session["CaptchaImageText"].ToString())
             {
@@ -225,30 +176,26 @@ namespace CatTrang.vi_vn
             news_insert.VL_CAOBAC_ID = Utils.CIntDef(ddlCapbacmongmuon.SelectedValue);
             news_insert.VL_HINHTHUCLAMVIEC_ID = Utils.CIntDef(ddlHinhthuclamviec.SelectedValue);
             news_insert.VL_MUCLUONG_ID = Utils.CIntDef(ddlMucluongmongmuon.SelectedValue);
-            news_insert.MUCTIEUNGHENGHIEP = txtmuc_tieu_nghe_nghiep.Value;
-            news_insert.NEWS_DEALINE = Utils.CDateDef(txtPickerDenngay.Value, DateTime.Now);
-            news_insert.VL_TRINHDOHOCVAN_ID = Utils.CIntDef(ddlTrinhdohocvan.SelectedValue);
-            news_insert.NGANHHOC = txtnganh_hoc.Value;
-            news_insert.NAMTOTNGHIEP = Utils.CIntDef(ddlNamtotnghiep.SelectedValue);
-            news_insert.LOAITOTNGHIEP = Utils.CIntDef(ddlLoaitotnghiep.SelectedValue);
-            news_insert.VL_TRUONGTOTNGHIEP_ID = Utils.CIntDef(ddlTruongtotnghiep.SelectedValue);
-            news_insert.VL_NGOAINGU_ID = Utils.CIntDef(ddlNgoaingu.SelectedValue);
-            news_insert.VL_TRINHDONGOAINGU_ID = Utils.CIntDef(ddlTrinhdongoaingu.SelectedValue);
-            news_insert.TRINHDOTINHOC = txttrinh_do_tin_hoc.Value;
-            news_insert.BANGCAPKHAC = txtbang_cap_khac.Value;
+            news_insert.SOLUONGTUYEN = Utils.CIntDef(txt_so_luong_tuyen.Value);
+            news_insert.QUYENLOI = Utils.CStrDef(txt_quyen_loi.Value);
+            news_insert.MOTACONGVIEC = Utils.CStrDef(txt_mo_ta_cong_viec.Value);
             news_insert.VL_KINHNGHIEM_ID = Utils.CIntDef(ddKinhnghiem.SelectedValue);
-            news_insert.QUATRINHLAMVIEC = txt_kinh_nghiem.Value;
-            news_insert.KYNANG = txtky_nang.Value;
-            news_insert.NGUONTHAMKHAO = txt_nguon_tham_khao.Value;
-            
+            news_insert.VL_TRINHDOHOCVAN_ID = Utils.CIntDef(ddlTrinhdohocvan.SelectedValue);
+            news_insert.YEUCAUGIOITINH = Utils.CIntDef(ddlGioitinh.SelectedValue);
+            news_insert.VL_DOTUOI_ID = Utils.CIntDef(ddlDotuoi.SelectedValue);
+            news_insert.YEUCAUKHAC = Utils.CStrDef(txt_yeu_cau_khac.Value);
+            news_insert.HOSO = Utils.CStrDef(txt_ho_so_gom.Value);
+            news_insert.NEWS_DEALINE = Utils.CDateDef(txtPickerHannop.Value, DateTime.Now);
+            news_insert.VL_HINHTHUCNOPHOSO_ID = Utils.CIntDef(ddlHinhthucnophoso.SelectedValue);
+
             news_insert.TINHTRANGHOSO = tthoso;
 
-            news_insert.NEWS_TYPE = 1;
+            news_insert.NEWS_TYPE = 2;
             news_insert.NEWS_SHOWTYPE = 1;
             news_insert.NEWS_SHOWINDETAIL = 1;
             news_insert.NEWS_COUNT = 0;
             news_insert.CUSTOMER_ID = Utils.CIntDef(Session["userId"]);
-            
+
             news_insert.NEWS_PUBLISHDATE = DateTime.Now;
 
             db.ESHOP_NEWs.InsertOnSubmit(news_insert);
@@ -266,7 +213,7 @@ namespace CatTrang.vi_vn
             }
             updateNewsSeoUrl(news_insert.NEWS_ID);
 
-            Response.Write("<script>alert('Tạo hồ sơ tìm việc thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+            Response.Write("<script>alert('Tạo tin tuyển dụng thành công!');location.href='/ntd-tin-tuyen-dung-da-dang'</script>");
 
         }
 
@@ -311,6 +258,5 @@ namespace CatTrang.vi_vn
                 clsVproErrorHandler.HandlerError(ex);
             }
         }
-
     }
 }

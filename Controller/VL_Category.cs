@@ -133,6 +133,30 @@ namespace Controller
                 return null;
             }
         }
+        public List<VL_DOTUOI> GetAllDotuoi()
+        {
+            try
+            {
+                var list = db.VL_DOTUOIs.Where(n => n.ACTIVE == 1).OrderByDescending(n => n.PRIORITY).ToList();
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public List<VL_HINHTHUCNOPHOSO> GetAllHinhthucnophoso()
+        {
+            try
+            {
+                var list = db.VL_HINHTHUCNOPHOSOs.Where(n => n.ACTIVE == 1).OrderByDescending(n => n.PRIORITY).ToList();
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public List<VL_QUYMOCONGTY> GetAllQuymo()
         {
             try

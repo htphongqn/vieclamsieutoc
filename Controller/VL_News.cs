@@ -110,6 +110,30 @@ namespace Controller
                 return null;
             }
         }
+        public List<VL_CUSTOMER_ESHOP_NEW> GetCustomerByCustomerId(int customerId, int newsId, int trangthaihoso, int mucluong, int trinhdohocvan, int gioitinh, int tinhtranghonnhan, int kinhnghiem)
+        {
+            try
+            {
+                var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
+                            join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
+                            where b.CUSTOMER_ID == customerId 
+                            && (b.NEWS_ID == newsId || newsId == 0)
+                            && (b.VL_MUCLUONG_ID == mucluong || mucluong == 0)
+                            && (b.VL_TRINHDOHOCVAN_ID == trinhdohocvan || trinhdohocvan == 0)
+                            && (a.ESHOP_CUSTOMER.CUSTOMER_SEX == gioitinh || gioitinh == 0)
+                            && (a.ESHOP_CUSTOMER.CUSTOMER_HONNHAN == tinhtranghonnhan || tinhtranghonnhan == 0)
+                            && (b.VL_KINHNGHIEM_ID == kinhnghiem || kinhnghiem == 0)
+                            && (a.TYPE == trangthaihoso || trangthaihoso == 0)
+                            && b.NEWS_SHOWTYPE == 1
+                            select a).ToList();
+
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public List<ESHOP_NEW> GetEshopNewsBySearch(string tieu_de, int nganh_nghe, int dia_diem, int muc_luong, int kinh_nghiem, int type)
         {
             try

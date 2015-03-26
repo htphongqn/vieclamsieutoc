@@ -3,6 +3,42 @@
 <%@ Register src="~/UIs/BannerTopNTD.ascx" tagname="BannerTopNTD" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script language="javascript">
+				<!--
+    function ToggleAll(e, action) {
+        if (e.checked) {
+            CheckAll();
+        }
+        else {
+            ClearAll();
+        }
+    }
+
+    function CheckAll() {
+        var ml = document.forms[0];
+        var len = ml.elements.length;
+        for (var i = 1; i < len; i++) {
+            var e = ml.elements[i];
+
+            if (e.name.toString().indexOf("chkSelect") > 0)
+                e.checked = true;
+        }
+        ml.MainContent_GridItemList_toggleSelect.checked = true;
+    }
+
+    function ClearAll() {
+        var ml = document.forms[0];
+        var len = ml.elements.length;
+        for (var i = 1; i < len; i++) {
+            var e = ml.elements[i];
+            if (e.name.toString().indexOf("chkSelect") > 0)
+                e.checked = false;
+        }
+        ml.MainContent_GridItemList_toggleSelect.checked = false;
+    }
+				    
+				// -->
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMain" runat="server">
     <div class="page" id="recruitment">
@@ -62,31 +98,32 @@
           </div>
           <div class="resumes_row">
             <div class="resumes_td" style="background: #F3F3F3">
-              <asp:CheckBoxList ID="ckhblTrangthaiHoso" runat="server" AutoPostBack="True">
+              <asp:CheckBoxList ID="ckhblLoaiTin" runat="server" AutoPostBack="True" 
+                    onselectedindexchanged="ckhblLoaiTin_SelectedIndexChanged">
               </asp:CheckBoxList>
             </div>
             <div class="resumes_td" style="background: #F3F3F3">
-              <asp:CheckBoxList ID="ckhbMucluong" runat="server" AutoPostBack="True" 
+              <asp:CheckBoxList ID="ckhbMucluong" runat="server" AutoPostBack="True" onselectedindexchanged="ckhbMucluong_SelectedIndexChanged" 
                     >
               </asp:CheckBoxList>
             </div>
             <div class="resumes_td" style="background: #F3F3F3">
-                <asp:CheckBoxList ID="ckhbBangcap" runat="server" AutoPostBack="True" 
+                <asp:CheckBoxList ID="ckhbBangcap" runat="server" AutoPostBack="True" onselectedindexchanged="ckhbBangcap_SelectedIndexChanged" 
                     >
                 </asp:CheckBoxList>
             </div>
             <div class="resumes_td" style="background: #F3F3F3">
-                <asp:CheckBoxList ID="ckhbGioitinh" runat="server" AutoPostBack="True" 
+                <asp:CheckBoxList ID="ckhbGioitinh" runat="server" AutoPostBack="True" onselectedindexchanged="ckhbGioitinh_SelectedIndexChanged" 
                     >
                 </asp:CheckBoxList>
             </div>
             <div class="resumes_td" style="background: #F3F3F3">
-                <asp:CheckBoxList ID="ckhbTinhtrangHonnhan" runat="server" AutoPostBack="True" 
+                <asp:CheckBoxList ID="ckhbTinhtrangHonnhan" runat="server" AutoPostBack="True" onselectedindexchanged="ckhbTinhtrangHonnhan_SelectedIndexChanged" 
                     >
                 </asp:CheckBoxList>
             </div>
             <div class="resumes_td" style="background: #F3F3F3">
-                <asp:CheckBoxList ID="ckhbKinhnghiem" runat="server" AutoPostBack="True" 
+                <asp:CheckBoxList ID="ckhbKinhnghiem" runat="server" AutoPostBack="True" onselectedindexchanged="ckhbKinhnghiem_SelectedIndexChanged" 
                     >
                 </asp:CheckBoxList>
             </div>
@@ -181,7 +218,7 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_UPDATE">
                     <ItemTemplate>
-                        <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PUBLISHDATE")).ToString("dd/MM/yyyy")%>
+                        <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DATE_XULY")).ToString("dd/MM/yyyy")%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%" HorizontalAlign="Left">
                     </HeaderStyle>
@@ -190,7 +227,7 @@
                 <asp:TemplateColumn HeaderText="Ngày hẹn tiếp theo" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
                     <ItemTemplate>
-                        <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PUBLISHDATE")).ToString("dd/MM/yyyy")%>
+                        <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DATE_HENTIEPTHEO")).ToString("dd/MM/yyyy")%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%" HorizontalAlign="Left">
                     </HeaderStyle>
@@ -199,7 +236,7 @@
                 <asp:TemplateColumn HeaderText="Trạng thái hồ sơ" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
                     <ItemTemplate>
-                        <%--<%# getTinhtranghoso(DataBinder.Eval(Container.DataItem, "TINHTRANGHOSO"))%>--%>
+                        <%# getTinhthaihoso(DataBinder.Eval(Container.DataItem, "TYPE"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%" HorizontalAlign="Left">
                     </HeaderStyle>

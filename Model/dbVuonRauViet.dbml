@@ -767,6 +767,82 @@
       <Column Name="CUSTOMER_ID_2" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.VL_AREA_ESHOP_NEWS" Member="VL_AREA_ESHOP_NEWs">
+    <Type Name="VL_AREA_ESHOP_NEW">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AREA_ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="NEWS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA" ThisKey="AREA_ID" OtherKey="ARE_ID" Type="VL_AREA" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="ESHOP_NEW_VL_AREA_ESHOP_NEW" Member="ESHOP_NEW" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VL_QUYMOCONGTY" Member="VL_QUYMOCONGTies">
+    <Type Name="VL_QUYMOCONGTY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ESHOP_CUSTOMER" Member="ESHOP_CUSTOMERs">
+    <Type Name="ESHOP_CUSTOMER">
+      <Column Name="CUSTOMER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CUSTOMER_FULLNAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_UN_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CUSTOMER_PW" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CUSTOMER_SEX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_ADDRESS" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CUSTOMER_PHONE1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CUSTOMER_PHONE2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CUSTOMER_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CUSTOMER_NEWSLETTER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_FIELD1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_FIELD2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_FIELD3" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_FIELD4" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_FIELD5" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CUSTOMER_PUBLISHDATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CUSTOMER_UPDATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CUSTOMER_SHOWTYPE" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="CUSTOMER_OID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CUSTOMER_TOTAL_POINT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_USED" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_REMAIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_UPDATE_POINT" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CUSTOMER_BIRTHDAY" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CUSTOMER_HONNHAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_CITY" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CUSTOMER_QUYMO" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CUSTOMER_SOLUOC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="CUSTOMER_LOGO" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CUSTOMER_GIAYPHEP" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CUSTOMER_MASOTHUE" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CUSTOMER_WEBSITE" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="CUSTOMER_GIOITHIEU" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="CUSTOMER_QUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CODE_REGISTER" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CODE_FORGOTPASS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ISACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_CONTACTNAME" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CUSTOMER_CONTACTADDRESS" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CUSTOMER_CONTACTEMAIL" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CUSTOMER_CONTACTPHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VL_QUYMOCONGTY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ESHOP_CUSTOMER_VL_CUSTOMER_ESHOP_NEW" Member="VL_CUSTOMER_ESHOP_NEWs" ThisKey="CUSTOMER_ID" OtherKey="CUSTOMER_ID" Type="VL_CUSTOMER_ESHOP_NEW" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VL_CUSTOMER_COMMENT" Member="VL_CUSTOMER_COMMENTs">
+    <Type Name="VL_CUSTOMER_COMMENT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CUSTOMER_NTD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_NTV_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE_CREATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.VL_CUSTOMER_ESHOP_NEWS" Member="VL_CUSTOMER_ESHOP_NEWs">
     <Type Name="VL_CUSTOMER_ESHOP_NEW">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -775,15 +851,9 @@
       <Column Name="PUBLISHDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="VIEWCOUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VL_AREA_ESHOP_NEWS" Member="VL_AREA_ESHOP_NEWs">
-    <Type Name="VL_AREA_ESHOP_NEW">
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AREA_ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="NEWS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA" ThisKey="AREA_ID" OtherKey="ARE_ID" Type="VL_AREA" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="ESHOP_NEW_VL_AREA_ESHOP_NEW" Member="ESHOP_NEW" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Column Name="DATE_XULY" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DATE_HENTIEPTHEO" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="ESHOP_CUSTOMER_VL_CUSTOMER_ESHOP_NEW" Member="ESHOP_CUSTOMER" ThisKey="CUSTOMER_ID" OtherKey="CUSTOMER_ID" Type="ESHOP_CUSTOMER" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ESHOP_NEWS" Member="ESHOP_NEWs">
@@ -878,6 +948,15 @@
       <Column Name="YEUCAUKHAC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
       <Column Name="HOSO" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
       <Column Name="YEUCAUGIOITINH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MUCTIEUNGHENGHIEP" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="NGANHHOC" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="NAMTOTNGHIEP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LOAITOTNGHIEP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TRINHDOTINHOC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="BANGCAPKHAC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="KYNANG" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="NGUONTHAMKHAO" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="QUATRINHLAMVIEC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
       <Association Name="ESHOP_NEW_ESHOP_BASKET" Member="ESHOP_BASKETs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_BASKET" />
       <Association Name="ESHOP_NEW_ESHOP_NEWS_ATT" Member="ESHOP_NEWS_ATTs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEWS_ATT" />
       <Association Name="ESHOP_NEW_ESHOP_NEWS_CAT" Member="ESHOP_NEWS_CATs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEWS_CAT" />
@@ -888,72 +967,6 @@
       <Association Name="ESHOP_NEW_VL_AREA_ESHOP_NEW" Member="VL_AREA_ESHOP_NEWs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="VL_AREA_ESHOP_NEW" />
       <Association Name="ESHOP_NEW_ESHOP_NEW" Member="ESHOP_NEW2" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" Cardinality="One" />
       <Association Name="ESHOP_NEW_ESHOP_NEW" Member="ESHOP_NEW1" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VL_QUYMOCONGTY" Member="VL_QUYMOCONGTies">
-    <Type Name="VL_QUYMOCONGTY">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NAME" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ESHOP_CUSTOMER" Member="ESHOP_CUSTOMERs">
-    <Type Name="ESHOP_CUSTOMER">
-      <Column Name="CUSTOMER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CUSTOMER_FULLNAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_UN_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CUSTOMER_PW" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CUSTOMER_SEX" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_ADDRESS" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="CUSTOMER_PHONE1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CUSTOMER_PHONE2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CUSTOMER_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CUSTOMER_NEWSLETTER" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_FIELD1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_FIELD2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_FIELD3" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_FIELD4" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_FIELD5" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CUSTOMER_PUBLISHDATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CUSTOMER_UPDATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CUSTOMER_SHOWTYPE" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="CUSTOMER_OID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="CUSTOMER_TOTAL_POINT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_USED" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_REMAIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_UPDATE_POINT" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CUSTOMER_BIRTHDAY" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CUSTOMER_HONNHAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_CITY" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CUSTOMER_QUYMO" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CUSTOMER_SOLUOC" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
-      <Column Name="CUSTOMER_LOGO" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="CUSTOMER_GIAYPHEP" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="CUSTOMER_MASOTHUE" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="CUSTOMER_WEBSITE" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
-      <Column Name="CUSTOMER_GIOITHIEU" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
-      <Column Name="CUSTOMER_QUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CODE_REGISTER" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="CODE_FORGOTPASS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ISACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_CONTACTNAME" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="CUSTOMER_CONTACTADDRESS" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="CUSTOMER_CONTACTEMAIL" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="CUSTOMER_CONTACTPHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="VL_QUYMOCONGTY_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VL_CUSTOMER_COMMENT" Member="VL_CUSTOMER_COMMENTs">
-    <Type Name="VL_CUSTOMER_COMMENT">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CUSTOMER_NTD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUSTOMER_NTV_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DATE_CREATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

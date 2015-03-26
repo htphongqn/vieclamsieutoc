@@ -7,11 +7,6 @@ namespace CatTrang.Components
 {
     public class Cost
     {
-        //lang
-        public const int VI = 1;
-        public const int EN = 2;
-        public const int RU = 3;
-        public const int CH = 4;
         //code email template
         public const string EMAIL_CONTACT = "CONTACT";
         public const string EMAIL_ORDERHOTEL = "ORDERHOTEL";
@@ -19,5 +14,9 @@ namespace CatTrang.Components
         //
         public const int QUYEN_NTV = 1;
         public const int QUYEN_NTD = 2;
+
+        //vl_customer_eshop_news
+        //1 NTV lưu, 2 NTV ứng tuyển, , 3 NTV đã xem, 4 NTD đã xem, 5 NTD đã lưu
+        //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Ho so chua dat
     }
 }
