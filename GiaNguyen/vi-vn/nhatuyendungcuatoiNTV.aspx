@@ -39,6 +39,7 @@
 				    
 				// -->
     </script>
+    <script src="../Scripts/jquery.tools.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="page" id="recruitment"> 
@@ -51,7 +52,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Việc làm từ nhà tuyển dụng của tôi</h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <p class="number_jobs fl">Bạn đã đăng ký nhận tin tuyển dụng từ 
@@ -59,9 +60,9 @@
           Có tổng số <span class="red"><asp:Literal ID="lbCountTinNTD" runat="server" Text="0"></asp:Literal></span> tin tuyển dụng từ 
           <asp:Literal ID="lbCountNTD_2" runat="server" Text="0"></asp:Literal> Nhà tuyển dụng của bạn.<br />
           Ngày hôm nay có <span class="red"><asp:Literal ID="lbCountTinHomnayNTD" runat="server" Text="0"></asp:Literal></span> tin tuyển dụng mới</p>
-        <div class="cancel_button fr">
+        <%--<div class="cancel_button fr">
           <input type="submit" class="btn_green01" title="Bấm đây để hủy nhận tin từ nhà tuyển dụng" id="search_filter" value="Hủy nhận tin từ NTD của tôi" name="btn_filter">
-        </div>
+        </div>--%>
         <p class="number_jobs" style="width: 600px">Tìm kiếm việc làm từ Nhà tuyển dụng của <b><asp:Literal ID="lbFullName" runat="server"></asp:Literal></b> theo tiêu chí:</p>
         <span style="float: right; margin-top: -32px">
         <asp:Button CssClass="btn_green01" ToolTip="Bấm đây để hủy tìm kiếm!" 
@@ -149,14 +150,41 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
-                    HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
+                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%"
+                    HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow"
                     SortExpression="NEWS_TITLE">
                     <ItemTemplate>
-                            <%# Eval("NEWS_TITLE")%>
+                            <div class="resumes_td align_l">
+                            <div style="position: relative">
+                                <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# GetShortName(Eval("NEWS_TITLE"), 25)%></a> 
+                                <!-- tooltip element -->
+                                <div class="tooltip_ct">
+                                <table width="420" cellpadding="5" cellspacing="1" border="0" bgcolor="#d7d7d7">
+                                  <tr>
+                                    <td class="td_tootip blue" colspan="2"><%# Eval("NEWS_TITLE")%></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip blue" style="width:60px;">Công ty: </td>
+                                    <td class="td_tootip blue"><%# getTenCongty(Eval("CUSTOMER_ID"))%></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip blue" style="width:60px;">Số lượng: </td>
+                                    <td class="td_tootip blue "><%# Eval("SOLUONGTUYEN")%> </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip" colspan="2">
+                                      <b><span class="red" style="font-size: 12px">Mô tả công việc:</span></b>
+                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# GetShortName(Eval("MOTACONGVIEC"), 300)%></div></td>
+                                  </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <span class="tencty"><%# getTenCongty(Eval("CUSTOMER_ID"))%></span><br />
+                            <span class="luotxem"><em>(<%# Eval("NEWS_COUNT")%>&nbsp;lượt xem) </em></span>
+                        </div>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
-                    <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
+                    <ItemStyle CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="Tên công ty" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
@@ -207,9 +235,11 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                     <ItemTemplate>
-                        <a title="Click để xem thông tin chi tiết việc làm" target="_blank" href="/">Xem</a> | 
-                        <asp:LinkButton ID="lnkUngtuyen" runat="server" OnClientClick="return confirm('Bạn chắc chắn ứng tuyển không?')" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkUngtuyen_Click" ToolTip="Ứng tuyển vào vị trí này" Text="Ứng tuyển"></asp:LinkButton><br />
-                        <asp:LinkButton ID="lnkHuynhantin" runat="server" CommandName="delete" CommandArgument='<%# Eval("NEWS_ID")%>' ToolTip="Hủy nhận tin" Text="Hủy nhận tin"></asp:LinkButton>                        
+                        <a title="Click để xem thông tin chi tiết việc làm" target="_blank" href="<%# GetLinkNTV(Eval("NEWS_ID")) %>">Xem</a> | 
+                        <%--<asp:LinkButton ID="lnkUngtuyen" runat="server" OnClientClick="return confirm('Bạn chắc chắn ứng tuyển không?')" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkUngtuyen_Click" ToolTip="Ứng tuyển vào vị trí này" Text="Ứng tuyển"></asp:LinkButton>--%>
+                        <a href="<%# GetLinkNopHSNTV(Eval("NEWS_SEO_URL")) %>" target="_blank">Ứng tuyển</a>
+                        <br />
+                        <%--<asp:LinkButton ID="lnkHuynhantin" runat="server" CommandName="delete" CommandArgument='<%# Eval("NEWS_ID")%>' ToolTip="Hủy nhận tin" Text="Hủy nhận tin"></asp:LinkButton>--%>                        
                     </ItemTemplate>
                 </asp:TemplateColumn>
             </Columns>
@@ -238,4 +268,5 @@
     <div class="clearfix"></div>
     <uc1:boxPhone ID="boxPhone1" runat="server" />
   </div>
+    </span>
 </asp:Content>

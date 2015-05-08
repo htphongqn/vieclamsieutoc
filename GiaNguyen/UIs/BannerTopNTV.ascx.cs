@@ -39,7 +39,7 @@ namespace CatTrang.UIs
         {
             try
             {
-                var list = list_pro.Load_listprobytype(6, 0, -1);
+                var list = list_pro.Load_listprobytype(6, 0, 0, -1);
                 if (list.Count > 0)
                 {
                     rptMarquee.DataSource = list.OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(1);

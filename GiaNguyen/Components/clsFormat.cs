@@ -15,7 +15,7 @@ namespace GiaNguyen.Components
         {
             try
             {
-                string Money = String.Format("{0:0,0 VNĐ}", Expression);
+                string Money = String.Format("{0:#,0 VNĐ}", Expression);
                 return Money.Replace(",", ".");
             }
             catch (Exception ex)

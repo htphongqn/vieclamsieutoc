@@ -208,6 +208,7 @@
     <Content Include="html\nguoi_tim_viec\chitiet_camnagtimviec.html" />
     <Content Include="html\nguoi_tim_viec\chitiet_vieclam_tuyendung.html" />
     <Content Include="html\nguoi_tim_viec\dangky_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\dangky_tuvan.html" />
     <Content Include="html\nguoi_tim_viec\danhsach_vieclam.html" />
     <Content Include="html\nguoi_tim_viec\danhsach_vieclam_nganhnghe.html" />
     <Content Include="html\nguoi_tim_viec\danhsach_vieclam_tuyendung.html" />
@@ -215,6 +216,7 @@
     <Content Include="html\nguoi_tim_viec\hosocanhan_nguoitimviec.html" />
     <Content Include="html\nguoi_tim_viec\hosodadang_nguoitimviec.html" />
     <Content Include="html\nguoi_tim_viec\index_nguoitimviec.html" />
+    <Content Include="html\nguoi_tim_viec\nopdon_ungtuyen.html" />
     <Content Include="html\nguoi_tim_viec\NTDcuatoi_nguoitimviec.html" />
     <Content Include="html\nguoi_tim_viec\NTDdaxemhoso_nguoitimviec.html" />
     <Content Include="html\nguoi_tim_viec\quanlytimviec_nguoitimviec.html" />
@@ -225,7 +227,9 @@
     <Content Include="html\nguoi_tim_viec\viecdaungtuyen_nguoitimviec.html" />
     <Content Include="html\nhatuyendung\chitiet_thongtin_ungvien.html" />
     <Content Include="html\nhatuyendung\dangky_nhatuyendung.html" />
+    <Content Include="html\nhatuyendung\dangky_tuvan_nhatuyendung.html" />
     <Content Include="html\nhatuyendung\danhsach_ungvien.html" />
+    <Content Include="html\nhatuyendung\danhsach_ungvien_nganhnghe.html" />
     <Content Include="html\nhatuyendung\doimatkhau_nhatuyendung.html" />
     <Content Include="html\nhatuyendung\index_nhatuyendung.html" />
     <Content Include="html\nhatuyendung\phanhoituNTV_nhatuyendung .html" />
@@ -296,6 +300,7 @@
     <Content Include="Images\ui-icons_222222_256x240.png" />
     <Content Include="Images\ui-icons_454545_256x240.png" />
     <Content Include="Images\Untitled-18.png" />
+    <Content Include="Scripts\all.js" />
     <Content Include="Scripts\BeatPicker.min.js" />
     <Content Include="Scripts\ddsmoothmenu.js" />
     <Content Include="Scripts\jquery-ui.js" />
@@ -323,6 +328,10 @@
     <Content Include="UIs\chitietvieclamNTV.ascx" />
     <Content Include="UIs\chitiettin.ascx" />
     <Content Include="UIs\BannerTopNTD.ascx" />
+    <Content Include="UIs\chitietungvienNTD.ascx" />
+    <Content Include="UIs\menutop_HDSD.ascx" />
+    <Content Include="UIs\menutop_GOPY.ascx" />
+    <Content Include="UIs\ungvientheonganhngheNTD.ascx" />
     <Content Include="UIs\MessageBox.ascx" />
     <Content Include="UIs\MessageBox_Review.ascx" />
     <Content Include="UIs\sidebar_NTD.ascx" />
@@ -334,7 +343,14 @@
     <Content Include="UIs\path_vi.ascx" />
     <Content Include="UIs\Toolbar.ascx" />
     <Content Include="UIs\vieclamtheonganhngheNTV.ascx" />
-    <Content Include="vi-vn\contactus.aspx" />
+    <Content Include="vi-vn\lienhequangcao.aspx" />
+    <Content Include="vi-vn\huongdansudung.aspx" />
+    <Content Include="vi-vn\gopy.aspx" />
+    <Content Include="vi-vn\dangkytuvanNTD.aspx" />
+    <Content Include="vi-vn\dangkytuvanNTV.aspx" />
+    <Content Include="vi-vn\nophosotructuyenNTV.aspx" />
+    <Content Include="vi-vn\ungviennhieunguoixemNTD.aspx" />
+    <Content Include="vi-vn\ungvientieubieuNTD.aspx" />
     <Content Include="vi-vn\taotintuyendungNTD.aspx" />
     <Content Include="vi-vn\quanlyhosoungvienNTD.aspx" />
     <Content Include="vi-vn\quanlytuyendungNTD.aspx" />
@@ -408,6 +424,20 @@
     </Compile>
     <Compile Include="Components\Booking_result.cs" />
     <Compile Include="Components\SendMailSMTP.cs" />
+    <Compile Include="Master\HDSD.Master.cs">
+      <DependentUpon>HDSD.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\HDSD.Master.designer.cs">
+      <DependentUpon>HDSD.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\GOPY.Master.cs">
+      <DependentUpon>GOPY.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\GOPY.Master.designer.cs">
+      <DependentUpon>GOPY.Master</DependentUpon>
+    </Compile>
     <Compile Include="Master\NTD.Master.cs">
       <DependentUpon>NTD.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -464,6 +494,34 @@
     </Compile>
     <Compile Include="UIs\BannerTopNTD.ascx.designer.cs">
       <DependentUpon>BannerTopNTD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\chitietungvienNTD.ascx.cs">
+      <DependentUpon>chitietungvienNTD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\chitietungvienNTD.ascx.designer.cs">
+      <DependentUpon>chitietungvienNTD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\menutop_HDSD.ascx.cs">
+      <DependentUpon>menutop_HDSD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\menutop_HDSD.ascx.designer.cs">
+      <DependentUpon>menutop_HDSD.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\menutop_GOPY.ascx.cs">
+      <DependentUpon>menutop_GOPY.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\menutop_GOPY.ascx.designer.cs">
+      <DependentUpon>menutop_GOPY.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\ungvientheonganhngheNTD.ascx.cs">
+      <DependentUpon>ungvientheonganhngheNTD.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UIs\ungvientheonganhngheNTD.ascx.designer.cs">
+      <DependentUpon>ungvientheonganhngheNTD.ascx</DependentUpon>
     </Compile>
     <Compile Include="UIs\MessageBox.ascx.cs">
       <DependentUpon>MessageBox.ascx</DependentUpon>
@@ -542,12 +600,61 @@
     <Compile Include="UIs\vieclamtheonganhngheNTV.ascx.designer.cs">
       <DependentUpon>vieclamtheonganhngheNTV.ascx</DependentUpon>
     </Compile>
-    <Compile Include="vi-vn\contactus.aspx.cs">
-      <DependentUpon>contactus.aspx</DependentUpon>
+    <Compile Include="vi-vn\lienhequangcao.aspx.cs">
+      <DependentUpon>lienhequangcao.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="vi-vn\contactus.aspx.designer.cs">
-      <DependentUpon>contactus.aspx</DependentUpon>
+    <Compile Include="vi-vn\lienhequangcao.aspx.designer.cs">
+      <DependentUpon>lienhequangcao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\huongdansudung.aspx.cs">
+      <DependentUpon>huongdansudung.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\huongdansudung.aspx.designer.cs">
+      <DependentUpon>huongdansudung.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\gopy.aspx.cs">
+      <DependentUpon>gopy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\gopy.aspx.designer.cs">
+      <DependentUpon>gopy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\dangkytuvanNTD.aspx.cs">
+      <DependentUpon>dangkytuvanNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\dangkytuvanNTD.aspx.designer.cs">
+      <DependentUpon>dangkytuvanNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\dangkytuvanNTV.aspx.cs">
+      <DependentUpon>dangkytuvanNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\dangkytuvanNTV.aspx.designer.cs">
+      <DependentUpon>dangkytuvanNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\nophosotructuyenNTV.aspx.cs">
+      <DependentUpon>nophosotructuyenNTV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\nophosotructuyenNTV.aspx.designer.cs">
+      <DependentUpon>nophosotructuyenNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\ungviennhieunguoixemNTD.aspx.cs">
+      <DependentUpon>ungviennhieunguoixemNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\ungviennhieunguoixemNTD.aspx.designer.cs">
+      <DependentUpon>ungviennhieunguoixemNTD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\ungvientieubieuNTD.aspx.cs">
+      <DependentUpon>ungvientieubieuNTD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\ungvientieubieuNTD.aspx.designer.cs">
+      <DependentUpon>ungvientieubieuNTD.aspx</DependentUpon>
     </Compile>
     <Compile Include="vi-vn\taotintuyendungNTD.aspx.cs">
       <DependentUpon>taotintuyendungNTD.aspx</DependentUpon>
@@ -808,6 +915,7 @@
     <Folder Include="data\customer\giayphep\" />
     <Folder Include="data\customer\logo\" />
     <Folder Include="data\news\1049\" />
+    <Folder Include="export\" />
     <Folder Include="Htm\" />
   </ItemGroup>
   <ItemGroup>
@@ -816,6 +924,8 @@
     <None Include="Logfiles\Error.log" />
     <Content Include="Master\NTV.Master" />
     <Content Include="Master\NTD.Master" />
+    <Content Include="Master\GOPY.Master" />
+    <Content Include="Master\HDSD.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controller\Controller.csproj">

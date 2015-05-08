@@ -11,7 +11,9 @@
             <div style="float: left; width: 670px" id="content_1"> 
         <!--List HOT jobs-->
         <div class="block">
-          <div class="hot_rec_title"><b>Hồ sơ ứng viên tiêu biểu</b> <a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <div class="hot_rec_title"><b>Hồ sơ ứng viên tiêu biểu</b> 
+          <%--<a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a>--%>
+          </div>
           <div class="block_rec">
             <ul id="list_hot_jobs">
               <asp:Repeater ID="rptHoso_Tieubieu" runat="server">
@@ -24,7 +26,7 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </ul>
-            <div><a href="danhsach_ungvien.html" class="view_more_rec">&raquo; Xem danh sách chi tiết</a></div>
+            <div><a href="/ung-vien-tieu-bieu" class="view_more_rec">&raquo; Xem danh sách chi tiết</a></div>
             <div class="clearfix"> </div>
           </div>
         </div>
@@ -51,7 +53,7 @@
                 </ItemTemplate>
             </asp:Repeater>
             </ul>
-            <div><a href="" class="view_more_rec">&raquo; Xem danh sách chi tiết</a></div>
+            <div><a href="/ung-vien-nhieu-nguoi-xem" class="view_more_rec">&raquo; Xem danh sách chi tiết</a></div>
             <div class="clearfix"> </div>
           </div>
         </div>
@@ -179,8 +181,8 @@
         <div class="block">
           <div class="title_rec_home"><b>Hồ sơ ứng viên mới nhất</b>
             <div class="select_rec"> Chọn tỉnh:
-              <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Are_Name" 
-                DataValueField="Are_Id" AppendDataBoundItems="true" CssClass="type-option" 
+              <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Name" 
+                DataValueField="Id" AppendDataBoundItems="true" CssClass="type-option" 
                 AutoPostBack="True" 
                 onselectedindexchanged="ddlDiadiemVLMoi_SelectedIndexChanged">
                 <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        

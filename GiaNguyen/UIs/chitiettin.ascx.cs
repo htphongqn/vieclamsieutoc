@@ -129,12 +129,21 @@ namespace CatTrang.UIs
             string s = "";
             int tt = Utils.CIntDef(ott);
             var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);
+            int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
-                    s += itemArea.ToList()[0].ARE_NAME;
+                    if (i == 0)
+                    {
+                        s += itemArea.ToList()[0].NAME;
+                    }
+                    else
+                    {
+                        s += "<br />" + itemArea.ToList()[0].NAME;
+                    }
+                    i++;
                 }
 
             }

@@ -59,13 +59,13 @@ namespace CatTrang.vi_vn
         }
         private void Load_Hoso()
         {
-            var list = list_pro.Load_listprobyPeriod(1, 1, 0, -1);
+            var list = list_pro.Load_listprobyPeriod(1, 1, 0, 2, -1);
             if (list != null && list.Count > 0)
             {
                 rptHoso_Tieubieu.DataSource = list.Take(24);
                 rptHoso_Tieubieu.DataBind();
             }
-            var list2 = list_pro.Load_listprobytype(1, 0, -1);
+            var list2 = list_pro.Load_listprobytype(1, 0, 2, -1);
             if (list2 != null && list2.Count > 0)
             {
                 rptHoso_XemNhieu.DataSource = list2.OrderByDescending(n => n.NEWS_COUNT).Take(15);
@@ -81,6 +81,7 @@ namespace CatTrang.vi_vn
                         join c in db.ESHOP_CATEGORies on a.CAT_ID equals c.CAT_ID
                         join d in db.VL_AREA_ESHOP_NEWs on b.NEWS_ID equals d.NEWS_ID
                         where b.NEWS_SHOWTYPE == 1
+                        && (b.TINHTRANGHOSO == 2)
                          && b.NEWS_TYPE == 1
                          && (d.AREA_ID == areaId || areaId == 0)
                         select b).Distinct().OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(150).ToList();
@@ -211,7 +212,9 @@ namespace CatTrang.vi_vn
             var list = (from a in db.ESHOP_NEWS_CATs
                         join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
                         join c in db.ESHOP_CATEGORies on a.CAT_ID equals c.CAT_ID
-                        where b.NEWS_SHOWTYPE == 1 && c.CAT_ID == id
+                        where b.NEWS_SHOWTYPE == 1
+                        && (b.TINHTRANGHOSO == 2)
+                        && c.CAT_ID == id
                         && b.NEWS_TYPE == 1//1 tim viec, 2 tuyen dụng
                         select new { b.NEWS_ID });
             if (list != null)

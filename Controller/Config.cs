@@ -46,22 +46,28 @@ namespace Controller
             return _result;
         }
         //Insert contact
-        public bool Insert_contact(string name, string email, string title, string content, string address, string phone)
+        public int Insert_contact(string name, string email, string address, string phone, int areaId, int typeId)
         {
-            ESHOP_CONTACT add = new ESHOP_CONTACT
+            try
             {
-                CONTACT_NAME = name,
-                CONTACT_EMAIL = email,
-                CONTACT_TITLE = title,
-                CONTACT_CONTENT = content,
-                CONTACT_PUBLISHDATE = DateTime.Now,
-                CONTACT_ADDRESS = address,
-                CONTACT_PHONE = phone,
-                CONTACT_TYPE = 0
-            };
-            db.ESHOP_CONTACTs.InsertOnSubmit(add);
-            db.SubmitChanges();
-            return true;
+                ESHOP_CONTACT add = new ESHOP_CONTACT
+                {
+                    CONTACT_NAME = name,
+                    CONTACT_EMAIL = email,
+                    CONTACT_PUBLISHDATE = DateTime.Now,
+                    CONTACT_ADDRESS = address,
+                    CONTACT_PHONE = phone,
+                    AREA_ID = areaId,
+                    CONTACT_TYPE = typeId
+                };
+                db.ESHOP_CONTACTs.InsertOnSubmit(add);
+                db.SubmitChanges();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
         //Config mail
         public List<ESHOP_EMAIL> Getemail(int stt)
@@ -86,9 +92,9 @@ namespace Controller
                     _hitTotal.ToList()[0].CONFIG_HITCOUNTER = _hitTotal.ToList()[0].CONFIG_HITCOUNTER + 1;
                     db.SubmitChanges();
                 }
-                var list = db.GetTable<ESHOP_HITCOUNTER>().Where(a => (a.HIT_DATE.Value - DateTime.Now).Days == 0).ToList();
+                var list = db.GetTable<ESHOP_HITCOUNTER>().Where(a => (a.HIT_DATE.Value.Date - DateTime.Now.Date).Days == 0).ToList();
 
-                if (list.Count > 0)
+                if (list != null && list.Count > 0)
                 {
 
                     list[0].HIT_VALUE += 1;

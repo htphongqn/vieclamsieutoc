@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="boxPhone.ascx.cs" Inherits="CatTrang.UIs.boxPhone" %>
 
 <div class="boxPhones">
-        <p class="heading"><em class="iconPhone"><img src="../Images/icon_phones.png" /></em> Hotline cho nhà tuyển dụng: 
+        <p class="heading"><em class="iconPhone"><img src="/Images/icon_phones.png" /></em> Hotline cho nhà tuyển dụng: 
         <strong><asp:Literal ID="lbHotroMienNam" runat="server"></asp:Literal></strong> và <strong><asp:Literal ID="lbHotroMienBac" runat="server"></asp:Literal></strong></p>
         <hr />
         <p class="heading2">Hotline cho nhà tuyển dụng Miền Nam( Từ Đà Nẵng trở vào)</p>

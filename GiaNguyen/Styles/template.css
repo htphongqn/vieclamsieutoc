@@ -9,6 +9,8 @@ html, body, fieldset {
 body {
 	margin: 0;
 	padding: 0;
+		font-size: 14px;
+	font-family:Arial, Helvetica, sans-serif;
 }
 body {
 	font-size: 13px;
@@ -1890,3 +1892,102 @@ a.opinion {
 	width: 100%;
 }
 .navDetailNews .navBarTxt{ color:#6976C7}
+
+.luuTin_ntd {
+  background: url(../images/sprites_ntd.gif) -1px -660px no-repeat;
+  padding: 15px 0 12px 33px;
+  font-size: 12px;
+  color: #333;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.toCao_ntd {
+  background: url(../images/sprites_ntd.gif) -280px -660px no-repeat;
+  padding: 15px 0 12px 40px;
+  font-size: 12px;
+  color: #333;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.tbInfo-header {
+border-bottom: #e2d5f3 solid 1px;
+border-top: #e2d5f3 solid 1px;
+padding: 5px 10px;
+background: #f0e9f9;
+font-size: 14px;
+font-weight: bold;
+color: #782db6;
+position: relative;
+}
+.nopHS_ungtuyen{ padding-top:15px;}
+.boxTitle2{ font-weight:bold; font-size:1.2em; color: #782db6; margin:10px 0px}
+ .lineHeight10 {
+line-height: 18px;
+}
+.red{ color:red}
+
+.ttNTD{ margin-top:15px;}
+.btnNopHS{ text-align:center}
+.compName{ font-size:1.3em; padding:10px;}
+.compAdd{ color:#999; padding-left:10px}
+.logoNTD{ width:200px}
+.logoNTD img{ width:100%}
+.violet{color: #223191}
+.bgLightV{ background: #D4D8F3}
+.lineheight20{ line-height:20px;}
+.pTB10{ padding-top:7px; padding-bottom:7px;}
+.pL10{padding-left:7px;}
+
+.accBox{ float:right; width:210px; margin-top:10px; border:solid 1px #ccc; line-height:20px; font-size:0.9em}
+.mnTK{ font-weight:bold; color:#3F59A6; border-bottom:solid 1px #ccc; padding-left:10px}
+.accInfoBox a{width:100%; float:left}
+.accInfoBox a:before{ content:"- ";}
+.accName{ color:#333; margin-left:10px; font-weight:bold}
+.accInfoBox{ width:100%; float:left; padding-left:10px}
+.singout{ float:right; font-weight:normal; margin-right:5px;}
+
+.text-center{ text-align:center}
+.marginT10{ margin-top:10px;}
+.blockHtt{ border:2px solid #03F}
+.innerHtt{ padding:10px; line-height:25px}
+
+
+.fRight {
+  float: right;
+}
+.btn-orange {
+  background: #f28007;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  display: inline-block;
+    border: 0px;
+  cursor: pointer;
+}
+.tabTitle-Violet {
+  background: #6d388f;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 10px;
+  text-transform: uppercase;
+}
+.contentBox {
+  border-left: #e6e6e6 solid 1px;
+  border-bottom: #e6e6e6 solid 1px;
+  border-right: #e6e6e6 solid 1px;
+  padding: 7px;
+  margin-bottom: 10px;
+}
+.frmBinhLuan {
+  height: 140px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+.marB10 {
+  margin-bottom: 10px;
+}

@@ -3,6 +3,8 @@
 <%@ Register src="~/UIs/sidebar_NTV.ascx" tagname="sidebar_NTV" tagprefix="uc2" %>
 <%@ Register src="~/UIs/boxPhone.ascx" tagname="boxPhone" tagprefix="uc1" %>
 
+<%@ Register src="MessageBox.ascx" tagname="MessageBox" tagprefix="uc3" %>
+
 <div class="page" id="recruitment"> 
     <!--Main-->
     <div id="main">
@@ -12,12 +14,12 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt"><asp:Literal ID="lbTitle" runat ="server"></asp:Literal></span></h2>
           </div>
-          <div class="navBarRight red"><a href="#" title="" onclick=""><img src="../images/btnNopHS.gif" height="30" alt=""></a></div>
+          <div class="navBarRight red"><a id="linkNophoso" runat="server" href="/ntv-nop-ho-so-truc-tuyen" title=""><img src="/images/btnNopHS.gif" height="30" alt=""></a></div>
           <div class="clear"></div>
         </div>
         <p class="views_c">
         <span>Lượt xem: <asp:Literal ID="lbLuotxem" runat ="server"></asp:Literal></span> 
-        <span>Mã: <asp:Literal ID="lbMaNTD" runat ="server"></asp:Literal></span> 
+        <%--<span>Mã: <asp:Literal ID="lbMaNTD" runat ="server"></asp:Literal></span> --%>
         <span>Ngày làm mới: <asp:Literal ID="lbNgaylammoi" runat ="server"></asp:Literal></span></p>
         <!-- Thông tin tuyển dụng-->
         <div class="detail_w">
@@ -85,7 +87,9 @@
               <tr class="tbInfo-row">
                 <td><b>Hình thức nộp hồ sơ</b></td>
                 <td class="br-L"><asp:Literal ID="lbHinhthucnophoso" runat ="server"></asp:Literal></td>
-                <td colspan="2" align="right"><a href="#" title="" onclick=""><img src="../images/btnNopHS.gif" width="251" height="40" alt=""></a></td>
+                <td colspan="2" align="right">
+                    <a id="linkNophoso2" runat="server" href="/ntv-nop-ho-so-truc-tuyen" title=""><img src="/images/btnNopHS.gif" width="251" height="40" alt=""></a>
+                </td>
               </tr>
               <tr class="tbInfo-header">
                 <td colspan="4">Thông tin liên hệ</td>
@@ -107,16 +111,24 @@
                 <td class="br-L" colspan="3"><asp:Literal ID="lbDienthoailienhe" runat ="server"></asp:Literal></td>
               </tr>
               <tr>
-                <td colspan="4"><div class="marTB10">
-                    <div class="fLeft"> <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe">Gửi bạn bè</a> <a href="javascript: print_preview('/ajax/ntv_chi_tiet_viec_lam/index/1698185/1/','width=700,height=1000,scrollbars=yes');" title="" class="inTin">In tin này</a> <a href="javascript:ntv_to_cao();" title="" class="toCao">Tố cáo</a> </div>
-                    <div class="fRight"><a href="javascript:ntv_luu_tin();" title="" class="luuTin" style="margin-right:0">Lưu tin</a></div>
+                <td colspan="4">
+                <div class="marTB10">
+                    <div class="fLeft"> 
+                    <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe" style="display:none">Gửi bạn bè</a> 
+                    <a href="javascript:yes');" title="" class="inTin" style="display:none">In tin này</a> 
+                    <a href="javascript:ntv_to_cao();" title="" class="toCao" style="display:none">Tố cáo</a> </div>
+                    <div class="fRight">
+                        <asp:LinkButton ID="lnkLuutin" runat="server" CssClass="luuTin" 
+                            style="margin-right:0" onclick="lnkLuutin_Click">Lưu tin </asp:LinkButton>
+                    </div>
                     <div class="clear"></div>
-                  </div></td>
+                  </div>
+                  </td>
               </tr>
               <tr>
                 <td colspan="4"><div class="marB10">
                     <div class="fLeft"><span class="canhBao">Người tìm việc cảnh giác khi có bất kỳ yêu cầu thu phí từ phía nhà tuyển dụng</span></div>
-                    <div class="fRight padT5"><a href="http://vieclam.24h.com.vn/listscam" title="" class="xemChiTiet">Xem thêm</a></div>
+                    <div class="fRight padT5" style="display:none"><a href="http://vieclam.24h.com.vn/listscam" title="" class="xemChiTiet">Xem thêm</a></div>
                     <div class="clear"></div>
                   </div></td>
               </tr>
@@ -141,8 +153,8 @@
               </tr>
               <tr class="tbInfo-row">
                 <td valign="top"><b>Giới thiệu</b>
-                  <p><img src="http://hcm.vieclam.24h.com.vn/images/default_logo.jpg" width="120" height="60" alt=""></p>
-                  <p><img src="http://hcm.vieclam.24h.com.vn/images/xac-thuc.gif" width="120" height="120" alt=""></p></td>
+                  <p><asp:Image ID="imgLogo" runat="server" Width="120" Height="79" ImageUrl="../Images/noimage.jpg"/></p>
+                  <p><img src="/images/xac-thuc.gif" width="120" height="120" alt=""></p></td>
                 <td class="br-L" colspan="3">
                 <asp:Literal ID="lbGioithieucongty" runat ="server"></asp:Literal>
                 </td>
@@ -153,12 +165,13 @@
               </tr>
             </tbody>
           </table>
-          <div class="aRight marTB10"><a class="xemChiTiet" title="" href="/danh-sach-cac-tin-tuyen-dung--ntd2693190p1.html">Xem đầy đủ thông tin về công ty này</a></div>
+          <div class="aRight marTB10" style="display:none">
+          <a class="xemChiTiet" title="" href="/danh-sach-cac-tin-tuyen-dung--ntd2693190p1.html">Xem đầy đủ thông tin về công ty này</a></div>
         </div>
         <!-- End Thông tin tuyển dụng--> 
         <!--share-->
         <div class="share-left"> 
-        <span style="display:inline-block; vertical-align:50%;"> <b>Gửi và chia sẻ thông tin việc làm <u>Nhân Viên Kinh Doanh</u> qua:</b> </span> 
+        <span style="display:inline-block; vertical-align:50%;"> <b>Thích và chia sẻ thông tin việc làm <u><asp:Literal ID="lbVitrituyendung2" runat ="server"></asp:Literal></u>:</b> </span> 
             <span style="display:inline-block;"> 
             <div id="fb-root"></div>
             <script>                (function (d, s, id) {
@@ -168,10 +181,49 @@
                     js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1578997885661619&version=v2.0";
                     fjs.parentNode.insertBefore(js, fjs);
                 } (document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <%--<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>--%>
+
+                <asp:Literal ID="Lbface" runat="server"></asp:Literal>
             </span> 
+
+            <div class="fRight"><asp:Button ID="btnTheodoi" runat="server" 
+                    CssClass="btn-orange" Text="Theo dõi nhà tuyển dụng này" 
+                    onclick="btnTheodoi_Click" /></div>
           </div>
         <!--share--> 
+        <!--comment-->
+        <div class="clear padB10"></div>
+        <div style="text-transform:none" class="tabTitle-Violet">Bình luận về nhà tuyển dụng 
+        <%--(<asp:Literal ID="lbCountComment" runat="server" Text="0"></asp:Literal>)--%>
+        </div>
+        <div class="contentBox">		
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnComment" />
+                </Triggers>
+                <ContentTemplate>
+                    <div class="frmBinhLuan" style="height:100%;">               	
+				        <asp:Repeater ID="rptcomment" runat="server">
+                            <ItemTemplate>
+                                   <b class="txtViolet"><%# GetCusNameNTV(Eval("CUSTOMER_NTV_ID"))%></b> - Gửi ngày <%# Convert.ToDateTime(Eval("DATE_CREATE")).ToString("dd/MM/yyyy")%>
+				                   <div class="padT5 marB10"><%# GetShortName(Eval("DESCRIPTION"), 250)%></div>
+                            </ItemTemplate>
+                          </asp:Repeater>				
+		            </div>
+                            		
+                    <div class="padB5 aRight"><span class="paging"></span></div>
+			        <div class="marB10">
+			        <textarea class="textArea" id="txtcomment" runat="server" onfocus="if (this.value=='Nhập ý kiến của bạn ở đây') this.value='';" onblur="if (this.value=='') this.value='Nhập ý kiến của bạn ở đây';" style="width:98%;height:80px">Nhập ý kiến của bạn ở đây</textarea>   
+		            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div class="BL-note"><i class="text11">Bình luận phải dài hơn 50 ký tự</i></div>			
+            <div class="aRight">
+                <asp:Button ID="btnComment" runat="server" 
+                    CssClass="btn-orange" Text="Gửi Bình luận" onclick="btnComment_Click" />
+            </div>
+        </div>
+        <!--end comment-->
         <!--List jobs-->
         <div class="block">
           <div class="title_rec_home"><b>Việc làm cùng nhà Tuyển dụng</b></div>
@@ -222,3 +274,4 @@
     <div class="clearfix"></div>
     <uc1:boxPhone ID="boxPhone1" runat="server" />
   </div>
+<uc3:MessageBox ID="MessageBox1" runat="server" />

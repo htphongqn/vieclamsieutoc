@@ -14,7 +14,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Thông tin Nhà tuyển dụng</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <%--<p class="number_jobs" style="color: #293790; font-size:14px">Thông tin đang chờ duyệt.</p>--%>
@@ -143,6 +143,8 @@
               <div class="tbUser_col"><b>Email liên hệ:</b> </div>
               <div class="tbUser_col col_r">
                 <input type="text" value="" id="txt_email_lien_he" runat="server" name="txt_email_lien_he" class="textbox">
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Email không đúng định dạng !"
+                        ControlToValidate="txt_email_lien_he" Display="None" ValidationGroup="G40"  ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
               </div>
             </div>
             <div class="line_border" style="float: left; width: 97%; margin-top: 20px"></div>

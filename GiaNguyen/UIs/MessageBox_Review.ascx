@@ -4,13 +4,13 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
 <asp:ModalPopupExtender ID="mpext" runat="server" BackgroundCssClass="ModalPopupBG" 
-    PopupDragHandleControlID="PopupHeaderMessage"
+    PopupDragHandleControlID="PopupHeaderMessage2"
     TargetControlID="HiddenField1" PopupControlID="pnlPopup" Drag="True" RepositionMode="None">
 </asp:ModalPopupExtender>
 <asp:HiddenField ID="HiddenField1" runat="server" />
 <asp:Panel ID="pnlPopup" runat="server" class="popupConfirmation2" Style="display: none;">
     <div class="popup_Container">
-        <div class="popup_Titlebar" id="PopupHeaderMessage">
+        <div class="popup_Titlebar" id="PopupHeaderMessage2">
             <div class="TitlebarLeft">
                 <asp:Label ID="lblCaption" runat="server" Text="MessageBox"></asp:Label>
             </div>

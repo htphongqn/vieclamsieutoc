@@ -10,6 +10,8 @@ using Model;
 using System.Web.UI.HtmlControls;
 using Controller;
 using CatTrang.Components;
+using System.Text;
+using System.IO;
 
 namespace CatTrang.vi_vn
 {
@@ -46,7 +48,8 @@ namespace CatTrang.vi_vn
         private void Load_hosoungvien(int customerId, int trangthaihoso, int mucluong, int trinhdohocvan, int gioitinh, int tinhtranghonnhan, int kinhnghiem, int sortId)
         {
             int newsId = Utils.CIntDef(Session["newsId"]);
-            var list = news.GetCustomerByCustomerId(customerId, newsId, trangthaihoso, mucluong, trinhdohocvan, gioitinh, tinhtranghonnhan, kinhnghiem);
+            var list = news.GetCustomerByCustomerId(customerId, newsId, trangthaihoso, mucluong, trinhdohocvan, gioitinh, tinhtranghonnhan, kinhnghiem)
+                .Where(n=>n.TYPE >= 5 || n.TYPE == 2);
             Session["NewsList"] = DataUtil.LINQToDataTable(list);
 
             switch (sortId)
@@ -72,6 +75,7 @@ namespace CatTrang.vi_vn
         }
         private void Load_ListTuyendung()
         {
+            Session["newsId"] = null;
             int userId = Utils.CIntDef(Session["userId"]);
             var list = news.GetEshopNewsByCustomerId(userId);
             cblRdoOptionVitrituyendung.DataSource = list;
@@ -80,8 +84,9 @@ namespace CatTrang.vi_vn
         private void LoadLoaiTin()
         {
             //1 NTV lưu, 2 NTV ứng tuyển, , 3 NTV đã xem, 4 NTD đã xem, 5 NTD đã lưu
-            //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Ho so chua dat
-            var list = news.GetCustomerByCustomerId(Utils.CIntDef(Session["userId"]),Utils.CIntDef(Session["newsId"]), 0, 0, 0, 0, 0, 0);
+            //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Hồ sơ không trúng tuyển
+            var list = news.GetCustomerByCustomerId(Utils.CIntDef(Session["userId"]),Utils.CIntDef(Session["newsId"]), 0, 0, 0, 0, 0, 0)
+                .Where(n => n.TYPE >= 5 || n.TYPE == 2);
             var listDaluu = list.Where(n => n.TYPE == 5);
             if (listDaluu != null && listDaluu.ToList().Count > 0)
             {
@@ -105,7 +110,7 @@ namespace CatTrang.vi_vn
             var listChuadat = list.Where(n => n.TYPE == 8);
             if (listChuadat != null && listChuadat.ToList().Count > 0)
             {
-                ckhblLoaiTin.Items.Add(new ListItem("Hồ sơ chưa đạt (" + listChuadat.ToList().Count + ")", "8".ToString()));
+                ckhblLoaiTin.Items.Add(new ListItem("Hồ sơ không trúng tuyển (" + listChuadat.ToList().Count + ")", "8".ToString()));
             }
         }
         private void LoadMucluong()
@@ -113,10 +118,11 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(Session["newsId"]);
             var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
-                        join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
+                        join b in db.ESHOP_NEWs on a.NEWS_ID_UNGTUYEN equals b.NEWS_ID
                         join c in db.VL_MUCLUONGs on b.VL_MUCLUONG_ID equals c.ID
-                        where b.CUSTOMER_ID == customerId && b.NEWS_ID == newsId
-                        && b.NEWS_SHOWTYPE == 1
+                        where a.CUSTOMER_NTD_ID == customerId
+                        && (a.NEWS_ID_UNGTUYEN == newsId || newsId == 0)
+                        && (a.TYPE >= 5 || a.TYPE == 2)
                         select new { c.ID, c.NAME }).ToList();
            
             var listMucluong = list.Distinct().ToList();
@@ -139,10 +145,11 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(Session["newsId"]);
             var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
-                        join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
+                        join b in db.ESHOP_NEWs on a.NEWS_ID_UNGTUYEN equals b.NEWS_ID
                         join c in db.VL_TRINHDOHOCVANs on b.VL_TRINHDOHOCVAN_ID equals c.ID
-                        where b.CUSTOMER_ID == customerId && b.NEWS_ID == newsId
-                        && b.NEWS_SHOWTYPE == 1
+                        where a.CUSTOMER_NTD_ID == customerId
+                        && (a.NEWS_ID_UNGTUYEN == newsId || newsId == 0)
+                        && (a.TYPE >= 5 || a.TYPE == 2)
                         select new { c.ID, c.NAME }).ToList();
 
             var listHocvan = list.Distinct().ToList();
@@ -165,9 +172,10 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(Session["newsId"]);
             var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
-                        join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
-                        where b.CUSTOMER_ID == customerId && b.NEWS_ID == newsId
-                        && b.NEWS_SHOWTYPE == 1
+                        join b in db.ESHOP_NEWs on a.NEWS_ID_UNGTUYEN equals b.NEWS_ID
+                        where a.CUSTOMER_NTD_ID == customerId
+                        && (a.NEWS_ID_UNGTUYEN == newsId || newsId == 0)
+                        && (a.TYPE >= 5 || a.TYPE == 2)
                         select new { a.ESHOP_CUSTOMER.CUSTOMER_SEX }).ToList();
 
             var listGioitinh = list.Distinct().ToList();
@@ -195,9 +203,10 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(Session["newsId"]);
             var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
-                        join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
-                        where b.CUSTOMER_ID == customerId && b.NEWS_ID == newsId
-                        && b.NEWS_SHOWTYPE == 1
+                        join b in db.ESHOP_NEWs on a.NEWS_ID_UNGTUYEN equals b.NEWS_ID
+                        where a.CUSTOMER_NTD_ID == customerId
+                        && (a.NEWS_ID_UNGTUYEN == newsId || newsId == 0)
+                        && (a.TYPE >= 5 || a.TYPE == 2)
                         select new { a.ESHOP_CUSTOMER.CUSTOMER_HONNHAN }).ToList();
 
             var listHonnhan = list.Distinct().ToList();
@@ -225,10 +234,11 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             int newsId = Utils.CIntDef(Session["newsId"]);
             var list = (from a in db.VL_CUSTOMER_ESHOP_NEWs
-                        join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
+                        join b in db.ESHOP_NEWs on a.NEWS_ID_UNGTUYEN equals b.NEWS_ID
                         join c in db.VL_KINHNGHIEMs on b.VL_KINHNGHIEM_ID equals c.ID
-                        where b.CUSTOMER_ID == customerId && b.NEWS_ID == newsId
-                        && b.NEWS_SHOWTYPE == 1
+                        where a.CUSTOMER_NTD_ID == customerId
+                        && (a.NEWS_ID_UNGTUYEN == newsId || newsId == 0)
+                        && (a.TYPE >= 5 || a.TYPE == 2)
                         select new { c.ID, c.NAME }).ToList();
 
             var listKinhnghiem = list.Distinct().ToList();
@@ -248,7 +258,7 @@ namespace CatTrang.vi_vn
         }
         public string getTinhthaihoso(object ott)
         {//1 NTV lưu, 2 NTV ứng tuyển, , 3 NTV đã xem, 4 NTD đã xem, 5 NTD đã lưu
-            //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Ho so chua dat
+            //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Hồ sơ không trúng tuyển
             int tt = Utils.CIntDef(ott);
             switch (tt)
             {
@@ -261,7 +271,7 @@ namespace CatTrang.vi_vn
                 case 7:
                     return "Hồ sơ trúng tuyển";
                 case 8:
-                    return "Hồ sơ chưa đạt";
+                    return "Hồ sơ không trúng tuyển";
                 default:
                     return "N/A";
             }
@@ -373,16 +383,16 @@ namespace CatTrang.vi_vn
             int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
                     if (i == 0)
                     {
-                        s += itemArea.ToList()[0].ARE_NAME;
+                        s += itemArea.ToList()[0].NAME;
                     }
                     else
                     {
-                        s += "<br />" + itemArea.ToList()[0].ARE_NAME;
+                        s += "<br />" + itemArea.ToList()[0].NAME;
                     }
                     i++;
                 }
@@ -479,7 +489,7 @@ namespace CatTrang.vi_vn
 
         public string GetShortName(object obj, int lenght)
         {
-            string strObj = Utils.CStrDef(obj);
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />");
             if (strObj.Length >= lenght)
             {
                 return strObj.Substring(0, lenght - 3) + "...";
@@ -767,5 +777,190 @@ namespace CatTrang.vi_vn
             int sortid = Utils.CIntDef(ddlSort.SelectedItem.Value);
             Load_hosoungvien(Utils.CIntDef(Session["userId"]), Utils.CIntDef(ckhblLoaiTin.SelectedValue), Utils.CIntDef(ckhbMucluong.SelectedValue), Utils.CIntDef(ckhbBangcap.SelectedValue), Utils.CIntDef(ckhbGioitinh.SelectedValue), Utils.CIntDef(ckhbTinhtrangHonnhan.SelectedValue), Utils.CIntDef(ckhbKinhnghiem.SelectedValue), sortid);
         }
+
+        protected void lnkPhongvan_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.ID == items[j]);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            g_update.ToList()[0].TYPE = 6;
+
+                            db.SubmitChanges();
+                        }
+
+                        j++;
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Lưu vào hồ sơ phỏng vấn thành công!');location.href='/ntd-quan-ly-ho-so-ung-vien'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        protected void lnkTrungtuyen_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.ID == items[j]);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            g_update.ToList()[0].TYPE = 7;
+
+                            db.SubmitChanges();
+                        }
+
+                        j++;
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Lưu vào hồ sơ trúng tuyển thành công!');location.href='/ntd-quan-ly-ho-so-ung-vien'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        protected void lnkKhongtrungtuyen_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.ID == items[j]);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            g_update.ToList()[0].TYPE = 8;
+
+                            db.SubmitChanges();
+                        }
+
+                        j++;
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Lưu vào hồ sơ không trúng tuyển thành công!');location.href='/ntd-quan-ly-ho-so-ung-vien'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        protected void lnkXoahoso_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.ID == items[j]);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            db.VL_CUSTOMER_ESHOP_NEWs.DeleteAllOnSubmit(g_update);
+
+                            db.SubmitChanges();
+                        }
+
+                        j++;
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Xóa hồ sơ thành công!');location.href='/ntd-quan-ly-ho-so-ung-vien'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+
+        protected void lnkExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename=FileName.xls");
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.xls";
+
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+            GridItemList.RenderControl(htmlWrite);
+            Response.Write(stringWrite.ToString());
+            Response.End();
+        }  
     }
 }

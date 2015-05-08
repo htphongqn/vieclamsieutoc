@@ -37,7 +37,7 @@ namespace CatTrang.UIs
         }
         private void LoadUpdateDaily()
         {
-            var list = vlNews.GetEshopNewsByType(2);//1 tim viec, 2 tuyen dung
+            var list = vlNews.GetEshopNewsByType(2).Where(b=>b.TINHTRANGHOSO == 2);//1 tim viec, 2 tuyen dung
             if (list != null && list.ToList().Count > 0)
             {
                 lbTotalNews.Text = cls.FormatMoneyNoVND(list.ToList().Count);

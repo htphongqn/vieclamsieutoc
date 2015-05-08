@@ -106,7 +106,7 @@
                                   <tr>
                                     <td class="td_tootip" colspan="2">
                                       <b><span class="red" style="font-size: 12px">Mô tả công việc:</span></b>
-                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# Eval("MOTACONGVIEC")%></div></td>
+                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# GetShortName(Eval("MOTACONGVIEC"), 300)%></div></td>
                                   </tr>
                                 </table>
                                 </div>
@@ -189,8 +189,8 @@
 <div class="block">
   <div class="title_rec_home"><b>Việc làm mới nhất</b>
     <div class="select_rec"> Chọn tỉnh:      
-      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Are_Name" 
-            DataValueField="Are_Id" AppendDataBoundItems="true" CssClass="type-option" 
+      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Name" 
+            DataValueField="Id" AppendDataBoundItems="true" CssClass="type-option" 
             AutoPostBack="True" 
             onselectedindexchanged="ddlDiadiemVLMoi_SelectedIndexChanged">
             <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        

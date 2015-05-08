@@ -50,7 +50,7 @@
                 </fieldset>
                 <ul class="menu">
                     <li class="last" style="padding-left:0px;">
-                    <img src="../Images/icon_login.png" style="margin-right:5px;" />
+                    <img src="/Images/icon_login.png" style="margin-right:5px;" />
                     <%--<a href="/ntv-dang-ky">Đăng ký</a>--%>
                     <asp:LinkButton ID="lnkDangky" runat="server" Text="Đăng ký"></asp:LinkButton>
                     </li>
@@ -99,12 +99,12 @@
 </div>
 
 <asp:ModalPopupExtender ID="mpext" runat="server" BackgroundCssClass="ModalPopupBG" 
-    PopupDragHandleControlID="PopupHeaderMessage"
+    PopupDragHandleControlID="PopupHeaderMessage3"
     TargetControlID="lnkDangky" CancelControlID="lnkClose" PopupControlID="pnlPopup" Drag="True" RepositionMode="None">
 </asp:ModalPopupExtender>
 <asp:Panel ID="pnlPopup" runat="server" class="popupConfirmation" Style="display: none;">
     <div class="popup_Container">
-        <div class="popup_Titlebar" id="PopupHeaderMessage">
+        <div class="popup_Titlebar" id="PopupHeaderMessage3">
             <div class="TitlebarLeft">
                 <asp:Label ID="lblCaption" runat="server" Text="Đăng ký tài khoản"></asp:Label>
             </div>

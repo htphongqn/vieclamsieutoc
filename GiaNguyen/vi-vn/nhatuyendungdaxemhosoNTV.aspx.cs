@@ -130,7 +130,7 @@ namespace CatTrang.vi_vn
         {
             int _newsId = Utils.CIntDef(newsId);
             int _customerId = Utils.CIntDef(customerId);
-            var list = db.VL_CUSTOMER_ESHOP_NEWs.Where(n => n.CUSTOMER_ID == _customerId && n.NEWS_ID == _newsId && n.TYPE == 5);
+            var list = db.VL_CUSTOMER_ESHOP_NEWs.Where(n => n.CUSTOMER_NTD_ID == _customerId && n.NEWS_ID_UNGTUYEN == _newsId && n.TYPE == 5);
             if (list != null && list.ToList().Count > 0)
             {
                 return "Đã lưu";

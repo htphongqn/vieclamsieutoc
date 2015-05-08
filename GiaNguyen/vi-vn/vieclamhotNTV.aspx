@@ -4,6 +4,7 @@
 <%@ Register src="~/UIs/boxPhone.ascx" tagname="boxPhone" tagprefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script src="../Scripts/jquery.tools.min.js"></script>
     <script language="javascript">
 				<!--
     function ToggleAll(e, action) {
@@ -80,13 +81,13 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Vị trí việc làm" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                <asp:TemplateColumn HeaderText="Vị trí việc làm" HeaderStyle-Width="91%"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_TITLE">
                     <ItemTemplate>                            
                             <div class="resumes_td align_l">
                             <div style="position: relative">
-                                <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# Eval("NEWS_TITLE")%></a> 
+                                <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# GetShortName(Eval("NEWS_TITLE"), 25)%></a> 
                                 <!-- tooltip element -->
                                 <div class="tooltip_ct">
                                 <table width="420" cellpadding="5" cellspacing="1" border="0" bgcolor="#d7d7d7">
@@ -104,7 +105,7 @@
                                   <tr>
                                     <td class="td_tootip" colspan="2">
                                       <b><span class="red" style="font-size: 12px">Mô tả công việc:</span></b>
-                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# Eval("MOTACONGVIEC")%></div></td>
+                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# GetShortName(Eval("MOTACONGVIEC"), 300)%></div></td>
                                   </tr>
                                 </table>
                                 </div>
@@ -114,7 +115,7 @@
                             </div>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
-                    <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
+                    <ItemStyle CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>                
                 <asp:TemplateColumn HeaderText="Nơi làm việc" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
@@ -158,7 +159,7 @@
           <div class="clearfix"></div>
           <!--chia se-->
           <div class=" marTB10 foolistjob">
-            <div class="fLeft marTB10 marL10"> 
+            <div class="fLeft marTB10 marL10" style="display:none"> 
                 <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe">Gửi bạn bè</a> 
                 <a href="javascript: print_preview('/ajax/llbars=yes');" title="" class="inTin">In tin này</a> 
                 <a href="javascript:ntv_to_cao();" title="" class="toCao">Tố cáo</a> 
@@ -208,8 +209,8 @@
 <div class="block">
   <div class="title_rec_home"><b>Việc làm mới nhất</b>
     <div class="select_rec"> Chọn tỉnh:      
-      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Are_Name" 
-            DataValueField="Are_Id" AppendDataBoundItems="true" CssClass="type-option" 
+      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Name" 
+            DataValueField="Id" AppendDataBoundItems="true" CssClass="type-option" 
             AutoPostBack="True" 
             onselectedindexchanged="ddlDiadiemVLMoi_SelectedIndexChanged">
             <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        

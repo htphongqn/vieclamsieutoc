@@ -15,7 +15,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Xem phản hồi - đánh giá của Người tìm việc</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
       </div>
@@ -31,7 +31,7 @@
                         <b><%# GetCusNameNTV(Eval("CUSTOMER_NTV_ID"))%></b> 
                         - <span class="ft_11">Gửi ngày <%# Convert.ToDateTime(Eval("DATE_CREATE")).ToString("dd-MM-yyyy")%></span>
                         <div class="line_border" style="margin: 3px 0 3px 70px"></div>
-                        <%# GetShortName(Eval("DESCRIPTION"), 250)%>
+                        <%# GetShortName(Eval("DESCRIPTION"), 300)%>
                     </li>
             </ItemTemplate>
           </asp:Repeater>

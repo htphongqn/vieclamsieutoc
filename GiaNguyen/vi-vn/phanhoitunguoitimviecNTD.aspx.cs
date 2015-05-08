@@ -66,7 +66,7 @@ namespace CatTrang.vi_vn
         }
         public string GetShortName(object obj, int lenght)
         {
-            string strObj = Utils.CStrDef(obj);
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />").Replace("\n", "<br />");
             if (strObj.Length >= lenght)
             {
                 return strObj.Substring(0, lenght - 3) + "...";

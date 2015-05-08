@@ -1919,3 +1919,25 @@ line-height: 18px;
 .lineheight20{ line-height:20px;}
 .pTB10{ padding-top:7px; padding-bottom:7px;}
 .pL10{padding-left:7px;}
+
+.accBox{ float:right; width:210px; margin-top:10px; border:solid 1px #ccc; line-height:20px; font-size:0.9em}
+.mnTK{ font-weight:bold; color:#3F59A6; border-bottom:solid 1px #ccc; padding-left:10px}
+.accInfoBox a{width:100%; float:left}
+.accInfoBox a:before{ content:"- ";}
+.accName{ color:#333; margin-left:10px; font-weight:bold}
+.accInfoBox{ width:100%; float:left; padding-left:10px}
+.singout{ float:right; font-weight:normal; margin-right:5px;}
+
+.text-center{ text-align:center}
+.marginT10{ margin-top:10px;}
+.blockHtt{ border:2px solid #03F}
+.innerHtt{ padding:10px; line-height:25px}
+
+body {
+	font-size: 14px;
+	font-family:Arial, Helvetica, sans-serif;
+ 
+ 
+}
+
+

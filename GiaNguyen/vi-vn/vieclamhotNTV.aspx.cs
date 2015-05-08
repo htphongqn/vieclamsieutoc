@@ -39,7 +39,7 @@ namespace CatTrang.vi_vn
         }
         private void Load_Vieclam()
         {
-            var list = list_pro.Load_listprobyPeriod(1, 2, 0, -1);
+            var list = list_pro.Load_listprobyPeriod(1, 2, 0, 2, -1);
             if (list != null && list.Count > 0)
             {
                 CollectionPager5.MaxPages = 5;
@@ -50,7 +50,7 @@ namespace CatTrang.vi_vn
                 GridItemList_Hot.DataSource = CollectionPager5.DataSourcePaged;
                 GridItemList_Hot.DataBind();
             }
-            var list2 = list_pro.Load_listprobytype(2, 0, -1);
+            var list2 = list_pro.Load_listprobytype(2, 0, 2, -1);
             if (list2 != null && list2.Count > 0)
             {
                 rptViecLam_XemNhieu.DataSource = list2.OrderByDescending(n => n.NEWS_COUNT).Take(10);
@@ -66,9 +66,10 @@ namespace CatTrang.vi_vn
                         join c in db.ESHOP_CATEGORies on a.CAT_ID equals c.CAT_ID
                         join d in db.VL_AREA_ESHOP_NEWs on b.NEWS_ID equals d.NEWS_ID
                         where b.NEWS_SHOWTYPE == 1
+                        && (b.TINHTRANGHOSO == 2)
                          && b.NEWS_TYPE == 2//1 tim viec, 2 tuyen dung
                          && (d.AREA_ID == areaId || areaId == 0)
-                        select b).OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(150).ToList();
+                        select b).Distinct().OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(150).ToList();
             //if (list != null && list.ToList().Count > 0)
             //{
                 CollectionPager1.MaxPages = 5;
@@ -123,16 +124,16 @@ namespace CatTrang.vi_vn
             int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
                     if (i == 0)
                     {
-                        s += itemArea.ToList()[0].ARE_NAME;
+                        s += itemArea.ToList()[0].NAME;
                     }
                     else
                     {
-                        s += "<br />" + itemArea.ToList()[0].ARE_NAME;
+                        s += "<br />" + itemArea.ToList()[0].NAME;
                     }
                     i++;
                 }
@@ -150,7 +151,15 @@ namespace CatTrang.vi_vn
             }
             return "";
         }
-
+        public string GetShortName(object obj, int lenght)
+        {
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />");
+            if (strObj.Length >= lenght)
+            {
+                return strObj.Substring(0, lenght - 3) + "...";
+            }
+            return strObj;
+        }
         protected void ddlDiadiemVLMoi_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadVieclamMoi();

@@ -14,7 +14,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Thông tin Người tìm việc</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <%--<p class="number_jobs" style="color: #293790; font-size:14px">Thông tin cá nhân của bạn đã được duyệt!</p>--%>

@@ -37,7 +37,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Các hồ sơ tìm việc</span> <span class="ft_11" style="color: #364497">(Bạn được phép tạo tối đa 10 hồ sơ tìm việc)</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <!--Rules-->
@@ -101,7 +101,7 @@
                 <div class="tbUser_col col_r">
                   <asp:TextBox ID="txtChkFilterDiadiem" runat="server" onkeyup="javascript:textChange(event,this,'listTinh');" onfocus="if (this.value=='Nhập tỉnh thành cần chọn vào đây') this.value='';" onblur="if (this.value=='') this.value='Nhập tỉnh thành cần chọn vào đây';" value="Nhập tỉnh thành cần chọn vào đây" CssClass="textbox ac_input"></asp:TextBox>
                   <div id="div_listTinh" class="listTruong">
-                    <asp:CheckBoxList ID="cblChkOptionDiadiem" DataValueField="Are_Id" DataTextField="Are_Name" runat="server">
+                    <asp:CheckBoxList ID="cblChkOptionDiadiem" DataValueField="Id" DataTextField="Name" runat="server">
                     </asp:CheckBoxList>
                     <asp:CustomValidator runat="server" ID="cvmodulelist" ClientValidationFunction="ValidateModuleList"
                         ErrorMessage="Chưa chọn địa điểm làm việc" Display="None" ForeColor="Red" ValidationGroup="G40"></asp:CustomValidator>
@@ -400,7 +400,7 @@
               <div class="tbUser_row">
                 <div class="tbUser_col">&nbsp; </div>
                 <div class="tbUser_col col_r">
-                  <asp:Button ID="btnXemtruoc" runat="server" Text="Xem trước" CssClass="btn_green02" />
+                  <asp:Button ID="btnXemtruoc" runat="server" Text="Xem trước" CssClass="btn_green02"  Visible="false"/>
                   &nbsp;&nbsp;
                   <asp:Button ID="btnLuutam" runat="server" Text="Lưu tạm" ValidationGroup="G40" 
                         CssClass="btn_green02" onclick="btnLuutam_Click" />
@@ -408,6 +408,10 @@
                   <asp:Button ID="btnDanghoso" runat="server" Text="Đăng hồ sơ tìm việc" 
                         ValidationGroup="G40" style="width:150px;" CssClass="btn_green02" 
                         onclick="btnDanghoso_Click" />
+                  &nbsp;&nbsp;
+                  <asp:Button ID="btnCapnhat" runat="server" Text="Cập nhật" 
+                        ValidationGroup="G40" CssClass="btn_green02" 
+                        onclick="btnCapnhat_Click" />
                   &nbsp;&nbsp;
                   <a title="Về trang quản lý hồ sơ tìm việc" href="/ntv-ho-so-da-dang" class="btn_green02">Quay lại</a>
                   <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" ShowMessageBox="True"

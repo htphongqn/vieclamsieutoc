@@ -221,26 +221,6 @@
       <Column Name="CONFIG_DESCRIPTION_EN" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ESHOP_CONTACT" Member="ESHOP_CONTACTs">
-    <Type Name="ESHOP_CONTACT">
-      <Column Name="CONTACT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CONTACT_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CONTACT_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CONTACT_PHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CONTACT_ADDRESS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CONTACT_TITLE" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="CONTACT_CONTENT" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="CONTACT_ATT1" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CONTACT_ATT2" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CONTACT_ATT3" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CONTACT_ATT4" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CONTACT_ATT5" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CONTACT_PUBLISHDATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="CONTACT_ANSWER" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="CONTACT_SHOWTYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CONTACT_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ESHOP_EMAIL" Member="ESHOP_EMAILs">
     <Type Name="ESHOP_EMAIL">
       <Column Name="EMAIL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -499,19 +479,6 @@
       <Column Name="news_image" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ORDER_CONTACT" Member="ORDER_CONTACTs">
-    <Type Name="ORDER_CONTACT">
-      <Column Name="ORDER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NEWS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ORDER_QUANTITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ORDER_USERNAME" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDER_EMAIL" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDER_ADD" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDER_PHONE" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDER_REMARK" Type="System.String" DbType="NVarChar(1550)" CanBeNull="true" />
-      <Column Name="ODER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ESHOP_COLOR" Member="ESHOP_COLORs">
     <Type Name="ESHOP_COLOR">
       <Column Name="COLOR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -647,18 +614,6 @@
       <Column Name="ONLINE_DESC_EN" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.VL_AREA" Member="VL_AREAs">
-    <Type Name="VL_AREA">
-      <Column Name="ARE_ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ARE_CODE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ARE_NAME" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
-      <Column Name="ARE_PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ARE_SHOWFOOTER" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ARE_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ARE_DESC" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA_ESHOP_NEWs" ThisKey="ARE_ID" OtherKey="AREA_ID" Type="VL_AREA_ESHOP_NEW" />
-    </Type>
-  </Table>
   <Table Name="dbo.VL_CAPBAC" Member="VL_CAPBACs">
     <Type Name="VL_CAPBAC">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -749,17 +704,6 @@
       <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.VL_CITY" Member="VL_CITies">
-    <Type Name="VL_CITY">
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CODE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NAME" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
-      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SHOWFOOTER" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.VL_CUSTOMER_CUSTOMER" Member="VL_CUSTOMER_CUSTOMERs">
     <Type Name="VL_CUSTOMER_CUSTOMER">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -772,8 +716,8 @@
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AREA_ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="NEWS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA" ThisKey="AREA_ID" OtherKey="ARE_ID" Type="VL_AREA" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="ESHOP_NEW_VL_AREA_ESHOP_NEW" Member="ESHOP_NEW" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA" ThisKey="AREA_ID" OtherKey="ID" Type="VL_AREA" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.VL_QUYMOCONGTY" Member="VL_QUYMOCONGTies">
@@ -841,19 +785,6 @@
       <Column Name="DESCRIPTION" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VL_CUSTOMER_ESHOP_NEWS" Member="VL_CUSTOMER_ESHOP_NEWs">
-    <Type Name="VL_CUSTOMER_ESHOP_NEW">
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CUSTOMER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NEWS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PUBLISHDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VIEWCOUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DATE_XULY" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="DATE_HENTIEPTHEO" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Association Name="ESHOP_CUSTOMER_VL_CUSTOMER_ESHOP_NEW" Member="ESHOP_CUSTOMER" ThisKey="CUSTOMER_ID" OtherKey="CUSTOMER_ID" Type="ESHOP_CUSTOMER" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ESHOP_NEWS" Member="ESHOP_NEWs">
@@ -965,8 +896,65 @@
       <Association Name="ESHOP_NEW_ESHOP_ORDER" Member="ESHOP_ORDERs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_ORDER" />
       <Association Name="ESHOP_NEW_ESHOP_NEWS_IMAGE" Member="ESHOP_NEWS_IMAGEs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEWS_IMAGE" />
       <Association Name="ESHOP_NEW_VL_AREA_ESHOP_NEW" Member="VL_AREA_ESHOP_NEWs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="VL_AREA_ESHOP_NEW" />
-      <Association Name="ESHOP_NEW_ESHOP_NEW" Member="ESHOP_NEW2" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" Cardinality="One" />
-      <Association Name="ESHOP_NEW_ESHOP_NEW" Member="ESHOP_NEW1" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" />
+      <Association Name="ESHOP_NEW_VL_CUSTOMER_ESHOP_NEW" Member="VL_CUSTOMER_ESHOP_NEWs" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="VL_CUSTOMER_ESHOP_NEW" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ESHOP_CONTACT" Member="ESHOP_CONTACTs">
+    <Type Name="ESHOP_CONTACT">
+      <Column Name="CONTACT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CONTACT_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CONTACT_EMAIL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CONTACT_PHONE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CONTACT_ADDRESS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CONTACT_TITLE" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="CONTACT_CONTENT" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CONTACT_ATT1" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="CONTACT_ATT2" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="CONTACT_ATT3" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="CONTACT_ATT4" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="CONTACT_ATT5" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="CONTACT_PUBLISHDATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CONTACT_ANSWER" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CONTACT_SHOWTYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTACT_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AREA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VL_CUSTOMER_ESHOP_NEWS" Member="VL_CUSTOMER_ESHOP_NEWs">
+    <Type Name="VL_CUSTOMER_ESHOP_NEW">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CUSTOMER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUSTOMER_NTD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NEWS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PUBLISHDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VIEWCOUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE_XULY" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DATE_HENTIEPTHEO" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="NEWS_ID_UNGTUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TIEUDETHU" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="NOIDUNGTHU" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Association Name="ESHOP_CUSTOMER_VL_CUSTOMER_ESHOP_NEW" Member="ESHOP_CUSTOMER" ThisKey="CUSTOMER_ID" OtherKey="CUSTOMER_ID" Type="ESHOP_CUSTOMER" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="ESHOP_NEW_VL_CUSTOMER_ESHOP_NEW" Member="ESHOP_NEW" ThisKey="NEWS_ID" OtherKey="NEWS_ID" Type="ESHOP_NEW" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VL_AREA" Member="VL_AREAs">
+    <Type Name="VL_AREA">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="VL_AREA_VL_AREA_ESHOP_NEW" Member="VL_AREA_ESHOP_NEWs" ThisKey="ID" OtherKey="AREA_ID" Type="VL_AREA_ESHOP_NEW" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VL_CITY" Member="VL_CITies">
+    <Type Name="VL_CITY">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRIORITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

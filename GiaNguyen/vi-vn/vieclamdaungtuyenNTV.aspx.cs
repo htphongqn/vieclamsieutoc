@@ -16,6 +16,8 @@ namespace CatTrang.vi_vn
     {
         dbVuonRauVietDataContext db = new dbVuonRauVietDataContext();
         private VL_News news = new VL_News();
+        private Function fun = new Function(); 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -117,24 +119,24 @@ namespace CatTrang.vi_vn
             int customerId = Utils.CIntDef(Session["userId"]);
             var list = (from a in db.VL_AREA_ESHOP_NEWs
                         join b in db.ESHOP_NEWs on a.NEWS_ID equals b.NEWS_ID
-                        join c in db.VL_AREAs on a.AREA_ID equals c.ARE_ID
+                        join c in db.VL_AREAs on a.AREA_ID equals c.ID
                         join d in db.VL_CUSTOMER_ESHOP_NEWs on b.NEWS_ID equals d.NEWS_ID
                         where (d.CUSTOMER_ID == customerId)
                             && d.TYPE == 2
                             && b.NEWS_SHOWTYPE == 1
-                        select new { c.ARE_ID, c.ARE_NAME, }).ToList();
+                        select new { c.ID, c.NAME, }).ToList();
             var listDiadiem = list.Distinct().ToList();
 
             foreach (var item in listDiadiem)
             {
-                var itemin = list.Where(n => n.ARE_ID == item.ARE_ID);
+                var itemin = list.Where(n => n.ID == item.ID);
                 if (itemin != null)
                 {
-                    ckhbDiadiem.Items.Add(new ListItem(item.ARE_NAME + " (" + itemin.ToList().Count + ")", item.ARE_ID.ToString()));
+                    ckhbDiadiem.Items.Add(new ListItem(item.NAME + " (" + itemin.ToList().Count + ")", item.ID.ToString()));
                 }
                 else
                 {
-                    ckhbDiadiem.Items.Add(new ListItem(item.ARE_NAME + " (0)", item.ARE_ID.ToString()));
+                    ckhbDiadiem.Items.Add(new ListItem(item.NAME + " (0)", item.ID.ToString()));
                 }
             }
         }
@@ -267,6 +269,7 @@ namespace CatTrang.vi_vn
         }
         protected void lnkHuyungtuyentin_Click(object sender, EventArgs e)
         {
+            int customerId = Utils.CIntDef(Session["userId"]);
             int i = 0;
             int j = 0;
             HtmlInputCheckBox check = new HtmlInputCheckBox();
@@ -281,18 +284,20 @@ namespace CatTrang.vi_vn
 
                     if (check.Checked)
                     {
-                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);                        
+
+                        //delete 
+                        var g_delete = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.NEWS_ID == items[j] && g.CUSTOMER_ID == customerId && g.TYPE == 2);
+                        if (g_delete != null && g_delete.ToList().Count > 0)
+                        {
+                            db.VL_CUSTOMER_ESHOP_NEWs.DeleteOnSubmit(g_delete.ToList()[0]);
+                            db.SubmitChanges();
+                        }
                         j++;
                     }
 
                     i++;
-                }
-
-                //delete 
-                int customerId = Utils.CIntDef(Session["userId"]);
-                var g_delete = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => items.Contains(g.NEWS_ID) && g.CUSTOMER_ID == customerId && g.TYPE == 2);
-                db.VL_CUSTOMER_ESHOP_NEWs.DeleteAllOnSubmit(g_delete);
-                db.SubmitChanges();
+                }               
 
                 LoadVieclamdaungtuyen(Utils.CIntDef(Session["userId"]), 0, 0, 0, 0, 0, 0, 1); 
             }
@@ -359,7 +364,31 @@ namespace CatTrang.vi_vn
             GridItemList.DataBind();
         }
         #endregion
-
+        public string GetLinkNTV(object newsId)
+        {
+            try
+            {
+                int _newsId = Utils.CIntDef(newsId);
+                var item = db.ESHOP_NEWs.FirstOrDefault(n => n.NEWS_ID == _newsId);
+                string News_Url = "", News_Seo_Url = "", cat_seo = "";
+                if (item != null)
+                {
+                    News_Url = item.NEWS_URL;
+                    News_Seo_Url = item.NEWS_SEO_URL;
+                    var item_2 = db.ESHOP_NEWS_CATs.FirstOrDefault(n => n.NEWS_ID == _newsId);
+                    if (item_2 != null)
+                    {
+                        cat_seo = item_2.ESHOP_CATEGORy.CAT_SEO_URL;
+                    }
+                }
+                return fun.Getlink_News(News_Url, News_Seo_Url, cat_seo);
+            }
+            catch (Exception ex)
+            {
+                vpro.functions.clsVproErrorHandler.HandlerError(ex);
+                return null;
+            }
+        }
         public string getTenCongty(object ott)
         {
             int tt = Utils.CIntDef(ott);
@@ -374,13 +403,22 @@ namespace CatTrang.vi_vn
         {
             string s = "";
             int tt = Utils.CIntDef(ott);
-            var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);            
+            var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);
+            int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
-                    s += itemArea.ToList()[0].ARE_NAME;
+                    if (i == 0)
+                    {
+                        s += itemArea.ToList()[0].NAME;
+                    }
+                    else
+                    {
+                        s += "<br />" + itemArea.ToList()[0].NAME;
+                    }
+                    i++;
                 }
 
             }
@@ -396,16 +434,25 @@ namespace CatTrang.vi_vn
             }
             return "";
         }
-        public string getNgayluu(object newsId, object customerId)
+        public string getNgayungtuyen(object newsId)
         {
             int _newsId = Utils.CIntDef(newsId);
-            int _customerId = Utils.CIntDef(customerId);
-            var item = db.VL_CUSTOMER_ESHOP_NEWs.Where(n => n.CUSTOMER_ID == _customerId && n.NEWS_ID == _newsId);
+            int _customerId = Utils.CIntDef(Session["userId"]);
+            var item = db.VL_CUSTOMER_ESHOP_NEWs.Where(n => n.CUSTOMER_ID == _customerId && n.NEWS_ID == _newsId && n.TYPE == 2);
             if (item != null && item.ToList().Count > 0)
             {
                 return string.Format("{0:dd/MM/yyyy}", item.ToList()[0].PUBLISHDATE);
             }
             return "";
+        }
+        public string GetShortName(object obj, int lenght)
+        {
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />");
+            if (strObj.Length >= lenght)
+            {
+                return strObj.Substring(0, lenght - 3) + "...";
+            }
+            return strObj;
         }
         #region checkbox_change
         protected void ckhblNganhnghe_SelectedIndexChanged(object sender, EventArgs e)

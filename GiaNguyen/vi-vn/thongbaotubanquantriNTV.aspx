@@ -15,7 +15,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Thông báo từ ban quản trị</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <!--Resumes Table-->

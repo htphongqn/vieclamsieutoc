@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/NTD.Master" AutoEventWireup="true" CodeBehind="quanlyhosoungvienNTD.aspx.cs" Inherits="CatTrang.vi_vn.quanlyhosoungvienNTD" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/NTD.Master" AutoEventWireup="true" enableEventValidation ="false" CodeBehind="quanlyhosoungvienNTD.aspx.cs" Inherits="CatTrang.vi_vn.quanlyhosoungvienNTD" %>
 <%@ Register src="~/UIs/boxPhone.ascx" tagname="boxPhone" tagprefix="uc1" %>
 <%@ Register src="~/UIs/BannerTopNTD.ascx" tagname="BannerTopNTD" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script src="../Scripts/jquery.tools.min.js"></script>
 <script language="javascript">
 				<!--
     function ToggleAll(e, action) {
@@ -50,7 +51,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Ứng viên nộp hồ sơ vào vị trí:</h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <div class="tbUser_row">
@@ -131,14 +132,28 @@
         </div>
         <!--Actions-->
         <div class="btn_actions"> 
-        <asp:LinkButton ID="lnkDanhgia" runat="server" CssClass="assessment_rec" ToolTip="Gửi đánh giá tới ứng viên">Đánh giá</asp:LinkButton>
-        <asp:LinkButton ID="lnkPhanhoi" runat="server" CssClass="send_to_friends" ToolTip="Gửi phản hồi tới ứng viên">Phản hồi</asp:LinkButton>
-        <asp:LinkButton ID="lnkPhongvan" runat="server" CssClass="save_rec" ToolTip="Lưu vào hồ sơ phỏng vấn" >Phỏng vấn</asp:LinkButton>
-        <asp:LinkButton ID="lnkTrungtuyen" runat="server" CssClass="matriculated" ToolTip="Lưu ứng viên vào danh sách trúng tuyển">Trúng tuyển</asp:LinkButton>
-        <asp:LinkButton ID="lnkKhongtrungtuyen" runat="server" CssClass="cancel_post_profile" ToolTip="Chuyển ứng viên sang danh sách không trúng tuyển" >Không trúng tuyển</asp:LinkButton> 
-        <asp:LinkButton ID="lnkTuchoi" runat="server" CssClass="refused" ToolTip="Từ chối ứng viên tự ứng tuyển">Từ chối</asp:LinkButton>
-        <asp:LinkButton ID="lnkXoahoso" runat="server" CssClass="remove_profile" ToolTip="Xoá hồ sơ ứng viên đã lưu" >Xóa hồ sơ</asp:LinkButton>
-        <asp:LinkButton ID="lnkExcel" runat="server" CssClass="excel" ToolTip="Tạo file excel danh sách ứng viên" >Excel</asp:LinkButton>
+<%--        <asp:LinkButton ID="lnkDanhgia" runat="server" CssClass="assessment_rec" ToolTip="Gửi đánh giá tới ứng viên">Đánh giá</asp:LinkButton>
+        <asp:LinkButton ID="lnkPhanhoi" runat="server" CssClass="send_to_friends" ToolTip="Gửi phản hồi tới ứng viên">Phản hồi</asp:LinkButton>--%>
+        <asp:LinkButton ID="lnkPhongvan" runat="server" CssClass="save_rec" 
+                ToolTip="Lưu vào hồ sơ phỏng vấn"  
+                OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách phỏng vấn không?')" 
+                onclick="lnkPhongvan_Click">Phỏng vấn</asp:LinkButton>
+        <asp:LinkButton ID="lnkTrungtuyen" runat="server" CssClass="matriculated" 
+                ToolTip="Lưu ứng viên vào danh sách trúng tuyển" 
+                OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách trúng tuyển không?')" 
+                onclick="lnkTrungtuyen_Click">Trúng tuyển</asp:LinkButton>
+        <asp:LinkButton ID="lnkKhongtrungtuyen" runat="server" 
+                CssClass="cancel_post_profile" 
+                ToolTip="Chuyển ứng viên sang danh sách không trúng tuyển" 
+                OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách không trúng tuyển không?')" 
+                onclick="lnkKhongtrungtuyen_Click">Không trúng tuyển</asp:LinkButton> 
+        <%--<asp:LinkButton ID="lnkTuchoi" runat="server" CssClass="refused" ToolTip="Từ chối ứng viên tự ứng tuyển">Từ chối</asp:LinkButton>--%>
+        <asp:LinkButton ID="lnkXoahoso" runat="server" CssClass="remove_profile" 
+                ToolTip="Xoá hồ sơ ứng viên đã lưu" 
+                OnClientClick="return confirm('Bạn có chắc chắn xóa hồ sơ những ứng viên này không?')" 
+                onclick="lnkXoahoso_Click">Xóa hồ sơ</asp:LinkButton>
+        <asp:LinkButton ID="lnkExcel" runat="server" CssClass="excel" 
+                ToolTip="Tạo file excel danh sách ứng viên" onclick="lnkExcel_Click" >Excel</asp:LinkButton>
           <div align="right" class="sort_by" style="margin: 5px 0 15px 0"><b>Sắp xếp theo: </b>
             <asp:DropDownList ID="ddlSort" runat="server" style="width:200px;" 
                   name="select_sap_xep_top" class="dropBox" AutoPostBack="True" onselectedindexchanged="ddlSort_SelectedIndexChanged">
@@ -150,7 +165,7 @@
           </div>
         </div>        
         <asp:DataGrid ID="GridItemList" CellPadding="0" runat="server" AutoGenerateColumns="False"
-            Width="100%" DataKeyField="NEWS_ID" CssClass="tdGridTable" SelectedIndex="0"
+            Width="100%" DataKeyField="ID" CssClass="tdGridTable" SelectedIndex="0"
             PagerStyle-Mode="NumericPages" PagerStyle-HorizontalAlign="Right" AllowPaging="false"
             PageSize="20" PagerStyle-CssClass="PageClass" AllowSorting="false" OnItemCommand="GridItemList_ItemCommand"
             OnItemDataBound="GridItemList_ItemDataBound" OnSortCommand="GridItemList_SortCommand"
@@ -175,7 +190,7 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="CUSTOMER_ID">
                     <ItemTemplate>                        
-                        <a class="linkBlack" title="Xem chi tiết hồ sơ tìm việc" href="<%# GetLinkNTD(Eval("NEWS_ID"))%>"><b>
+                        <a class="linkBlack" title="Xem chi tiết hồ sơ tìm việc" href="<%# GetLinkNTD(Eval("NEWS_ID_UNGTUYEN"))%>"><b>
                         <%# GetCusNameNTV(Eval("CUSTOMER_ID"))%></b></a> <br>
                           Giới tính: <%# GetCusSexNTV(Eval("CUSTOMER_ID"))%>
                           - Tuổi: <%# GetCusTuoiNTV(Eval("CUSTOMER_ID"))%><br>
@@ -187,10 +202,10 @@
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="CV/Hồ sơ tìm việc liên quan" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
-                    SortExpression="NEWS_ID">
+                    SortExpression="NEWS_ID_UNGTUYEN">
                     <ItemTemplate>
-                            <a class="linkBlack" title="Xem chi tiết hồ sơ tìm việc" href="<%# GetLinkNTD(Eval("NEWS_ID"))%>"><%# getTenHoso(Eval("NEWS_ID"))%></a></b><br>
-                            <%# getKinhnghiemByNewsId(Eval("NEWS_ID"))%></a><br />
+                            <a class="linkBlack" title="Xem chi tiết hồ sơ tìm việc" href="<%# GetLinkNTD(Eval("NEWS_ID_UNGTUYEN"))%>"><%# getTenHoso(Eval("NEWS_ID_UNGTUYEN"))%></a></b><br>
+                            <%# getKinhnghiemByNewsId(Eval("NEWS_ID_UNGTUYEN"))%></a><br />
                            <%-- <b class="ft_11">Vị trí: Tuyển dụng nhân viên thiết kế đồ họa website</b>--%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
@@ -200,7 +215,7 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_ID" Visible="false">
                     <ItemTemplate>
-                            <%# getMucluongByNewsId(Eval("NEWS_ID"))%>
+                            <%# getMucluongByNewsId(Eval("NEWS_ID_UNGTUYEN"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
@@ -224,7 +239,7 @@
                     </HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Left"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Ngày hẹn tiếp theo" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
+                <%--<asp:TemplateColumn HeaderText="Ngày hẹn tiếp theo" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
                     <ItemTemplate>
                         <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "DATE_HENTIEPTHEO")).ToString("dd/MM/yyyy")%>
@@ -232,7 +247,7 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%" HorizontalAlign="Left">
                     </HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Left"></ItemStyle>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
                 <asp:TemplateColumn HeaderText="Trạng thái hồ sơ" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
                     <ItemTemplate>
@@ -242,7 +257,7 @@
                     </HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Left"></ItemStyle>
                 </asp:TemplateColumn>                
-                <asp:TemplateColumn HeaderText="Thao tác">
+                <%--<asp:TemplateColumn HeaderText="Thao tác">
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                     <ItemTemplate>
@@ -252,20 +267,20 @@
                         <asp:LinkButton ID="lnkPhanhoi" runat="server" ToolTip="Gửi phản hồi cho ứng viên">Gửi phản hồi</asp:LinkButton> | 
                         <asp:LinkButton ID="lnkXoa" runat="server" ToolTip="Xoá ứng viên đã lưu">Xóa</asp:LinkButton>
                     </ItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
             </Columns>
             <PagerStyle Mode="NumericPages" HorizontalAlign="Right"></PagerStyle>
         </asp:DataGrid>
         <!--Actions-->
         <div class="btn_actions"> 
-            <asp:LinkButton ID="lnkDanhgia_2" runat="server" CssClass="assessment_rec" ToolTip="Gửi đánh giá tới ứng viên">Đánh giá</asp:LinkButton>
-        <asp:LinkButton ID="lnkPhanhoi_2" runat="server" CssClass="send_to_friends" ToolTip="Gửi phản hồi tới ứng viên">Phản hồi</asp:LinkButton>
-        <asp:LinkButton ID="lnkPhongvan_2" runat="server" CssClass="save_rec" ToolTip="Lưu vào hồ sơ phỏng vấn" >Phỏng vấn</asp:LinkButton>
-        <asp:LinkButton ID="lnkTrungtuyen_2" runat="server" CssClass="matriculated" ToolTip="Lưu ứng viên vào danh sách trúng tuyển">Trúng tuyển</asp:LinkButton>
-        <asp:LinkButton ID="lnkKhongtrungtuyen_2" runat="server" CssClass="cancel_post_profile" ToolTip="Chuyển ứng viên sang danh sách không trúng tuyển" >Không trúng tuyển</asp:LinkButton> 
-        <asp:LinkButton ID="lnkTuchoi_2" runat="server" CssClass="refused" ToolTip="Từ chối ứng viên tự ứng tuyển">Từ chối</asp:LinkButton>
-        <asp:LinkButton ID="lnkXoahoso_2" runat="server" CssClass="remove_profile" ToolTip="Xoá hồ sơ ứng viên đã lưu" >Xóa hồ sơ</asp:LinkButton>
-        <asp:LinkButton ID="lnkExcel_2" runat="server" CssClass="excel" ToolTip="Tạo file excel danh sách ứng viên" >Excel</asp:LinkButton>
+            <%--<asp:LinkButton ID="lnkDanhgia_2" runat="server" CssClass="assessment_rec" ToolTip="Gửi đánh giá tới ứng viên">Đánh giá</asp:LinkButton>
+        <asp:LinkButton ID="lnkPhanhoi_2" runat="server" CssClass="send_to_friends" ToolTip="Gửi phản hồi tới ứng viên">Phản hồi</asp:LinkButton>--%>
+        <asp:LinkButton ID="lnkPhongvan_2" runat="server" CssClass="save_rec" ToolTip="Lưu vào hồ sơ phỏng vấn" OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách phỏng vấn không?')" onclick="lnkPhongvan_Click">Phỏng vấn</asp:LinkButton>
+        <asp:LinkButton ID="lnkTrungtuyen_2" runat="server" CssClass="matriculated" ToolTip="Lưu ứng viên vào danh sách trúng tuyển" OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách trúng tuyển không?')" onclick="lnkTrungtuyen_Click">Trúng tuyển</asp:LinkButton>
+        <asp:LinkButton ID="lnkKhongtrungtuyen_2" runat="server" CssClass="cancel_post_profile" ToolTip="Chuyển ứng viên sang danh sách không trúng tuyển" OnClientClick="return confirm('Bạn có chắc chắn chuyển hồ sơ những ứng viên này sang danh sách không trúng tuyển không?')"  onclick="lnkKhongtrungtuyen_Click">Không trúng tuyển</asp:LinkButton> 
+        <%--<asp:LinkButton ID="lnkTuchoi_2" runat="server" CssClass="refused" ToolTip="Từ chối ứng viên tự ứng tuyển">Từ chối</asp:LinkButton>--%>
+        <asp:LinkButton ID="lnkXoahoso_2" runat="server" CssClass="remove_profile" ToolTip="Xoá hồ sơ ứng viên đã lưu" OnClientClick="return confirm('Bạn có chắc chắn xóa hồ sơ những ứng viên này không?')" onclick="lnkXoahoso_Click">Xóa hồ sơ</asp:LinkButton>
+        <asp:LinkButton ID="lnkExcel_2" runat="server" CssClass="excel" ToolTip="Tạo file excel danh sách ứng viên"  onclick="lnkExcel_Click">Excel</asp:LinkButton>
           <div align="right" class="sort_by" style="margin: 5px 0 15px 0"><b>Sắp xếp theo: </b>
             <asp:DropDownList ID="ddlSort_2" runat="server" style="width:200px;" 
                   name="select_sap_xep_top" class="dropBox" AutoPostBack="True" onselectedindexchanged="ddlSort_2_SelectedIndexChanged">

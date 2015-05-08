@@ -2,6 +2,43 @@
 <%@ Register Assembly="CollectionPager" Namespace="SiteUtils" TagPrefix="cc1" %>
 <%@ Register src="~/UIs/sidebar_NTV.ascx" tagname="sidebar_NTV" tagprefix="uc2" %>
 <%@ Register src="~/UIs/boxPhone.ascx" tagname="boxPhone" tagprefix="uc1" %>
+<script src="../Scripts/jquery.tools.min.js"></script>
+<script language="javascript">
+				<!--
+    function ToggleAll(e, action) {
+        if (e.checked) {
+            CheckAll();
+        }
+        else {
+            ClearAll();
+        }
+    }
+
+    function CheckAll() {
+        var ml = document.forms[0];
+        var len = ml.elements.length;
+        for (var i = 1; i < len; i++) {
+            var e = ml.elements[i];
+
+            if (e.name.toString().indexOf("chkSelect") > 0)
+                e.checked = true;
+        }
+        ml.MainContent_GridItemList_toggleSelect.checked = true;
+    }
+
+    function ClearAll() {
+        var ml = document.forms[0];
+        var len = ml.elements.length;
+        for (var i = 1; i < len; i++) {
+            var e = ml.elements[i];
+            if (e.name.toString().indexOf("chkSelect") > 0)
+                e.checked = false;
+        }
+        ml.MainContent_GridItemList_toggleSelect.checked = false;
+    }
+				    
+				// -->
+    </script>
 
 <div class="page" id="recruitment"> 
     <!--Main-->
@@ -81,7 +118,7 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Vị trí việc làm" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                <asp:TemplateColumn HeaderText="Vị trí việc làm" HeaderStyle-Width="91%"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_TITLE">
                     <ItemTemplate>                            
@@ -115,7 +152,7 @@
                             </div>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
-                    <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
+                    <ItemStyle CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>                
                 <asp:TemplateColumn HeaderText="Nơi làm việc" HeaderStyle-Width="1%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False">
@@ -137,7 +174,7 @@
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="Ngày làm mới" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
-                    SortExpression="NEWS_PUBLISHDATE">
+                    SortExpression="NEWS_UPDATEFRERESH">
                     <ItemTemplate>
                         <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "NEWS_UPDATEFRERESH")).ToString("dd/MM/yyyy")%>
                     </ItemTemplate>
@@ -159,7 +196,11 @@
           <div class="clearfix"></div>
           <!--chia se-->
           <div class=" marTB10 foolistjob">
-            <div class="fLeft marTB10 marL10"> <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe">Gửi bạn bè</a> <a href="javascript: print_preview('/ajax/ntv_chi_tiet_viec_lam/index/1698185/1/','width=700,height=1000,scrollbars=yes');" title="" class="inTin">In tin này</a> <a href="javascript:ntv_to_cao();" title="" class="toCao">Tố cáo</a> </div>
+            <div class="fLeft marTB10 marL10" style="display:none"> 
+            <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe">Gửi bạn bè</a> 
+            <a href="javascriyes');" title="" class="inTin">In tin này</a> 
+            <a href="javascript:ntv_to_cao();" title="" class="toCao">Tố cáo</a> 
+            </div>
             <div class="fRight marTB10 "><!-- page number-->
               <div class="navigation_news">
                     <cc1:collectionpager ID="CollectionPager5" runat="server" ShowPageNumbers="True"

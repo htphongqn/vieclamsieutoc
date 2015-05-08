@@ -67,24 +67,6 @@ namespace CatTrang.vi_vn {
         protected global::System.Web.UI.WebControls.LinkButton lnkXoaTam;
         
         /// <summary>
-        /// lnkDangHoSo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDangHoSo;
-        
-        /// <summary>
-        /// lnkHuyDangHoSo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHuyDangHoSo;
-        
-        /// <summary>
         /// lnkPhucHoiXoaTam control.
         /// </summary>
         /// <remarks>
@@ -119,24 +101,6 @@ namespace CatTrang.vi_vn {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkXoaTam_2;
-        
-        /// <summary>
-        /// lnkDangHoSo_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDangHoSo_2;
-        
-        /// <summary>
-        /// lnkHuyDangHoSo_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHuyDangHoSo_2;
         
         /// <summary>
         /// lnkPhucHoiXoaTam_2 control.

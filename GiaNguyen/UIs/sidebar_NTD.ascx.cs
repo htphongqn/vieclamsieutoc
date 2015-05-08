@@ -44,10 +44,10 @@ namespace CatTrang.UIs
             ddlKinhnghiem.DataSource = vl.GetAllKinhnghiem();
             ddlKinhnghiem.DataBind();
 
-            cblRdoOptionNganhnghe.SelectedValue = nganh_nghe.ToString();
-            cblChkOptionDiadiem.SelectedValue = dia_diem.ToString();
-            ddlMucluong.SelectedValue = muc_luong.ToString();
-            ddlKinhnghiem.SelectedValue = kinh_nghiem.ToString();
+            cblRdoOptionNganhnghe.SelectedValue = Utils.CStrDef(nganh_nghe);
+            cblChkOptionDiadiem.SelectedValue = Utils.CStrDef(dia_diem);
+            ddlMucluong.SelectedValue = Utils.CStrDef(muc_luong);
+            ddlKinhnghiem.SelectedValue = Utils.CStrDef(kinh_nghiem);
         }
         private void Load_Vieclam()
         {

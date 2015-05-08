@@ -193,24 +193,6 @@ namespace CatTrang.vi_vn {
         protected global::System.Web.UI.WebControls.CheckBoxList ckhbKinhnghiem;
         
         /// <summary>
-        /// lnkDanhgia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDanhgia;
-        
-        /// <summary>
-        /// lnkPhanhoi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPhanhoi;
-        
-        /// <summary>
         /// lnkPhongvan control.
         /// </summary>
         /// <remarks>
@@ -236,15 +218,6 @@ namespace CatTrang.vi_vn {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkKhongtrungtuyen;
-        
-        /// <summary>
-        /// lnkTuchoi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTuchoi;
         
         /// <summary>
         /// lnkXoahoso control.
@@ -283,24 +256,6 @@ namespace CatTrang.vi_vn {
         protected global::System.Web.UI.WebControls.DataGrid GridItemList;
         
         /// <summary>
-        /// lnkDanhgia_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDanhgia_2;
-        
-        /// <summary>
-        /// lnkPhanhoi_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPhanhoi_2;
-        
-        /// <summary>
         /// lnkPhongvan_2 control.
         /// </summary>
         /// <remarks>
@@ -326,15 +281,6 @@ namespace CatTrang.vi_vn {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkKhongtrungtuyen_2;
-        
-        /// <summary>
-        /// lnkTuchoi_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTuchoi_2;
         
         /// <summary>
         /// lnkXoahoso_2 control.

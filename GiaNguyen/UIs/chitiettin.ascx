@@ -8,7 +8,7 @@
 <div class="page" id="recruitment"> 
     <!--Main-->
     <div id="main">
-      <div style="float: left; width: 670px" id="content_1"> 
+      <%--<div style="float: left; width: 670px" id="content_1"> --%>
         <!--NavBar-->
         <div class="navBar navDetailNews">
           <div class="navBarLeft">
@@ -62,8 +62,8 @@
           <!--End box_ct--> 
         </div>
         <!--End box--> 
-      </div>
-      <uc2:sidebar_NTV ID="sidebar_NTV1" runat="server" />
+      <%--</div>--%>
+      <%--<uc2:sidebar_NTV ID="sidebar_NTV1" runat="server" />--%>
       <div class="clearfix"></div>
     </div>
     <!--end Main-->

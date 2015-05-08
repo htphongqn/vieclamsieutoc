@@ -4,7 +4,7 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
 <asp:ModalPopupExtender ID="mpext" runat="server" BackgroundCssClass="ModalPopupBG" 
-    PopupDragHandleControlID="PopupHeaderMessage"
+    PopupDragHandleControlID="PopupHeaderMessage" CancelControlID="btnOk"
     TargetControlID="HiddenField1" PopupControlID="pnlPopup" Drag="True" RepositionMode="None">
 </asp:ModalPopupExtender>
 <asp:HiddenField ID="HiddenField1" runat="server" />

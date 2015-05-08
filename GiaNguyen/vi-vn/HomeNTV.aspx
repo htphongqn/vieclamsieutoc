@@ -15,8 +15,8 @@
             <div class="block">
                 <div class="hot_rec_title">
                     <b>Việc làm HOT</b> 
-                    <a href="" class="effective_rec_link">
-                    <img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a>
+                    <%--<a href="" class="effective_rec_link">
+                    <img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tuyển dụng hiệu quả</a>--%>
                 </div>
                 <div class="block_rec">
                 <ul id="list_hot_jobs">                    
@@ -187,8 +187,8 @@
             <div class="block">
                 <div class="title_rec_home"><b>Việc làm mới nhất</b>
                 <div class="select_rec"> Chọn tỉnh:
-                    <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Are_Name" 
-                        DataValueField="Are_Id" AppendDataBoundItems="true" CssClass="type-option" 
+                    <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Name" 
+                        DataValueField="Id" AppendDataBoundItems="true" CssClass="type-option" 
                         AutoPostBack="True" 
                         onselectedindexchanged="ddlDiadiemVLMoi_SelectedIndexChanged">
                         <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        

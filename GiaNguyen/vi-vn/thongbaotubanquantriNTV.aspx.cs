@@ -31,7 +31,7 @@ namespace CatTrang.vi_vn
         }
         private void Load_Thongbao()
         {
-            var list = list_pro.Load_listprobytype(6, 0, -1);
+            var list = list_pro.Load_listprobytype(6, 0, 0, -1);
             rptThongbao.DataSource = list;
             rptThongbao.DataBind();
         }

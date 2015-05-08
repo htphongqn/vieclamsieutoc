@@ -94,15 +94,6 @@ namespace CatTrang.UIs {
         protected global::System.Web.UI.WebControls.Repeater rptNewsother;
         
         /// <summary>
-        /// sidebar_NTV1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CatTrang.UIs.sidebar_NTV sidebar_NTV1;
-        
-        /// <summary>
         /// boxPhone1 control.
         /// </summary>
         /// <remarks>

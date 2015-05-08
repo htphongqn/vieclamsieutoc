@@ -13,8 +13,8 @@
     <div class="boxDK">
         <p style="clear:both;">Để tuyển dụng hoặc tìm việc nhanh, vui lòng ĐĂNG KÝ TƯ VẤN để được hỗ trợ ngay</p>
         <div class="grbtnDK"> 
-        <a href="/nha-tuyen-dung/" class="btnNhaTD">Nhà tuyển dụng đăng ký Tư Vấn</a> 
-        <a href="/" class="btnNguoiTimViec">Người tìm việc đăng ký Tư vấn</a> 
+        <a href="/ntd-dang-ky-tu-van" class="btnNhaTD">Nhà tuyển dụng đăng ký Tư Vấn</a> 
+        <a href="/ntv-dang-ky-tu-van" class="btnNguoiTimViec">Người tìm việc đăng ký Tư vấn</a> 
         </div>
     </div>
     <div class="phoneSupp">
@@ -36,7 +36,7 @@
             </asp:DropDownList>
         </cols>
         <cols>
-            <asp:DropDownList id="ddlDiadiem" runat="server" DataTextField="Are_Name" DataValueField="Are_Id" AppendDataBoundItems="true">
+            <asp:DropDownList id="ddlDiadiem" runat="server" DataTextField="Name" DataValueField="Id" AppendDataBoundItems="true">
             <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        
             </asp:DropDownList>
         </cols>

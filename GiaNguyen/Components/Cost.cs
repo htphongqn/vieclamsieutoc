@@ -16,7 +16,7 @@ namespace CatTrang.Components
         public const int QUYEN_NTD = 2;
 
         //vl_customer_eshop_news
-        //1 NTV lưu, 2 NTV ứng tuyển, , 3 NTV đã xem, 4 NTD đã xem, 5 NTD đã lưu
+        //1 NTV lưu, 2 NTV ứng tuyển, 3 NTV đã xem, 4 NTD đã xem, 5 NTD đã lưu
         //6 NTD phỏng vấn, 7 NTD Ho so trung tuyen, 8 NTD Ho so chua dat
     }
 }

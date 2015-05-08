@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HDSD.Master.cs" Inherits="CatTrang.Master.HDSD" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register src="~/UIs/header_NTV.ascx" tagname="header_NTV" tagprefix="uc1" %>
+<%@ Register src="~/UIs/menutop_HDSD.ascx" tagname="menutop_HDSD" tagprefix="uc2" %>
+<%@ Register src="~/UIs/footer.ascx" tagname="footer" tagprefix="uc3" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../Styles/template.css" type="text/css" />
+    <link href="../Styles/block.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/shopping.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/recruitment.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery.min.1.8.1.js" type="text/javascript"></script>
+    <link href="../Styles/taikhoan.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/Popup.css" rel="stylesheet" type="text/css" />
+    <title>Việc làm siêu tốc</title>
+    <!-- ToolTip -->
+    <%--<script src="../Scripts/jquery.tools.min.js"></script>--%>
+    <!--Quick Pagination-->
+    <link rel="stylesheet" href="../Styles/style_split.css" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("ul.quick_page").quickPagination({ pageSize: "3" });
+        });
+    </script>
+    <script type="text/javascript" src="../Scripts/jquery.quick.pagination.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="bd">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+        <a name="backtohome"></a>
+        <div id="wrapper">
+            <div id="top_page"> 
+            <!--#begin Header-->
+            <uc1:header_NTV ID="header_NTV1" runat="server" />
+            <!--Main Menu-->
+            <uc2:menutop_HDSD ID="menutop_HDSD1" runat="server" />
+            <!--End Main Menu-->
+            <div class="clearfix"></div>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentMain" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <uc3:footer ID="footer1" runat="server" />
+        <script type="text/javascript" src="../Scripts/scrolltopcontrol.js"></script>
+        <div id="toTop"> </div>
+        <script type='text/javascript'>
+            $(".job_name").tooltip({ effect: 'slide' });
+        </script>
+        <script src="../Scripts/UtilitiesCpanel.js" type="text/javascript"></script>
+    </form>
+</body>
+</html>

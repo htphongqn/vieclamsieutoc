@@ -13,9 +13,9 @@
         <!--NavBar-->
         <div class="navBar">
           <div class="navBarLeft">
-            <h2><span class="navBarTxt">Nhà tuyển dụng đã xem hồ sơ của tôi</h2>
+            <h2><span class="navBarTxt">Nhà tuyển dụng đã xem hồ sơ của tôi</span> </h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <p class="number_jobs"><b>Xem theo hồ sơ : </b>
@@ -38,7 +38,7 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="CUSTOMER_ID">
                     <ItemTemplate>
-                            <%# getTenCongty(Eval("CUSTOMER_ID"))%>
+                            <%# getTenCongty(Eval("CUSTOMER_NTD_ID"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
@@ -47,7 +47,7 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_ID">
                     <ItemTemplate>
-                            <%# getTenHoso(Eval("NEWS_ID"))%>
+                            <%# getTenHoso(Eval("NEWS_ID_UNGTUYEN"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
@@ -74,18 +74,18 @@
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_PUBLISHDATE">
                     <ItemTemplate>
-                        <%# getLuuhoso(Eval("NEWS_ID"), Eval("CUSTOMER_ID"))%>
+                        <%# getLuuhoso(Eval("NEWS_ID_UNGTUYEN"), Eval("CUSTOMER_NTD_ID"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Thao tác">
+                <%--<asp:TemplateColumn HeaderText="Thao tác">
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                     <ItemTemplate>
                         <a target="_blank" href="/">Danh sách tin của NTD</a>
                     </ItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
             </Columns>
             <PagerStyle Mode="NumericPages" HorizontalAlign="Right"></PagerStyle>
         </asp:DataGrid>
@@ -95,5 +95,4 @@
     <div class="clearfix"></div>
     <uc1:boxPhone ID="boxPhone1" runat="server" />
   </div>
-    </span>
 </asp:Content>

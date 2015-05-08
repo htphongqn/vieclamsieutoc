@@ -110,4 +110,3 @@ D:\PhongHT\Websites\dev\vieclamsieutoc\Model\bin\Debug\Model.dll
 D:\PhongHT\Websites\dev\vieclamsieutoc\Model\bin\Debug\Model.pdb
 D:\PhongHT\Websites\dev\vieclamsieutoc\Model\obj\Debug\Model.dll
 D:\PhongHT\Websites\dev\vieclamsieutoc\Model\obj\Debug\Model.pdb
-D:\PhongHT\Websites\dev\vieclamsieutoc\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

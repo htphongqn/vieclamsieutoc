@@ -3,6 +3,7 @@
 <%@ Register src="~/UIs/BannerTopNTV.ascx" tagname="BannerTopNTV" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script src="../Scripts/jquery.tools.min.js"></script>
     <script language="javascript">
 				<!--
     function ToggleAll(e, action) {
@@ -50,7 +51,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Các hồ sơ tìm việc</span> <span class="ft_11" style="color: #364497">(Bạn được phép tạo tối đa 10 hồ sơ tìm việc)</span></h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <div class="navBarRight" style="display:none"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
           <div class="clear"></div>
         </div>
         <p class="number_jobs" style="width: 600px">Tìm kiếm tin tìm việc <b><asp:Literal ID="lbFullName" runat="server"></asp:Literal></b> đã tạo trong danh sách theo tiêu chí:</p>
@@ -84,10 +85,15 @@
         </div>
         <!--Actions-->
         <div class="btn_actions"> 
-        <asp:LinkButton ID="lnkXoaTam" runat="server" CssClass="remove_profile" ToolTip="Xoá tạm các tin" Text="Xóa tạm hồ sơ"></asp:LinkButton> 
-        <asp:LinkButton ID="lnkDangHoSo" runat="server" CssClass="post_profile" ToolTip="Đăng các tin" Text="Đăng hồ sơ"></asp:LinkButton> 
-          <asp:LinkButton ID="lnkHuyDangHoSo" runat="server" CssClass="cancel_post_profile" ToolTip="Huỷ đăng các tin" Text="Hủy đăng hồ sơ"></asp:LinkButton> 
-          <asp:LinkButton ID="lnkPhucHoiXoaTam" runat="server" CssClass="recover_profile" ToolTip="Khôi phục các tin xoá tạm" Text="Phục hồi hồ sơ xóa tạm"></asp:LinkButton>
+        <asp:LinkButton ID="lnkXoaTam" runat="server" CssClass="remove_profile" 
+                ToolTip="Xoá tạm các tin" Text="Xóa tạm hồ sơ" 
+                OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ đã chọn không?')" 
+                onclick="lnkXoaTam_Click" ></asp:LinkButton> 
+        <%--<asp:LinkButton ID="lnkDangHoSo" runat="server" CssClass="post_profile" ToolTip="Đăng các tin" Text="Đăng hồ sơ"></asp:LinkButton> 
+          <asp:LinkButton ID="lnkHuyDangHoSo" runat="server" CssClass="cancel_post_profile" ToolTip="Huỷ đăng các tin" Text="Hủy đăng hồ sơ"></asp:LinkButton> --%>
+          <asp:LinkButton ID="lnkPhucHoiXoaTam" runat="server" CssClass="recover_profile" 
+                ToolTip="Khôi phục các tin xoá tạm" Text="Phục hồi hồ sơ xóa tạm" 
+                onclick="lnkPhucHoiXoaTam_Click"></asp:LinkButton>
           <div align="right" class="sort_by"><b>Sắp xếp theo: </b>
             <asp:DropDownList ID="ddlSort" runat="server" style="width:200px;" 
                   name="select_sap_xep_top" class="dropBox" AutoPostBack="True" 
@@ -127,7 +133,7 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Mã hồ sơ" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                <%--<asp:TemplateColumn HeaderText="Mã hồ sơ" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_CODE">
                     <ItemTemplate>
@@ -135,19 +141,38 @@
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                </asp:TemplateColumn>--%>
+                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_TITLE">
                     <ItemTemplate>
-                            <%# Eval("NEWS_TITLE")%>
+                        <div class="resumes_td align_l">
+                            <div style="position: relative">
+                            <a href="<%# GetLinkNTD(Eval("NEWS_ID"))%>" class="job_name"><%# GetShortName(Eval("NEWS_TITLE"), 25)%></a> 
+                              <!-- tooltip element -->
+                              <div class="tooltip_ct">
+                                <table width="420" cellpadding="5" cellspacing="1" border="0" bgcolor="#d7d7d7">
+                                  <tr>
+                                    <td class="td_tootip blue" colspan="2"><%# GetShortName(Eval("NEWS_TITLE"), 125)%></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip" colspan="2"><b><span class="red" style="font-size: 12px">Kinh nghiệm:</span></b>
+                                      <div style="padding-left:15px;padding-top:5px;text-align: left">
+                                       <%# GetShortName(Eval("QUATRINHLAMVIEC"), 300)%>
+                                        </div></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <span class="thongtinngan_ungvien"><em>Giới tính: <%# GetCusSexNTV(Eval("CUSTOMER_ID"))%> - Tuổi: <%# GetCusTuoiNTV(Eval("CUSTOMER_ID"))%> </em></span> 
+                        </div>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
-                    <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
+                    <ItemStyle CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="Ngày làm mới" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
-                    SortExpression="NEWS_UPDATEFRERESH" Visible="false">
+                    SortExpression="NEWS_UPDATEFRERESH">
                     <ItemTemplate>
                             <%# Convert.ToDateTime(Eval("NEWS_UPDATEFRERESH")).ToString("dd/MM/yyyy")%>
                     </ItemTemplate>
@@ -195,13 +220,56 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                     <ItemTemplate>
-                        <a title="Click để xem thông tin chi tiết việc làm" target="_blank" href="<%# GetLinkNTV(Eval("NEWS_ID")) %>">Xem</a> | 
-                        <a title="Sửa việc làm đã lưu" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>">Sửa</a> | 
-                        <asp:LinkButton ID="lnkXoa" runat="server" ToolTip="Xoá việc làm đã lưu" Text="Xóa"></asp:LinkButton><br />
-                        <asp:LinkButton ID="lnkLammoi" runat="server" ToolTip="Làm mới việc làm đã lưu" Text="Làm mới"></asp:LinkButton> |
-                        <a title="Gia hạn việc làm đã lưu" href="">Gia hạn</a><br />
-                        <a title="Xuất bản thêm" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>&idcoppy=1">Xuất bản thêm</a> | 
-                        <asp:LinkButton ID="lnkAnHoso" runat="server" ToolTip="Ẩn HS" Text="Ẩn HS"></asp:LinkButton>
+                    <div id="divDangchoduyet" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 1) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a> 
+                        | <asp:LinkButton ID="lnkXoaDangchoduyet" runat="server" OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ?')"  CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkXoa_Click" ToolTip="Xoá tạm hồ sơ" Text="Xóa"></asp:LinkButton>
+                        <br />
+                        <asp:LinkButton ID="lnkHuydanghoso" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>'  OnClick="lnkHuydanghoso_Click"  ToolTip="Huỷ đăng hồ sơ" Text="Huỷ đăng hồ sơ"></asp:LinkButton>
+                        <br />
+                        <a title="Xuất bản thêm" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>&idcoppy=1">Xuất bản thêm</a>
+                    </div>
+                    <div id="divDadang" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 2) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a> | 
+                        <a title="Sửa hồ sơ" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>">Sửa</a> | 
+                        <asp:LinkButton ID="lnkXoa" runat="server" OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ?')"  CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkXoa_Click" ToolTip="Xoá tạm hồ sơ" Text="Xóa"></asp:LinkButton>
+                        <br />
+                        <asp:LinkButton ID="lnkLammoi" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkLammoi_Click" ToolTip="Làm mới hồ sơ đã đăng" Text="Làm mới"></asp:LinkButton> | 
+                        <asp:LinkButton ID="lnkAnHoso" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkAnHoso_Click" ToolTip="Ẩn HS" Text="Ẩn HS"></asp:LinkButton> 
+                        <%--|
+                        <a title="Gia hạn hồ sơ đã đăng" href="">Gia hạn</a>--%>
+                        <br />
+                        <a title="Xuất bản thêm" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>&idcoppy=1">Xuất bản thêm</a>
+                    </div>
+                    <div id="divDangan" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 3) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a> | 
+                        <a title="Sửa hồ sơ" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>">Sửa</a> | 
+                        <asp:LinkButton ID="lnkXoaDangan" runat="server" OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ?')"  CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkXoa_Click" ToolTip="Xoá tạm hồ sơ" Text="Xóa"></asp:LinkButton>
+                        <br />
+                        <asp:LinkButton ID="lnkHienthihoso" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkHienthihoso_Click" ToolTip="Hiển thị hồ sơ" Text="Hiển thị hồ sơ"></asp:LinkButton>
+                    </div>
+                    <div id="divNhap" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 4) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a> | 
+                        <a title="Sửa hồ sơ" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>">Sửa</a> | 
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ?')"  CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkXoa_Click" ToolTip="Xoá tạm hồ sơ" Text="Xóa"></asp:LinkButton>
+                        <br />
+                        <asp:LinkButton ID="lnkDanghoso" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>'  OnClick="lnkDanghoso_Click"  ToolTip="Đăng hồ sơ" Text="Đăng hồ sơ"></asp:LinkButton>
+                        <br />
+                        <a title="Xuất bản thêm" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>&idcoppy=1">Xuất bản thêm</a>
+                    </div>
+                    <div id="divXoatam" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 5) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a>
+                        <br />
+                        <asp:LinkButton ID="lnkXoahan" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>' ToolTip="Xóa hẳn" Text="Xóa hẳn"  OnClientClick="return confirm('Bạn chắc chắn xóa hẳn hồ sơ?')"  OnClick="lnkXoahan_Click"></asp:LinkButton>
+                        <br />
+                        <asp:LinkButton ID="lnkKhoiphuc" runat="server" CommandArgument='<%# Eval("NEWS_ID")%>' ToolTip="Khôi phục" Text="Khôi phục" OnClick="lnkKhoiphuc_Click"></asp:LinkButton>
+                    </div>
+                    <div id="divHethan" runat="server" visible='<%# setTinhtranghoso(Eval("TINHTRANGHOSO"), 6) %>'>
+                        <a title="Click để xem thông tin chi tiết hồ sơ" target="_blank" href="<%# GetLinkNTD(Eval("NEWS_ID")) %>">Xem</a> | 
+                        <a title="Sửa hồ sơ" href="/ntv-tao-ho-so-tim-viec?id=<%# Eval("NEWS_ID") %>">Sửa</a> | 
+                        <asp:LinkButton ID="LinkButton2" runat="server" OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ?')"  CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkXoa_Click" ToolTip="Xoá tạm hồ sơ" Text="Xóa"></asp:LinkButton>
+                        <br />
+                        <%--<a title="Gia hạn hồ sơ đã đăng" href="">Gia hạn</a>--%>
+                    </div>                        
                     </ItemTemplate>
                 </asp:TemplateColumn>
             </Columns>
@@ -212,10 +280,12 @@
         <a class="unCheck" title="Bỏ chọn tất cả các hồ sơ trong trang" onclick="javascript: ClearAll();">Bỏ chọn tất cả</a></div>
         <!--Actions-->
         <div class="btn_actions"> 
-        <asp:LinkButton ID="lnkXoaTam_2" runat="server" CssClass="remove_profile" ToolTip="Xoá tạm các tin" Text="Xóa tạm hồ sơ"></asp:LinkButton> 
-        <asp:LinkButton ID="lnkDangHoSo_2" runat="server" CssClass="post_profile" ToolTip="Đăng các tin" Text="Đăng hồ sơ"></asp:LinkButton> 
-          <asp:LinkButton ID="lnkHuyDangHoSo_2" runat="server" CssClass="cancel_post_profile" ToolTip="Huỷ đăng các tin" Text="Hủy đăng hồ sơ"></asp:LinkButton>
-          <asp:LinkButton ID="lnkPhucHoiXoaTam_2" runat="server" CssClass="recover_profile" ToolTip="Khôi phục các tin xoá tạm" Text="Phục hồi hồ sơ xóa tạm"></asp:LinkButton>
+        <asp:LinkButton ID="lnkXoaTam_2" runat="server" CssClass="remove_profile" ToolTip="Xoá tạm các tin" Text="Xóa tạm hồ sơ"   
+                OnClientClick="return confirm('Bạn chắc chắn xóa tạm hồ sơ đã chọn không?')" 
+                onclick="lnkXoaTam_Click" ></asp:LinkButton> 
+        <%--<asp:LinkButton ID="lnkDangHoSo_2" runat="server" CssClass="post_profile" ToolTip="Đăng các tin" Text="Đăng hồ sơ"></asp:LinkButton> 
+          <asp:LinkButton ID="lnkHuyDangHoSo_2" runat="server" CssClass="cancel_post_profile" ToolTip="Huỷ đăng các tin" Text="Hủy đăng hồ sơ"></asp:LinkButton>--%>
+          <asp:LinkButton ID="lnkPhucHoiXoaTam_2" runat="server" CssClass="recover_profile" ToolTip="Khôi phục các tin xoá tạm" Text="Phục hồi hồ sơ xóa tạm" onclick="lnkPhucHoiXoaTam_Click"></asp:LinkButton>
           <div align="right" class="sort_by"><b>Sắp xếp theo: </b>
             <asp:DropDownList ID="ddlSort_2" runat="server" style="width:200px;" 
                   name="select_sap_xep_top" class="dropBox" AutoPostBack="True" onselectedindexchanged="ddlSort_2_SelectedIndexChanged">

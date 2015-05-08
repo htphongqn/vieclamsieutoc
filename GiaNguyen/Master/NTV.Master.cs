@@ -11,7 +11,7 @@ namespace CatTrang.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack) form1.Action = Request.RawUrl;
         }
     }
 }

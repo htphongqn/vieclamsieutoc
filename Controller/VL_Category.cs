@@ -17,7 +17,7 @@ namespace Controller
         {
             try
             {
-                var list = db.VL_AREAs.Where(n => n.ARE_ACTIVE == 1).OrderByDescending(n => n.ARE_PRIORITY).ToList();
+                var list = db.VL_AREAs.Where(n => n.ACTIVE == 1).OrderByDescending(n => n.PRIORITY).ToList();
                 return list;
             }
             catch

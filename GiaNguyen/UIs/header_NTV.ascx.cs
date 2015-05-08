@@ -97,7 +97,7 @@ namespace CatTrang.UIs
         protected void lnkThoat_Click(object sender, EventArgs e)
         {
             Session.Abandon();
-            Response.Redirect(Request.RawUrl);
+            Response.Redirect("/trang-chu.html");
         }
     }
 }

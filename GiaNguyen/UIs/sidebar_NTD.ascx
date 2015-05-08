@@ -45,7 +45,7 @@
                         <div class="searchObject">
                         <asp:TextBox ID="txtFilterDiadiem" runat="server" onfocus="if (this.value=='Tìm nhanh địa điểm...') this.value='';" onblur="if (this.value=='') this.value='Tìm nhanh địa điểm...';" value="Tìm nhanh địa điểm..." CssClass="filter_textbox"></asp:TextBox>
                         <%--<div id="div_listTinh" class="listTruong" style="width: 166px;">--%>
-                            <asp:ListBox ID="cblChkOptionDiadiem" DataValueField="Are_Id" DataTextField="Are_Name" runat="server" CssClass="filter_list">
+                            <asp:ListBox ID="cblChkOptionDiadiem" DataValueField="Id" DataTextField="Name" runat="server" CssClass="filter_list">
                             </asp:ListBox>
                         <%--</div>--%>
                         </div>

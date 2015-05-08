@@ -8,6 +8,7 @@ using vpro.functions;
 using Controller;
 using System.Data;
 using Model;
+using System.Web.UI.HtmlControls;
 
 namespace CatTrang.vi_vn
 {
@@ -153,6 +154,32 @@ namespace CatTrang.vi_vn
                 ckhblLoaiHoso.Items.Add(new ListItem("Hồ sơ hết hạn (" + listHethan.ToList().Count + ")", "6".ToString()));
             }
         }
+        #region funtion
+        public string GetLinkNTD(object newsId)
+        {
+            try
+            {
+                int _newsId = Utils.CIntDef(newsId);
+                var item = db.ESHOP_NEWs.FirstOrDefault(n => n.NEWS_ID == _newsId);
+                string News_Url = "", News_Seo_Url = "", cat_seo = "";
+                if (item != null)
+                {
+                    News_Url = item.NEWS_URL;
+                    News_Seo_Url = item.NEWS_SEO_URL;
+                    var item_2 = db.ESHOP_NEWS_CATs.FirstOrDefault(n => n.NEWS_ID == _newsId);
+                    if (item_2 != null)
+                    {
+                        cat_seo = item_2.ESHOP_CATEGORy.CAT_SEO_URL;
+                    }
+                }
+                return fun.Getlink_News_NTD(News_Url, News_Seo_Url, cat_seo);
+            }
+            catch (Exception ex)
+            {
+                vpro.functions.clsVproErrorHandler.HandlerError(ex);
+                return null;
+            }
+        }
         public string getTinhtranghoso(object ott)
         {
             int tt = Utils.CIntDef(ott);
@@ -167,12 +194,69 @@ namespace CatTrang.vi_vn
                 case 4:
                     return "Nháp";
                 case 5:
-                    return "Xóa tạm";
+                    return "<span style='color:red'>Xóa tạm</span>";
                 case 6:
                     return "Hết hạn";
                 default:
                     return "N/A";
             }
+        }
+        public bool setTinhtranghoso(object ott, int intTT)
+        {
+            int tt = Utils.CIntDef(ott);
+            return tt == intTT;
+        }
+        public string GetCusNameNTV(object oid)
+        {
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                return item.ToList()[0].CUSTOMER_FULLNAME;
+            }
+            return "";
+        }
+        public string GetCusSexNTV(object oid)
+        {
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                int sexid = Utils.CIntDef(item.ToList()[0].CUSTOMER_SEX);
+                return sexid == 1 ? "Nam" : (sexid == 2 ? "Nữ" : "Khác");
+            }
+            return "";
+        }
+        public string GetCusTuoiNTV(object oid)
+        {
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                int tuoi = DateTime.Now.Year - Utils.CDateDef(item.ToList()[0].CUSTOMER_BIRTHDAY, DateTime.Now).Year;
+                return tuoi != 0 ? Utils.CStrDef(tuoi) : "N/A";
+            }
+            return "";
+        }
+        public string GetCusEmailNTV(object oid)
+        {
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                return item.ToList()[0].CUSTOMER_EMAIL;
+            }
+            return "";
+        }
+        public string GetCusPhoneNTV(object oid)
+        {
+            int id = Utils.CIntDef(oid);
+            var item = db.ESHOP_CUSTOMERs.Where(n => n.CUSTOMER_ID == id);
+            if (item != null && item.ToList().Count > 0)
+            {
+                return item.ToList()[0].CUSTOMER_PHONE1;
+            }
+            return "";
         }
         public string GetLinkNTV(object newsId)
         {
@@ -199,6 +283,17 @@ namespace CatTrang.vi_vn
                 return null;
             }
         }
+        public string GetShortName(object obj, int lenght)
+        {
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />");
+            if (strObj.Length >= lenght)
+            {
+                return strObj.Substring(0, lenght - 3) + "...";
+            }
+            return strObj;
+        }
+        #endregion
+
         #region Grid Events
         #region properties
 
@@ -333,5 +428,211 @@ namespace CatTrang.vi_vn
             int sortid = Utils.CIntDef(ddlSort.SelectedItem.Value);
             Load_hoso(Utils.CIntDef(Session["userId"]), Utils.CIntDef(ckhblNganhnghe.SelectedValue), Utils.CIntDef(ckhblLoaiHoso.SelectedValue), sortid);
         }
+        
+
+        protected void lnkXoaTam_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == items[j]);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            g_update.ToList()[0].TINHTRANGHOSO = 5;
+
+                            db.SubmitChanges();
+                        }
+
+                        j++;
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Xóa tạm hồ sơ thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        protected void lnkPhucHoiXoaTam_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            HtmlInputCheckBox check = new HtmlInputCheckBox();
+            int[] items = new int[GridItemList.Items.Count];
+
+            try
+            {
+                foreach (DataGridItem item in GridItemList.Items)
+                {
+                    check = new HtmlInputCheckBox();
+                    check = (HtmlInputCheckBox)item.Cells[1].FindControl("chkSelect");
+
+                    if (check.Checked)
+                    {
+                        items[j] = Utils.CIntDef(GridItemList.DataKeys[i]);
+
+                        var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == items[j] && g.TINHTRANGHOSO == 5);
+                        if (g_update != null && g_update.ToList().Count > 0)
+                        {
+                            g_update.ToList()[0].TINHTRANGHOSO = 4;
+
+                            db.SubmitChanges();
+                            j++;
+                        }
+                    }
+
+                    i++;
+                }
+
+                if (j > 0)
+                    Response.Write("<script>alert('Phục hồi hồ sơ thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+
+        #region function grid ho so da dang
+        protected void lnkLammoi_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkLammoi = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkLammoi.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].NEWS_UPDATEFRERESH = DateTime.Now;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin đã làm mới thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkXoa_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 5;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Xóa tạm hồ sơ thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkXoahan_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_delete = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_delete != null && g_delete.ToList().Count > 0)
+            {
+                db.ESHOP_NEWs.DeleteOnSubmit(g_delete.ToList()[0]);
+
+                db.SubmitChanges();
+            }
+            
+            var g_delete2 = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.NEWS_ID_UNGTUYEN == newsId);
+            if (g_delete2 != null && g_delete2.ToList().Count > 0)
+            {
+                db.VL_CUSTOMER_ESHOP_NEWs.DeleteAllOnSubmit(g_delete2);
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Xóa hồ sơ thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkKhoiphuc_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 4;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Khôi phục hồ sơ thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkHuydanghoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 4;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Hồ sơ đã hủy thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkDanghoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 1;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Hồ sơ đã đăng thành công. Sau khi duyệt sẽ được xuất bản lên website!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkAnHoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 3;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Hồ sơ đã ẩn thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        protected void lnkHienthihoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 2;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Hồ sơ đã hiển thị thành công!');location.href='/ntv-ho-so-da-dang'</script>");
+        }
+        #endregion
+
     }
 }

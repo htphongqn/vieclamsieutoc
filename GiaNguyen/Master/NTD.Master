@@ -17,7 +17,7 @@
     <link href="../Styles/Popup.css" rel="stylesheet" type="text/css" />
     <title>Việc làm siêu tốc</title>
     <!-- ToolTip -->
-    <script src="../Scripts/jquery.tools.min.js"></script>
+    <%--<script src="../Scripts/jquery.tools.min.js"></script>--%>
     <!--Quick Pagination-->
     <link rel="stylesheet" href="../Styles/style_split.css" type="text/css" />
     <script type="text/javascript">
@@ -26,6 +26,7 @@
         });
     </script>
     <script type="text/javascript" src="../Scripts/jquery.quick.pagination.min.js"></script>
+    <script src="../Scripts/all.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

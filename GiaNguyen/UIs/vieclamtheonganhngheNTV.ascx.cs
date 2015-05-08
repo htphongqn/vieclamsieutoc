@@ -45,13 +45,13 @@ namespace CatTrang.UIs
         }
         private void Load_Vieclam()
         {
-            var list = list_pro.Load_listprobyPeriod(1, 2, _Catid, - 1);
+            var list = list_pro.Load_listprobyPeriod(1, 2, _Catid, 2, - 1);
             if (list != null && list.Count > 0)
             {
                 rptViecLam_Hot.DataSource = list.Take(6);
                 rptViecLam_Hot.DataBind();
             }
-            var list2 = list_pro.Load_listprobytype(2, _Catid, - 1);
+            var list2 = list_pro.Load_listprobytype(2, _Catid, 2, -1);
             if (list2 != null && list2.Count > 0)
             {
                 rptViecLam_XemNhieu.DataSource = list2.OrderByDescending(n => n.NEWS_COUNT).Take(6);
@@ -66,9 +66,10 @@ namespace CatTrang.UIs
                         join c in db.ESHOP_CATEGORies on a.CAT_ID equals c.CAT_ID
                         join d in db.VL_AREA_ESHOP_NEWs on b.NEWS_ID equals d.NEWS_ID
                         where b.NEWS_SHOWTYPE == 1
+                        && (b.TINHTRANGHOSO == 2)
                          && b.NEWS_TYPE == 2
-                         && (c.CAT_ID == _Catid || c.CAT_PARENT_PATH.Contains(_Catid.ToString()) || _Catid == 0)  
-                        select b).OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(150).ToList();
+                         && (c.CAT_ID == _Catid || c.CAT_PARENT_PATH.Contains(_Catid.ToString()) || _Catid == 0)
+                        select b).Distinct().OrderByDescending(n => n.NEWS_UPDATEFRERESH).Take(150).ToList();
             //if (list != null && list.ToList().Count > 0)
             //{
             CollectionPager5.MaxPages = 5;
@@ -120,12 +121,21 @@ namespace CatTrang.UIs
             string s = "";
             int tt = Utils.CIntDef(ott);
             var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);
+            int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
-                    s += itemArea.ToList()[0].ARE_NAME;
+                    if (i == 0)
+                    {
+                        s += itemArea.ToList()[0].NAME;
+                    }
+                    else
+                    {
+                        s += "<br />" + itemArea.ToList()[0].NAME;
+                    }
+                    i++;
                 }
 
             }

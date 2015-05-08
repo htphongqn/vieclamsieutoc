@@ -22,6 +22,15 @@ namespace CatTrang.UIs {
         protected global::System.Web.UI.WebControls.Literal lbTitle;
         
         /// <summary>
+        /// linkNophoso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkNophoso;
+        
+        /// <summary>
         /// lbLuotxem control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace CatTrang.UIs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lbLuotxem;
-        
-        /// <summary>
-        /// lbMaNTD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lbMaNTD;
         
         /// <summary>
         /// lbNgaylammoi control.
@@ -202,6 +202,15 @@ namespace CatTrang.UIs {
         protected global::System.Web.UI.WebControls.Literal lbHinhthucnophoso;
         
         /// <summary>
+        /// linkNophoso2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkNophoso2;
+        
+        /// <summary>
         /// lbNguoilienhe control.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,15 @@ namespace CatTrang.UIs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lbDienthoailienhe;
+        
+        /// <summary>
+        /// lnkLuutin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLuutin;
         
         /// <summary>
         /// lbTencongty control.
@@ -274,6 +292,15 @@ namespace CatTrang.UIs {
         protected global::System.Web.UI.WebControls.Literal lbDienthoaicongty;
         
         /// <summary>
+        /// imgLogo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgLogo;
+        
+        /// <summary>
         /// lbGioithieucongty control.
         /// </summary>
         /// <remarks>
@@ -290,6 +317,69 @@ namespace CatTrang.UIs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lbQuymoconty;
+        
+        /// <summary>
+        /// lbVitrituyendung2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lbVitrituyendung2;
+        
+        /// <summary>
+        /// Lbface control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Lbface;
+        
+        /// <summary>
+        /// btnTheodoi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTheodoi;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// rptcomment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptcomment;
+        
+        /// <summary>
+        /// txtcomment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtcomment;
+        
+        /// <summary>
+        /// btnComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComment;
         
         /// <summary>
         /// rptViecLam_Other control.
@@ -326,5 +416,14 @@ namespace CatTrang.UIs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CatTrang.UIs.boxPhone boxPhone1;
+        
+        /// <summary>
+        /// MessageBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::User_Control.MessageBox MessageBox1;
     }
 }

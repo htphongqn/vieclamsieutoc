@@ -147,12 +147,17 @@ namespace CatTrang.vi_vn
                 case 4:
                     return "Nháp";
                 case 5:
-                    return "Xóa tạm";
+                    return "<span style='color:red'>Xóa tạm</span>";
                 case 6:
                     return "Hết hạn";
                 default:
                     return "N/A";
             }
+        }
+        public bool setTinhtranghoso(object ott, int intTT)
+        {
+            int tt = Utils.CIntDef(ott);
+            return tt == intTT;
         }
         public string GetLink(object newsId)
         {
@@ -216,12 +221,21 @@ namespace CatTrang.vi_vn
             string s = "";
             int tt = Utils.CIntDef(ott);
             var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);
+            int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
-                    s += "<br />" + itemArea.ToList()[0].ARE_NAME;
+                    if (i == 0)
+                    {
+                        s += itemArea.ToList()[0].NAME;
+                    }
+                    else
+                    {
+                        s += "<br />" + itemArea.ToList()[0].NAME;
+                    }
+                    i++;
                 }
 
             }
@@ -285,15 +299,138 @@ namespace CatTrang.vi_vn
             }
             return "";
         }
-       
+
         public string GetShortName(object obj, int lenght)
         {
-            string strObj = Utils.CStrDef(obj);
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />").Replace("\n", "<br />");
             if (strObj.Length >= lenght)
             {
                 return strObj.Substring(0, lenght - 3) + "...";
             }
             return strObj;
         }
+
+        #region function grid tin tuyen da dang
+        protected void lnkLammoi_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkLammoi = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkLammoi.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].NEWS_UPDATEFRERESH = DateTime.Now;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin đã làm mới thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkXoa_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 5;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Xóa tạm tin thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkXoahan_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_delete = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_delete != null && g_delete.ToList().Count > 0)
+            {
+                db.ESHOP_NEWs.DeleteOnSubmit(g_delete.ToList()[0]);
+
+                db.SubmitChanges();
+            }
+
+            var g_delete2 = db.GetTable<VL_CUSTOMER_ESHOP_NEW>().Where(g => g.NEWS_ID_UNGTUYEN == newsId);
+            if (g_delete2 != null && g_delete2.ToList().Count > 0)
+            {
+                db.VL_CUSTOMER_ESHOP_NEWs.DeleteAllOnSubmit(g_delete2);
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Xóa hẳn tin tuyển dụng thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkKhoiphuc_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 4;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Khôi phục tin tuyển dụng thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkHuydanghoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 4;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin tuyển dụng đã hủy thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkDanghoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 1;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin tuyển dụng đã đăng thành công. Sau khi duyệt sẽ được xuất bản lên website!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkAnHoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 3;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin tuyển dụng đã ẩn thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        protected void lnkHienthihoso_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkXoa = (LinkButton)sender;
+            int newsId = Utils.CIntDef(lnkXoa.CommandArgument);
+
+            var g_update = db.GetTable<ESHOP_NEW>().Where(g => g.NEWS_ID == newsId);
+            if (g_update != null && g_update.ToList().Count > 0)
+            {
+                g_update.ToList()[0].TINHTRANGHOSO = 2;
+
+                db.SubmitChanges();
+            }
+            Response.Write("<script>alert('Tin tuyển dụng đã hiển thị thành công!');location.href='/ntd-quan-ly-tuyen-dung'</script>");
+        }
+        #endregion
     }
 }

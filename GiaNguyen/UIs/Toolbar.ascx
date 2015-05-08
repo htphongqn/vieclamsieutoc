@@ -6,8 +6,7 @@
 <cc3:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="hplFeedback"
     CancelControlID="hplClose" BackgroundCssClass="modalBackground" BehaviorID="lbtFeedback">
 </cc3:ModalPopupExtender>
-<asp:ScriptManager ID="ScriptManager1" runat="server">
-</asp:ScriptManager>
+
 <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center" Style="display: none;
     width: 500px">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

@@ -39,6 +39,8 @@ namespace Model
         public string MOTACONGVIEC { get; set; }
         public int TINHTRANGHOSO { get; set; }
 
+        public string QUATRINHLAMVIEC { get; set; }
+
         public int VL_CAOBAC_ID { get; set; }
         public int VL_HINHTHUCLAMVIEC_ID { get; set; }
         public int VL_MUCLUONG_ID { get; set; }

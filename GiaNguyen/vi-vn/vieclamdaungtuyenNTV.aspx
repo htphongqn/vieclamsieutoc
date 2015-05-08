@@ -3,6 +3,7 @@
 <%@ Register src="~/UIs/BannerTopNTV.ascx" tagname="BannerTopNTV" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script src="../Scripts/jquery.tools.min.js"></script>
     <script language="javascript">
 				<!--
     function ToggleAll(e, action) {
@@ -51,7 +52,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Việc làm đã lưu</h2>
           </div>
-          <div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>
+          <%--<div class="navBarRight"><a href="" class="effective_rec_link"><img src="../Images/arrow_l_bg_rec.png" alt="" style="margin-right: 3px" />Tìm việc hiệu quả</a></div>--%>
           <div class="clear"></div>
         </div>
         <!--Resumes Status-->
@@ -150,14 +151,41 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                <asp:TemplateColumn HeaderText="Tên việc làm" HeaderStyle-Width="91%"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_TITLE">
                     <ItemTemplate>
-                            <%# Eval("NEWS_TITLE")%>
+                            <div class="resumes_td align_l">
+                            <div style="position: relative">
+                                <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# GetShortName(Eval("NEWS_TITLE"), 25)%></a> 
+                                <!-- tooltip element -->
+                                <div class="tooltip_ct">
+                                <table width="420" cellpadding="5" cellspacing="1" border="0" bgcolor="#d7d7d7">
+                                  <tr>
+                                    <td class="td_tootip blue" colspan="2"><%# Eval("NEWS_TITLE")%></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip blue" style="width:60px;">Công ty: </td>
+                                    <td class="td_tootip blue"><%# getTenCongty(Eval("CUSTOMER_ID"))%></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip blue" style="width:60px;">Số lượng: </td>
+                                    <td class="td_tootip blue "><%# Eval("SOLUONGTUYEN")%> </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="td_tootip" colspan="2">
+                                      <b><span class="red" style="font-size: 12px">Mô tả công việc:</span></b>
+                                      <div style="padding-left:15px;padding-top:5px;text-align: left"><%# GetShortName(Eval("MOTACONGVIEC"), 300)%></div></td>
+                                  </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <span class="tencty"><%# getTenCongty(Eval("CUSTOMER_ID"))%></span><br />
+                            <span class="luotxem"><em>(<%# Eval("NEWS_COUNT")%>&nbsp;lượt xem) </em></span>
+                            </div>
                     </ItemTemplate>
-                    <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
-                    <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
+                    <HeaderStyle CssClass="tdGridHeader" Width="1%"></HeaderStyle>
+                    <ItemStyle CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="Tên công ty" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
@@ -213,11 +241,11 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
                 </asp:TemplateColumn> 
-                <asp:TemplateColumn HeaderText="Ngày lưu" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
+                <asp:TemplateColumn HeaderText="Ngày ứng tuyển" HeaderStyle-Width="91%" ItemStyle-Wrap="False"
                     HeaderStyle-CssClass="tdGridHeader" ItemStyle-CssClass="tdGridRow" HeaderStyle-Wrap="False"
                     SortExpression="NEWS_ID">
                     <ItemTemplate>
-                        <%# getNgayluu(DataBinder.Eval(Container.DataItem, "NEWS_ID"), DataBinder.Eval(Container.DataItem, "CUSTOMER_ID"))%>
+                        <%# getNgayungtuyen(DataBinder.Eval(Container.DataItem, "NEWS_ID"))%>
                     </ItemTemplate>
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow"></ItemStyle>
@@ -226,7 +254,7 @@
                     <HeaderStyle Wrap="False" CssClass="tdGridHeader" Width="1%"></HeaderStyle>
                     <ItemStyle Wrap="False" CssClass="tdGridRow" HorizontalAlign="Center"></ItemStyle>
                     <ItemTemplate>
-                        <a title="Click để xem thông tin chi tiết việc làm" target="_blank" href="/">Xem</a><br />
+                        <a title="Click để xem thông tin chi tiết việc làm" target="_blank" href="<%# GetLinkNTV(Eval("NEWS_ID")) %>">Xem</a><br />
                         <asp:LinkButton ID="lnkHuyungtuyen" runat="server" OnClientClick="return confirm('Bạn chắc chắn hủy ứng tuyển không?')" CommandArgument='<%# Eval("NEWS_ID")%>' OnClick="lnkHuyungtuyen_Click" ToolTip="Hủy ứng tuyển" Text="Hủy ứng tuyển"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateColumn>

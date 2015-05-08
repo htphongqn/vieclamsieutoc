@@ -28,6 +28,23 @@ namespace CatTrang.vi_vn
                     
                     string logoUrl = GetCusLogo(Utils.CIntDef(Session["userId"]));
                     lbLogo.Text = "<img width='104' height='79' src='" + logoUrl + "'>";
+
+                    if (Request.QueryString["id"] != null)
+                    {
+                        loadInfo();
+                    }
+                    if (Request.QueryString["idcoppy"] == null && Request.QueryString["id"] != null)
+                    {
+                        btnCapnhat.Visible = true;
+                        btnDangtuyen.Visible = false;
+                        btnLuutam.Visible = false;
+                    }
+                    else
+                    {
+                        btnCapnhat.Visible = false;
+                        btnDangtuyen.Visible = true;
+                        btnLuutam.Visible = true;
+                    }
                 }
                 else
                 {
@@ -74,6 +91,51 @@ namespace CatTrang.vi_vn
                 lbDiachilienhe.Text = item.ToList()[0].CUSTOMER_ADDRESS;
                 lbEmailLienhe.Text = item.ToList()[0].CUSTOMER_EMAIL;
                 lbDienthoailienhe.Text = item.ToList()[0].CUSTOMER_PHONE1;
+            }
+        }
+        private void loadInfo()
+        {
+            int id = Utils.CIntDef(Request.QueryString["id"]);
+            var news_insert = db.ESHOP_NEWs.Where(n => n.NEWS_ID == id);
+            if (news_insert != null && news_insert.ToList().Count > 0)
+            {
+                if (Request.QueryString["idcoppy"] == null)
+                {
+                    txttieu_de.Value = news_insert.ToList()[0].NEWS_TITLE;
+                    txtSeoUrl.Value = news_insert.ToList()[0].NEWS_SEO_URL;
+                }
+                ddlCapbacmongmuon.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_CAOBAC_ID);
+                ddlHinhthuclamviec.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_HINHTHUCLAMVIEC_ID);
+                ddlMucluongmongmuon.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_MUCLUONG_ID);
+
+                txt_so_luong_tuyen.Value = Utils.CStrDef(news_insert.ToList()[0].SOLUONGTUYEN);
+                txt_quyen_loi.Value = news_insert.ToList()[0].QUYENLOI;
+                txt_mo_ta_cong_viec.Value = news_insert.ToList()[0].MOTACONGVIEC;
+                ddKinhnghiem.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_KINHNGHIEM_ID);
+                ddlTrinhdohocvan.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_TRINHDOHOCVAN_ID);
+                ddlGioitinh.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].YEUCAUGIOITINH);
+                ddlDotuoi.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_DOTUOI_ID);
+                txt_yeu_cau_khac.Value = news_insert.ToList()[0].YEUCAUKHAC;
+                txt_ho_so_gom.Value = news_insert.ToList()[0].HOSO;
+                txtPickerHannop.Value = news_insert.ToList()[0].NEWS_DEALINE.Value.ToString("dd/MM/yyyy");
+                ddlHinhthucnophoso.SelectedValue = Utils.CStrDef(news_insert.ToList()[0].VL_HINHTHUCNOPHOSO_ID);          
+                
+
+                var news_cats = db.ESHOP_NEWS_CATs.Where(n => n.NEWS_ID == news_insert.ToList()[0].NEWS_ID);
+                if (news_cats != null && news_cats.ToList().Count > 0)
+                {
+                    cblRdoOptionNganhnghe.SelectedValue = news_cats.ToList()[0].CAT_ID.ToString();
+                }
+
+                var news_area = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == news_insert.ToList()[0].NEWS_ID);
+                foreach (var item in news_area)
+                {
+                    for (int i = 0; i < cblChkOptionDiadiem.Items.Count; i++)
+                    {
+                        if (item.AREA_ID.ToString() == cblChkOptionDiadiem.Items[i].Value)
+                            cblChkOptionDiadiem.Items[i].Selected = true;
+                    }
+                }
             }
         }
         public string GetQuymocongty(object oid)
@@ -135,7 +197,7 @@ namespace CatTrang.vi_vn
             }
             if (cblRdoOptionDiadiemDislay.SelectedValue == "1")
             {
-                cblChkOptionDiadiem.DataSource = vl.GetAllArea().Where(n => arr.Contains(n.ARE_ID));
+                cblChkOptionDiadiem.DataSource = vl.GetAllArea().Where(n => arr.Contains(n.ID));
                 cblChkOptionDiadiem.DataBind();
             }
             else if (cblRdoOptionDiadiemDislay.SelectedValue == "2")
@@ -159,6 +221,64 @@ namespace CatTrang.vi_vn
         protected void btnLuutam_Click(object sender, EventArgs e)
         {
             DangTuyen(4);
+        }
+        protected void btnCapnhat_Click(object sender, EventArgs e)
+        {
+            if (this.txt_ma_xac_minh.Value != this.Session["CaptchaImageText"].ToString())
+            {
+                Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
+                return;
+            }
+            string news_seo_url = "";
+            int id = Utils.CIntDef(Request.QueryString["id"]);
+            var news_insert = db.ESHOP_NEWs.Where(n => n.NEWS_ID == id);
+            if (news_insert != null && news_insert.ToList().Count > 0)
+            {
+                news_seo_url = news_insert.ToList()[0].NEWS_SEO_URL;
+                news_insert.ToList()[0].NEWS_TITLE = txttieu_de.Value;
+                news_insert.ToList()[0].NEWS_SEO_KEYWORD = txttieu_de.Value;
+                news_insert.ToList()[0].NEWS_SEO_TITLE = txttieu_de.Value;
+                news_insert.ToList()[0].NEWS_SEO_URL = txtSeoUrl.Value;
+                news_insert.ToList()[0].VL_CAOBAC_ID = Utils.CIntDef(ddlCapbacmongmuon.SelectedValue);
+                news_insert.ToList()[0].VL_HINHTHUCLAMVIEC_ID = Utils.CIntDef(ddlHinhthuclamviec.SelectedValue);
+                news_insert.ToList()[0].VL_MUCLUONG_ID = Utils.CIntDef(ddlMucluongmongmuon.SelectedValue);
+
+
+                news_insert.ToList()[0].SOLUONGTUYEN = Utils.CIntDef(txt_so_luong_tuyen.Value);
+                news_insert.ToList()[0].QUYENLOI = Utils.CStrDef(txt_quyen_loi.Value);
+                news_insert.ToList()[0].MOTACONGVIEC = Utils.CStrDef(txt_mo_ta_cong_viec.Value);
+                news_insert.ToList()[0].VL_KINHNGHIEM_ID = Utils.CIntDef(ddKinhnghiem.SelectedValue);
+                news_insert.ToList()[0].VL_TRINHDOHOCVAN_ID = Utils.CIntDef(ddlTrinhdohocvan.SelectedValue);
+                news_insert.ToList()[0].YEUCAUGIOITINH = Utils.CIntDef(ddlGioitinh.SelectedValue);
+                news_insert.ToList()[0].VL_DOTUOI_ID = Utils.CIntDef(ddlDotuoi.SelectedValue);
+                news_insert.ToList()[0].YEUCAUKHAC = Utils.CStrDef(txt_yeu_cau_khac.Value);
+                news_insert.ToList()[0].HOSO = Utils.CStrDef(txt_ho_so_gom.Value);
+                DateTime deadline = DateTime.ParseExact(txtPickerHannop.Value, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                news_insert.ToList()[0].NEWS_DEALINE = deadline;
+                news_insert.ToList()[0].VL_HINHTHUCNOPHOSO_ID = Utils.CIntDef(ddlHinhthucnophoso.SelectedValue);
+
+                news_insert.ToList()[0].NEWS_UPDATE = DateTime.Now;
+
+                db.SubmitChanges();
+
+                //delete old
+                DeleteNewsCategory(news_insert.ToList()[0].NEWS_ID);
+                SaveNewsCategory(news_insert.ToList()[0].NEWS_ID, Utils.CIntDef(cblRdoOptionNganhnghe.SelectedValue));
+                DeleteNewsArea(news_insert.ToList()[0].NEWS_ID);
+                for (int i = 0; i < cblChkOptionDiadiem.Items.Count; i++)
+                {
+                    if (cblChkOptionDiadiem.Items[i].Selected)
+                    {
+                        SaveNewsArea(news_insert.ToList()[0].NEWS_ID, Utils.CIntDef(cblChkOptionDiadiem.Items[i].Value));
+                    }
+                }
+                if (news_seo_url != txtSeoUrl.Value)
+                    updateNewsSeoUrl(news_insert.ToList()[0].NEWS_ID);
+
+                Response.Write("<script>alert('Cập nhật tin tuyển dụng thành công!');location.href='/ntd-tin-tuyen-dung-da-dang'</script>");
+            }
+            else
+                Response.Write("<script>alert('Đường dẫn không hợp lệ!');location.href='/ntd-tin-tuyen-dung-da-dang'</script>");
         }
         private void DangTuyen(int tthoso)
         {
@@ -197,6 +317,8 @@ namespace CatTrang.vi_vn
             news_insert.CUSTOMER_ID = Utils.CIntDef(Session["userId"]);
 
             news_insert.NEWS_PUBLISHDATE = DateTime.Now;
+            news_insert.NEWS_UPDATE = DateTime.Now;
+            news_insert.NEWS_UPDATEFRERESH = DateTime.Now;
 
             db.ESHOP_NEWs.InsertOnSubmit(news_insert);
             db.SubmitChanges();
@@ -213,7 +335,7 @@ namespace CatTrang.vi_vn
             }
             updateNewsSeoUrl(news_insert.NEWS_ID);
 
-            Response.Write("<script>alert('Tạo tin tuyển dụng thành công!');location.href='/ntd-tin-tuyen-dung-da-dang'</script>");
+            Response.Write("<script>alert('Tạo tin tuyển dụng thành công. Sau khi kiểm duyệt sẽ được xuất bản lên website!');location.href='/ntd-tin-tuyen-dung-da-dang'</script>");
 
         }
 
@@ -242,6 +364,19 @@ namespace CatTrang.vi_vn
                 clsVproErrorHandler.HandlerError(ex);
             }
         }
+        private void DeleteNewsCategory(int NewsId)
+        {
+            try
+            {
+                var list = db.ESHOP_NEWS_CATs.Where(n=>n.NEWS_ID == NewsId);
+                db.ESHOP_NEWS_CATs.DeleteAllOnSubmit(list);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
         private void SaveNewsArea(int NewsId, int areaId)
         {
             try
@@ -251,6 +386,19 @@ namespace CatTrang.vi_vn
                 nc.NEWS_ID = NewsId;
 
                 db.VL_AREA_ESHOP_NEWs.InsertOnSubmit(nc);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                clsVproErrorHandler.HandlerError(ex);
+            }
+        }
+        private void DeleteNewsArea(int NewsId)
+        {
+            try
+            {
+                var list = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == NewsId);
+                db.VL_AREA_ESHOP_NEWs.DeleteAllOnSubmit(list);
                 db.SubmitChanges();
             }
             catch (Exception ex)

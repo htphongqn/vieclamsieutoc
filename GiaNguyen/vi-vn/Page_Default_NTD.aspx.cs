@@ -29,8 +29,8 @@ namespace CatTrang.vi_vn
                         ltrFavicon.Text = "<link rel='shortcut icon' href='" + PathFiles.GetPathConfigs() + _configs.ToList()[0].CONFIG_FAVICON + "' />";
                 }
 
-                UserControl uVieclams = Page.LoadControl("../UIs/vieclamtheonganhngheNTV.ascx") as UserControl;
-                UserControl uVieclam = Page.LoadControl("../UIs/chitietvieclamNTV.ascx") as UserControl;
+                UserControl uUngviens = Page.LoadControl("../UIs/ungvientheonganhngheNTD.ascx") as UserControl;
+                UserControl uUngvien = Page.LoadControl("../UIs/chitietungvienNTD.ascx") as UserControl;
                 UserControl uTin = Page.LoadControl("../UIs/chitiettin.ascx") as UserControl;
                 //UserControl uSearch = Page.LoadControl("../UIs/search_vi.ascx") as UserControl;
                 int _type = Utils.CIntDef(Request["type"]);
@@ -44,7 +44,7 @@ namespace CatTrang.vi_vn
                         Bind_meta_tags_cat();
                         if (Utils.CIntDef(Session["Cat_type"]) == 2)//2 viec lam, 
                         {
-                            phdMain.Controls.Add(uVieclams);
+                            phdMain.Controls.Add(uUngviens);
                         }
                         else
                         {
@@ -65,7 +65,7 @@ namespace CatTrang.vi_vn
                         Bind_meta_tags_news();
                         if (getsession.Getcat_type(_newsSeoUrl) == 2)
                         {
-                            phdMain.Controls.Add(uVieclam);
+                            phdMain.Controls.Add(uUngvien);
                         }
                         else
                         {

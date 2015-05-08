@@ -71,6 +71,7 @@ namespace CatTrang.vi_vn
                         join c in db.ESHOP_CATEGORies on a.CAT_ID equals c.CAT_ID
                         join d in db.VL_AREA_ESHOP_NEWs on b.NEWS_ID equals d.NEWS_ID
                         where b.NEWS_SHOWTYPE == 1
+                        && (b.TINHTRANGHOSO == 2)
                          && b.NEWS_TYPE == 1//1 tim viec, 2 tuyen dung
                          && (d.AREA_ID == areaId || areaId == 0)
                         select b).Distinct().OrderByDescending(n => n.NEWS_PUBLISHDATE).Take(150).ToList();
@@ -125,12 +126,21 @@ namespace CatTrang.vi_vn
             string s = "";
             int tt = Utils.CIntDef(ott);
             var litem = db.VL_AREA_ESHOP_NEWs.Where(n => n.NEWS_ID == tt);
+            int i = 0;
             foreach (var item in litem)
             {
-                var itemArea = db.VL_AREAs.Where(n => n.ARE_ID == item.AREA_ID);
+                var itemArea = db.VL_AREAs.Where(n => n.ID == item.AREA_ID);
                 if (itemArea != null && itemArea.ToList().Count > 0)
                 {
-                    s += "<br />" + itemArea.ToList()[0].ARE_NAME;
+                    if (i == 0)
+                    {
+                        s += itemArea.ToList()[0].NAME;
+                    }
+                    else
+                    {
+                        s += "<br />" + itemArea.ToList()[0].NAME;
+                    }
+                    i++;
                 }
 
             }
@@ -158,7 +168,7 @@ namespace CatTrang.vi_vn
         }
         public string GetShortName(object obj, int lenght)
         {
-            string strObj = Utils.CStrDef(obj);
+            string strObj = Utils.CStrDef(obj).Replace("\r\n", "<br />");
             if (strObj.Length >= lenght)
             {
                 return strObj.Substring(0, lenght - 3) + "...";

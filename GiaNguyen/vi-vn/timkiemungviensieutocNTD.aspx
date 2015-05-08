@@ -186,8 +186,8 @@
 <div class="block">
   <div class="title_rec_home"><b>Hồ sơ ứng viên mới nhất</b>
     <div class="select_rec"> Chọn tỉnh:      
-      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Are_Name" 
-            DataValueField="Are_Id" AppendDataBoundItems="true" CssClass="type-option" 
+      <asp:DropDownList id="ddlDiadiemVLMoi" runat="server" DataTextField="Name" 
+            DataValueField="Id" AppendDataBoundItems="true" CssClass="type-option" 
             AutoPostBack="True" 
             onselectedindexchanged="ddlDiadiemVLMoi_SelectedIndexChanged">
             <asp:ListItem Value="0" Text="Tất cả địa điểm"></asp:ListItem>                        
