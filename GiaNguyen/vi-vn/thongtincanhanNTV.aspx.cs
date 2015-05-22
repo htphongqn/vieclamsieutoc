@@ -46,8 +46,11 @@ namespace CatTrang.vi_vn
                 txtBirthday.Value="";
                 if(birthday != DateTime.MinValue)
                     txtBirthday.Value = birthday.ToString("dd/MM/yyyy");
-                if(item.CUSTOMER_LOGO!= "" && item.CUSTOMER_LOGO != null)
-                    imgAvata.ImageUrl = "~/data/customer/logo/" + item.CUSTOMER_LOGO;
+                if (item.CUSTOMER_LOGO != "" && item.CUSTOMER_LOGO != null)
+                {
+                    //imgAvata.ImageUrl = "~/data/customer/logo/" + item.CUSTOMER_LOGO;
+                    imgAvata.ImageUrl = "TextOnImage.aspx?file=/data/customer/logo/" + item.CUSTOMER_LOGO;
+                }
                 rdblSex.SelectedValue = Utils.CStrDef(item.CUSTOMER_SEX);
                 ddlTinhtrangHonnhan.SelectedValue = Utils.CStrDef(item.CUSTOMER_HONNHAN);
                 txtAddress.Value = item.CUSTOMER_ADDRESS;

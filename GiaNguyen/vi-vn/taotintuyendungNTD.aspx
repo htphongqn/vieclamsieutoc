@@ -218,13 +218,13 @@
                 </div>
               </div>
               <div class="tbUser_row">
-                <div class="tbUser_col"><b>Yêu cầu độ tuổi (<span class="red">*</span>):</b></div>
+                <div class="tbUser_col"><b>Yêu cầu độ tuổi (<span class="red"></span>):</b></div>
                 <div class="tbUser_col col_r">
                   <asp:DropDownList id="ddlDotuoi" runat="server" DataTextField="Name" DataValueField="Id" AppendDataBoundItems="true" CssClass="dropbox">    
                         <asp:ListItem Value="0" Text="-- Chọn yêu cầu độ tuổi --"></asp:ListItem>                    
                         </asp:DropDownList>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Chưa chọn yêu cầu độ tuổi"
-                            ControlToValidate="ddlDotuoi" Display="None" ForeColor="Red" InitialValue="0" ValidationGroup="G40">*</asp:RequiredFieldValidator>
+                  <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Chưa chọn yêu cầu độ tuổi"
+                            ControlToValidate="ddlDotuoi" Display="None" ForeColor="Red" InitialValue="0" ValidationGroup="G40">*</asp:RequiredFieldValidator>--%>
                 </div>
               </div>
               <div class="tbUser_row">
@@ -348,7 +348,7 @@
                         CssClass="btn_green02" onclick="btnLuutam_Click" />
                   &nbsp;&nbsp;
                   <asp:Button ID="btnDangtuyen" runat="server" Text="Đăng tuyển" 
-                        ValidationGroup="G40" style="width:150px;" CssClass="btn_green02" 
+                        ValidationGroup="G40" CssClass="btn_green02" 
                         onclick="btnDangtuyen_Click" />
                   &nbsp;&nbsp;
                   <asp:Button ID="btnCapnhat" runat="server" Text="Cập nhật" 

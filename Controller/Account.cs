@@ -115,6 +115,7 @@ namespace Controller
                 user.CUSTOMER_QUYEN = 1;
                 user.CUSTOMER_PUBLISHDATE = DateTime.Now;
                 db.ESHOP_CUSTOMERs.InsertOnSubmit(user);
+                user.ISACTIVE = 1;
 
                 db.SubmitChanges();
                 return 1;

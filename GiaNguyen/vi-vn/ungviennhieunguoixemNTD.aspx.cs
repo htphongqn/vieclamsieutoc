@@ -252,7 +252,7 @@ namespace CatTrang.vi_vn
                     j++;
                     int newsId = Utils.CIntDef(GridItemList_Xemnhieu.DataKeys[i]);
                     var list = db.VL_CUSTOMER_ESHOP_NEWs.Where(a => a.CUSTOMER_NTD_ID == customerId
-                    && a.NEWS_ID_UNGTUYEN == newsId);
+                    && a.NEWS_ID_UNGTUYEN == newsId && a.TYPE == 5);
                     if (list != null && list.ToList().Count > 0)
                     {
                         //
@@ -265,6 +265,7 @@ namespace CatTrang.vi_vn
                         insert.NEWS_ID_UNGTUYEN = newsId;
                         insert.TYPE = 5;
                         insert.PUBLISHDATE = DateTime.Now;
+                        insert.DATE_XULY = DateTime.Now;
 
                         db.VL_CUSTOMER_ESHOP_NEWs.InsertOnSubmit(insert);
                         db.SubmitChanges();

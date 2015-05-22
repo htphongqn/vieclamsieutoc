@@ -14,7 +14,7 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt">Đăng ký</span></h2>
           </div>
-          <div class="navBarRight red" style="font-weight: 700">ĐT hỗ trợ: 1900 585 808 PHÍM 8</div>
+          <%--<div class="navBarRight red" style="font-weight: 700">ĐT hỗ trợ: 1900 585 808 PHÍM 8</div>--%>
           <div class="clear"></div>
         </div>
         <p class="number_jobs">Vui lòng điền đầy đủ thông tin<br />

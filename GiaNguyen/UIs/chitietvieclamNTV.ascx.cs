@@ -9,6 +9,7 @@ using Controller;
 using GiaNguyen.Components;
 using Model;
 using CatTrang.Components;
+using System.Collections;
 
 namespace CatTrang.UIs
 {
@@ -37,20 +38,29 @@ namespace CatTrang.UIs
             var item = vlnews.GetEshopNewsByNews_seo_url(_sNews_Seo_Url);
             if (item != null)
             {
+                int news_count = Utils.CIntDef(item.NEWS_COUNT);
                 //+ số lần xem việc làm
-                var listcount = db.ESHOP_NEWs.Where(a =>a.NEWS_ID == item.NEWS_ID);
-                if (listcount != null && listcount.ToList().Count > 0)
+                List<int> arr = new List<int>();
+                if(Session["viewCount"] != null)
+                    arr = (List<int>)Session["viewCount"];
+                int i = arr.Find(a => a == item.NEWS_ID);
+                if (i != item.NEWS_ID)
                 {
-                    listcount.ToList()[0].NEWS_COUNT++;
-
-                    db.SubmitChanges();
+                    arr.Add(item.NEWS_ID);
+                    Session["viewCount"] = arr;
+                    var listcount = db.ESHOP_NEWs.Where(a => a.NEWS_ID == item.NEWS_ID);
+                    if (listcount != null && listcount.ToList().Count > 0)
+                    {
+                        listcount.ToList()[0].NEWS_COUNT++;
+                        news_count = Utils.CIntDef(listcount.ToList()[0].NEWS_COUNT);
+                        db.SubmitChanges();
+                    }
                 }
-
                 Session["newsid"] = item.NEWS_ID;
                 linkNophoso.HRef = linkNophoso2.HRef = "/ntv-nop-ho-so-truc-tuyen/" + _sNews_Seo_Url;
 
                 lbTitle.Text = lbVitrituyendung.Text = lbVitrituyendung2.Text = Utils.CStrDef(item.NEWS_TITLE);
-                lbLuotxem.Text = cls.FormatMoneyNoVND(listcount.ToList()[0].NEWS_COUNT);
+                lbLuotxem.Text = cls.FormatMoneyNoVND(news_count);
                 //lbMaNTD.Text = Utils.CStrDef(item.NEWS_CODE);
                 lbNgaylammoi.Text = string.Format("{0:dd/MM/yyyy}", item.NEWS_UPDATEFRERESH);
                 lbChucvu.Text = getCapbac(item.VL_CAOBAC_ID);
@@ -66,11 +76,12 @@ namespace CatTrang.UIs
                 lbHinhthucnophoso.Text = getHinhthucnop(item.VL_HINHTHUCNOPHOSO_ID);
                 lbKinhnghiem.Text = getKinhnghiem(item.VL_KINHNGHIEM_ID);
                 lbBangcap.Text = getTrinhdohocvan(item.VL_TRINHDOHOCVAN_ID);
-                lbGioitinh.Text = Utils.CIntDef(item.YEUCAUGIOITINH, 3) == 1 ? "Nam" : (Utils.CIntDef(item.YEUCAUGIOITINH, 3) == 2 ? "Nữ" : "Không yêu cầu");
+                lbGioitinh.Text = Utils.CIntDef(item.YEUCAUGIOITINH, 0) == 1 ? "Nam" : (Utils.CIntDef(item.YEUCAUGIOITINH, 0) == 2 ? "Nữ" : (Utils.CIntDef(item.YEUCAUGIOITINH, 0) == 3 ? "Khác" :  "Không yêu cầu"));
                 lbDotuoi.Text = getDotuoi(item.VL_DOTUOI_ID);
                 lbSoluongtuyen.Text = Utils.CStrDef(item.SOLUONGTUYEN);
 
-                Lbface.Text = "<div class='fb-like' data-href='" + Request.ServerVariables["HTTP_REFERER"] + "' data-layout='button_count' data-action='like' data-show-faces='true' data-share='true'></div>";
+                string url = "http://" + Request.Url.Host + Page.ResolveUrl(Request.RawUrl);
+                Lbface.Text = "<div class='fb-like' data-href='" + url + "' data-layout='button_count' data-action='like' data-show-faces='true' data-share='true'></div>";
 
                 int customerId = Utils.CIntDef(item.CUSTOMER_ID);
                 Session["customerId"] = customerId;
@@ -86,7 +97,7 @@ namespace CatTrang.UIs
                     lbDiachicongty.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_ADDRESS);
                     lbWebsite.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_WEBSITE);
                     lbDienthoaicongty.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_PHONE1);
-                    lbGioithieucongty.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_GIOITHIEU).Replace("\r\n", "<br />");
+                    lbGioithieucongty.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_SOLUOC).Replace("\r\n", "<br />");
                     lbQuymoconty.Text = Utils.CStrDef(customer.ToList()[0].CUSTOMER_QUYMO);
                     if (customer.ToList()[0].CUSTOMER_LOGO != "" && customer.ToList()[0].CUSTOMER_LOGO != null)
                         imgLogo.ImageUrl = "~/data/customer/logo/" + customer.ToList()[0].CUSTOMER_LOGO;
@@ -333,7 +344,7 @@ namespace CatTrang.UIs
             {
                 return item.ToList()[0].NAME;
             }
-            return "";
+            return "Không yêu cầu";
         }
         #endregion
 

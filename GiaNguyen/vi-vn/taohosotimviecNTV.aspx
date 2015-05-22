@@ -406,7 +406,7 @@
                         CssClass="btn_green02" onclick="btnLuutam_Click" />
                   &nbsp;&nbsp;
                   <asp:Button ID="btnDanghoso" runat="server" Text="Đăng hồ sơ tìm việc" 
-                        ValidationGroup="G40" style="width:150px;" CssClass="btn_green02" 
+                        ValidationGroup="G40" CssClass="btn_green02" 
                         onclick="btnDanghoso_Click" />
                   &nbsp;&nbsp;
                   <asp:Button ID="btnCapnhat" runat="server" Text="Cập nhật" 

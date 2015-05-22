@@ -19,6 +19,7 @@ namespace CatTrang.UIs
         private VL_Category vl = new VL_Category();
         private VL_News vlnews = new VL_News();
         private Account acount = new Account();
+        private clsFormat cls = new clsFormat();
         private List_product list_pro = new List_product();
         string _sNews_Seo_Url = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
@@ -35,19 +36,27 @@ namespace CatTrang.UIs
             var item = vlnews.GetEshopNewsByNews_seo_url(_sNews_Seo_Url);
             if (item != null)
             {
-
+                int news_count = Utils.CIntDef(item.NEWS_COUNT);
                 //+ số lần xem việc làm
-                var listcount = db.ESHOP_NEWs.Where(a => a.NEWS_ID == item.NEWS_ID);
-                if (listcount != null && listcount.ToList().Count > 0)
+                List<int> arr = new List<int>();
+                if (Session["viewCount"] != null)
+                    arr = (List<int>)Session["viewCount"];
+                int i = arr.Find(a => a == item.NEWS_ID);
+                if (i != item.NEWS_ID)
                 {
-                    listcount.ToList()[0].NEWS_COUNT++;
-
-                    db.SubmitChanges();
+                    arr.Add(item.NEWS_ID);
+                    Session["viewCount"] = arr;
+                    var listcount = db.ESHOP_NEWs.Where(a => a.NEWS_ID == item.NEWS_ID);
+                    if (listcount != null && listcount.ToList().Count > 0)
+                    {
+                        listcount.ToList()[0].NEWS_COUNT++;
+                        news_count = Utils.CIntDef(listcount.ToList()[0].NEWS_COUNT);
+                        db.SubmitChanges();
+                    }
                 }
-
                 Session["newsid"] = item.NEWS_ID;
 
-                lbLuotxem.Text = Utils.CStrDef(item.NEWS_COUNT);
+                lbLuotxem.Text = cls.FormatMoneyNoVND(news_count);
                 //lbMaNTD.Text = Utils.CStrDef(item.NEWS_CODE);
                 lbNgaylammoi.Text = string.Format("{0:dd/MM/yyyy}", item.NEWS_UPDATEFRERESH);
                                 

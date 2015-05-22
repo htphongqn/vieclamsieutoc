@@ -158,10 +158,10 @@
           <div class="clearfix"></div>
           <!--chia se-->
           <div class=" marTB10 foolistjob">
-            <div class="fLeft marTB10 marL10"> 
+            <%--<div class="fLeft marTB10 marL10"> 
                 <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe">Lưu hồ sơ</a>
                 <a href="javascript:ntv_to_cao();" title="" class="toCao">Tố cáo</a> 
-            </div>
+            </div>--%>
             <div class="fRight marTB10 "><!-- page number-->
               <div class="navigation_news">
                     <cc1:collectionpager ID="CollectionPager5" runat="server" ShowPageNumbers="True"

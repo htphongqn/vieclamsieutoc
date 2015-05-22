@@ -343,12 +343,14 @@
     <Content Include="UIs\path_vi.ascx" />
     <Content Include="UIs\Toolbar.ascx" />
     <Content Include="UIs\vieclamtheonganhngheNTV.ascx" />
+    <Content Include="vi-vn\TextOnImageTest.aspx" />
     <Content Include="vi-vn\lienhequangcao.aspx" />
     <Content Include="vi-vn\huongdansudung.aspx" />
     <Content Include="vi-vn\gopy.aspx" />
     <Content Include="vi-vn\dangkytuvanNTD.aspx" />
     <Content Include="vi-vn\dangkytuvanNTV.aspx" />
     <Content Include="vi-vn\nophosotructuyenNTV.aspx" />
+    <Content Include="vi-vn\TextOnImage.aspx" />
     <Content Include="vi-vn\ungviennhieunguoixemNTD.aspx" />
     <Content Include="vi-vn\ungvientieubieuNTD.aspx" />
     <Content Include="vi-vn\taotintuyendungNTD.aspx" />
@@ -600,6 +602,13 @@
     <Compile Include="UIs\vieclamtheonganhngheNTV.ascx.designer.cs">
       <DependentUpon>vieclamtheonganhngheNTV.ascx</DependentUpon>
     </Compile>
+    <Compile Include="vi-vn\TextOnImageTest.aspx.cs">
+      <DependentUpon>TextOnImageTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\TextOnImageTest.aspx.designer.cs">
+      <DependentUpon>TextOnImageTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="vi-vn\lienhequangcao.aspx.cs">
       <DependentUpon>lienhequangcao.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -641,6 +650,13 @@
     </Compile>
     <Compile Include="vi-vn\nophosotructuyenNTV.aspx.designer.cs">
       <DependentUpon>nophosotructuyenNTV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vi-vn\TextOnImage.aspx.cs">
+      <DependentUpon>TextOnImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vi-vn\TextOnImage.aspx.designer.cs">
+      <DependentUpon>TextOnImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="vi-vn\ungviennhieunguoixemNTD.aspx.cs">
       <DependentUpon>ungviennhieunguoixemNTD.aspx</DependentUpon>
@@ -915,7 +931,6 @@
     <Folder Include="data\customer\giayphep\" />
     <Folder Include="data\customer\logo\" />
     <Folder Include="data\news\1049\" />
-    <Folder Include="export\" />
     <Folder Include="Htm\" />
   </ItemGroup>
   <ItemGroup>

@@ -283,15 +283,6 @@ namespace CatTrang.vi_vn {
         protected global::System.Web.UI.WebControls.DropDownList ddlDotuoi;
         
         /// <summary>
-        /// RequiredFieldValidator12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator12;
-        
-        /// <summary>
         /// txt_yeu_cau_khac control.
         /// </summary>
         /// <remarks>
