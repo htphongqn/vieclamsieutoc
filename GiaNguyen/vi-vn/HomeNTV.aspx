@@ -198,6 +198,7 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlDiadiemVLMoi" />
+                        <asp:AsyncPostBackTrigger ControlID="CollectionPager5" />
                     </Triggers>
                     <ContentTemplate>
                 <div class="block_rec bl_white">

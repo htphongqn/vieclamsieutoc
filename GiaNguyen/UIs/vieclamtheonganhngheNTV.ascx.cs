@@ -29,8 +29,8 @@ namespace CatTrang.UIs
             if (!IsPostBack)
             {
                 LoadTitle();
-                Load_Vieclam();
             }
+            Load_Vieclam();
         }
         protected override void Render(HtmlTextWriter writer)
         {

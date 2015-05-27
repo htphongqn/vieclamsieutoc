@@ -26,8 +26,8 @@ namespace CatTrang.vi_vn
             if (!IsPostBack)
             {
                 Load_VL_Category();
-                Load_Ungvien();
             }
+            Load_Ungvien();
         }
         
         protected override void Render(HtmlTextWriter writer)
@@ -214,6 +214,7 @@ namespace CatTrang.vi_vn
         #endregion
         protected void ddlDiadiemUVMoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CollectionPager1.CurrentPage = 1;
             LoadUngvienMoi();
         }
 

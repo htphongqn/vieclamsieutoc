@@ -25,9 +25,9 @@ namespace CatTrang.vi_vn
             {
                 Load_VL_Category();
                 Load_VL_Nganhnghe();
-                Load_Hoso();
                 Load_Banner();
             }
+            Load_Hoso();
         }
         private void Load_VL_Category()
         {
@@ -226,6 +226,7 @@ namespace CatTrang.vi_vn
 
         protected void ddlDiadiemVLMoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CollectionPager5.CurrentPage = 1;
             LoadUngvienMoi();
         }
     }
