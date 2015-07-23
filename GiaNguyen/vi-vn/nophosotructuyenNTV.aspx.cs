@@ -70,7 +70,7 @@ namespace CatTrang.vi_vn
         }
         protected void btnNopdon_Click(object sender, EventArgs e)
         {
-            if (this.txt_ma_xac_minh.Value != this.Session["CaptchaImageText"].ToString())
+            if (this.txt_ma_xac_minh.Value != Utils.CStrDef(this.Session["CaptchaImageText"]))
             {
                 Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
                 return;

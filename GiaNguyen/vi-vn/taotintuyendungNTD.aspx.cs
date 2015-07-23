@@ -224,7 +224,9 @@ namespace CatTrang.vi_vn
         }
         protected void btnCapnhat_Click(object sender, EventArgs e)
         {
-            if (this.txt_ma_xac_minh.Value != this.Session["CaptchaImageText"].ToString())
+            string strSecView = LookCookie().ToLower();
+            string strSecurity = txt_ma_xac_minh.Value.ToString().ToLower();
+            if (strSecurity != strSecView)
             {
                 Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
                 return;
@@ -282,7 +284,9 @@ namespace CatTrang.vi_vn
         }
         private void DangTuyen(int tthoso)
         {
-            if (this.txt_ma_xac_minh.Value != this.Session["CaptchaImageText"].ToString())
+            string strSecView = LookCookie().ToLower();
+            string strSecurity = txt_ma_xac_minh.Value.ToString().ToLower();
+            if (strSecurity != strSecView)
             {
                 Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
                 return;
@@ -305,7 +309,8 @@ namespace CatTrang.vi_vn
             news_insert.VL_DOTUOI_ID = Utils.CIntDef(ddlDotuoi.SelectedValue);
             news_insert.YEUCAUKHAC = Utils.CStrDef(txt_yeu_cau_khac.Value);
             news_insert.HOSO = Utils.CStrDef(txt_ho_so_gom.Value);
-            news_insert.NEWS_DEALINE = Utils.CDateDef(txtPickerHannop.Value, DateTime.Now);
+            DateTime deadline = DateTime.ParseExact(txtPickerHannop.Value, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            news_insert.NEWS_DEALINE = deadline;
             news_insert.VL_HINHTHUCNOPHOSO_ID = Utils.CIntDef(ddlHinhthucnophoso.SelectedValue);
 
             news_insert.TINHTRANGHOSO = tthoso;
@@ -405,6 +410,24 @@ namespace CatTrang.vi_vn
             {
                 clsVproErrorHandler.HandlerError(ex);
             }
+        }
+
+        public string querys()
+        {
+            return LookCookie();
+        }
+
+        private string LookCookie()
+        {
+            HttpCookie Cookie = new HttpCookie("slmsrcd1");
+            Cookie = Request.Cookies["slmsrcd1"];
+            string strUser = "";
+            if (Cookie != null && Cookie.Value != "" &&
+                 Cookie.Value != null)
+            {
+                strUser = Cookie.Value.ToString();
+            }
+            return strUser;
         }
     }
 }

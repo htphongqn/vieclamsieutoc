@@ -36,7 +36,15 @@
               <div class="tbUser_col"><b>Mã bảo mật:</b></div>
               <div class="tbUser_col col_r">
                 <div id="div_ma_xac_minh">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/vi-vn/CImage.aspx" height="35px" />
+                <script type="text/javascript"  language="Javascript">
+                    function Catpc() {
+                        var img = document.getElementById("icp");
+                        img.src = "/vi-vn/captchr.ashx?query=" + Math.random();
+                    }
+                        </script>                    
+                    <img id="icp" align="absmiddle" src='/vi-vn/captchr.ashx?query=<%= querys() %>' alt="Mã bảo mật" />
+                    <a href="javascript:void(0)" onclick="javascript:Catpc();">
+                        <img title="Refresh" style="vertical-align: middle;border-width:0px" src="/images/reloadpaf.png" /></a>
                 </div>
               </div>
             </div>

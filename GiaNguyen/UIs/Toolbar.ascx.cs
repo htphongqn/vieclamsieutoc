@@ -37,7 +37,7 @@ namespace GiaNguyen.UIs
         protected void lbtSendEmail_Click(object sender, EventArgs e)
         {
 
-            if (this.Send_txtCapcha.Value != this.Session["CaptchaImageText"].ToString())
+            if (this.Send_txtCapcha.Value != Utils.CStrDef(this.Session["CaptchaImageText"]))
             {
                 Send_lblResult.ForeColor = Color.Red;
                 Send_lblResult.Text = "Mã bảo vệ không đúng.";
@@ -128,7 +128,7 @@ namespace GiaNguyen.UIs
         {
 
 
-            if (this.txtCapcha.Value != this.Session["CaptchaImageText"].ToString())
+            if (this.txtCapcha.Value != Utils.CStrDef(this.Session["CaptchaImageText"]))
             {
                 lbResult.ForeColor = Color.Red;
                 lbResult.Text = "Mã bảo vệ không đúng.";

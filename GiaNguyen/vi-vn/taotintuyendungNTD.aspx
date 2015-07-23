@@ -3,7 +3,7 @@
 <%@ Register src="~/UIs/BannerTopNTD.ascx" tagname="BannerTopNTD" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<script type="text/javascript">
+    <script type="text/javascript">
     function textChange(e, txtbox, cls) {
         if (!(/[^A-Za-z0-9 ]/.test(String.fromCharCode(e.keyCode))) || e.keyCode == 8) {
             var text = $(txtbox).val().toLowerCase();
@@ -27,7 +27,7 @@
   </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMain" runat="server">
-  <div class="page" id="recruitment">
+    <div class="page" id="recruitment">
     <div id="main"> 
       <uc2:BannerTopNTD ID="BannerTopNTD1" runat="server" />
       <div class="block"> 
@@ -324,11 +324,19 @@
               <%--<div align="right" class="button_filter">
                 <input type="button" onclick="javascript:do_lien_he');" value="Sửa" class="btn_green01">
               </div>--%>
-              <div style="border-top: 1px solid #DDDDDD; height: 1px; margin: 10px"></div>
+              <div style="border-top: 1px solid #DDDDDD; height: 1px; margin: 10px; clear:both"></div>
               <div class="tbUser_row">
                 <div class="tbUser_col"><b>Mã bảo mật:</b> </div>
                 <div class="tbUser_col col_r">
-                    <asp:Image ID="Image1" runat="server" ImageUrl="~/vi-vn/CImage.aspx" height="35px" />
+                    <script type="text/javascript"  language="Javascript">
+                        function Catpc() {
+                            var img = document.getElementById("icp");
+                            img.src = "/vi-vn/captchr.ashx?query=" + Math.random();
+                        }
+                        </script>                    
+                    <img id="icp" align="absmiddle" src='/vi-vn/captchr.ashx?query=<%= querys() %>' alt="Mã bảo mật" />
+                    <a href="javascript:void(0)" onclick="javascript:Catpc();">
+                        <img title="Refresh" style="vertical-align: middle;border-width:0px" src="/images/reloadpaf.png" /></a>
                 </div>
               </div>
               <div class="tbUser_row">

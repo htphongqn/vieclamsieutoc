@@ -44,10 +44,14 @@ namespace CatTrang.UIs
             ddlKinhnghiem.DataSource = vl.GetAllKinhnghiem();
             ddlKinhnghiem.DataBind();
 
-            cblRdoOptionNganhnghe.SelectedValue = Utils.CStrDef(nganh_nghe);
-            cblChkOptionDiadiem.SelectedValue = Utils.CStrDef(dia_diem);
-            ddlMucluong.SelectedValue = Utils.CStrDef(muc_luong);
-            ddlKinhnghiem.SelectedValue = Utils.CStrDef(kinh_nghiem);
+            if (nganh_nghe > 0)
+                cblRdoOptionNganhnghe.SelectedValue = Utils.CStrDef(nganh_nghe);
+            if (dia_diem > 0)
+                cblChkOptionDiadiem.SelectedValue = Utils.CStrDef(dia_diem);
+            if (muc_luong > 0)
+                ddlMucluong.SelectedValue = Utils.CStrDef(muc_luong);
+            if (kinh_nghiem > 0)
+                ddlKinhnghiem.SelectedValue = Utils.CStrDef(kinh_nghiem);
         }
         private void Load_Vieclam()
         {
@@ -128,9 +132,10 @@ namespace CatTrang.UIs
 
         protected void btnHuytimkiem_Click(object sender, EventArgs e)
         {
-            txtFilterNganhnghe.Text = "";
-            txtFilterDiadiem.Text = "";
-            Load_VL_Category();
+            //txtFilterNganhnghe.Text = "";
+            //txtFilterDiadiem.Text = "";
+            //Load_VL_Category();
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnTimkiem_Click(object sender, EventArgs e)

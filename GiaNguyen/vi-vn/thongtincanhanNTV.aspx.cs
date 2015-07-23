@@ -66,7 +66,7 @@ namespace CatTrang.vi_vn
         }
         protected void btnCapnhat_Click(object sender, EventArgs e)
         {
-            if (this.txtCaptcha.Value != this.Session["CaptchaImageText"].ToString())
+            if (this.txtCaptcha.Value != Utils.CStrDef(this.Session["CaptchaImageText"]))
             {
                 Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
                 return;

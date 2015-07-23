@@ -28,7 +28,7 @@ namespace Model.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=120.72.85.215;Initial Catalog=vieclamsieutoc_com;User ID=vieclamsieuto" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=vieclamsieutoc_com;User ID=vieclamsieuto" +
             "c;Password=Dfg1r5g4re1g")]
         public string vieclamsieutoc_comConnectionString2 {
             get {

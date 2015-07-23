@@ -293,6 +293,7 @@
     <Content Include="Images\noimage.jpg" />
     <Content Include="Images\person.jpg" />
     <Content Include="Images\phone_icon.png" />
+    <Content Include="Images\reloadpaf.png" />
     <Content Include="Images\security_image.php.jpg" />
     <Content Include="Images\share.png" />
     <Content Include="Images\sprites_icon.png" />
@@ -941,6 +942,7 @@
     <Content Include="Master\NTD.Master" />
     <Content Include="Master\GOPY.Master" />
     <Content Include="Master\HDSD.Master" />
+    <Content Include="vi-vn\captchr.ashx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controller\Controller.csproj">

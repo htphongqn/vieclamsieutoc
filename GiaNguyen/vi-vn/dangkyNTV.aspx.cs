@@ -36,7 +36,9 @@ namespace CatTrang.vi_vn
 
         protected void btnDangky_Click(object sender, EventArgs e)
         {
-            if (this.txtCaptcha.Value != this.Session["CaptchaImageText"].ToString())
+            string strSecView = LookCookie().ToLower();
+            string strSecurity = txtCaptcha.Value.ToString().ToLower();
+            if (strSecurity != strSecView)
             {
                 Response.Write("<script>alert('Nhập mã bảo mật sai!');</script>");
                 return;
@@ -92,6 +94,24 @@ namespace CatTrang.vi_vn
             {
                 Response.Write("<script>alert('Lỗi trong quá trình đăng ký, hãy thử lại!');</script>");
             }
+        }
+
+        public string querys()
+        {
+            return LookCookie();
+        }
+
+        private string LookCookie()
+        {
+            HttpCookie Cookie = new HttpCookie("slmsrcd1");
+            Cookie = Request.Cookies["slmsrcd1"];
+            string strUser = "";
+            if (Cookie != null && Cookie.Value != "" &&
+                 Cookie.Value != null)
+            {
+                strUser = Cookie.Value.ToString();
+            }
+            return strUser;
         }
     }
 }
