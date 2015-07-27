@@ -14,7 +14,10 @@
           <div class="navBarLeft">
             <h2><span class="navBarTxt"><asp:Literal ID="lbTitle" runat ="server"></asp:Literal></span></h2>
           </div>
-          <div class="navBarRight red"><a id="linkNophoso" runat="server" href="/ntv-nop-ho-so-truc-tuyen" title=""><img src="/images/btnNopHS.gif" height="30" alt=""></a></div>
+          <div class="navBarRight red">
+          <asp:LinkButton ID="linkNophoso" runat="server" CssClass="btn btn-sm btn-warning"
+                             onclick="linkNophoso_Click">NỘP HỒ SƠ</asp:LinkButton>
+          </div>
           <div class="clear"></div>
         </div>
         <p class="views_c">
@@ -88,7 +91,8 @@
                 <td><b>Hình thức nộp hồ sơ</b></td>
                 <td class="br-L"><asp:Literal ID="lbHinhthucnophoso" runat ="server"></asp:Literal></td>
                 <td colspan="2" align="right">
-                    <a id="linkNophoso2" runat="server" href="/ntv-nop-ho-so-truc-tuyen" title=""><img src="/images/btnNopHS.gif" width="251" height="40" alt=""></a>
+                    <asp:LinkButton ID="linkNophoso2" runat="server"
+                            style="margin-right:0" onclick="linkNophoso_Click"><img src="/images/btnNopHS.gif" width="251" height="40" alt=""></asp:LinkButton>
                 </td>
               </tr>
               <tr class="tbInfo-header">
@@ -117,7 +121,7 @@
                     <a href="javascript:gui_mail_ban_be();" title="" class="guiBanBe" style="display:none">Gửi bạn bè</a> 
                     <a href="javascript:yes');" title="" class="inTin" style="display:none">In tin này</a> 
                     <a href="javascript:ntv_to_cao();" title="" class="toCao" style="display:none">Tố cáo</a> </div>
-                    <div class="fRight">
+                    <div class="fleft">
                         <asp:LinkButton ID="lnkLuutin" runat="server" CssClass="luuTin" 
                             style="margin-right:0" onclick="lnkLuutin_Click">Lưu tin </asp:LinkButton>
                     </div>

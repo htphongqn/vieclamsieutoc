@@ -57,7 +57,7 @@ namespace CatTrang.UIs
                     }
                 }
                 Session["newsid"] = item.NEWS_ID;
-                linkNophoso.HRef = linkNophoso2.HRef = "/ntv-nop-ho-so-truc-tuyen/" + _sNews_Seo_Url;
+                //linkNophoso.HRef = linkNophoso2.HRef = "/ntv-nop-ho-so-truc-tuyen/" + _sNews_Seo_Url;
 
                 lbTitle.Text = lbVitrituyendung.Text = lbVitrituyendung2.Text = Utils.CStrDef(item.NEWS_TITLE);
                 lbLuotxem.Text = cls.FormatMoneyNoVND(news_count);
@@ -384,7 +384,18 @@ namespace CatTrang.UIs
                 Response.Redirect(Request.RawUrl);
             }
         }
-
+        protected void linkNophoso_Click(object sender, EventArgs e)
+        {
+            int customerId = Utils.CIntDef(Session["userId"]);
+            int newsId = Utils.CIntDef(Session["newsid"]);
+            if (customerId == 0 || Utils.CIntDef(Session["user_quyen"]) != Cost.QUYEN_NTV)
+            {
+                MessageBox1.ShowMessage("Bạn cần đăng nhập tài khoản người tìm việc để sử dụng chức năng này!", "Thông báo");
+                //Response.Write("<script>alert('Bạn cần đăng nhập tài khoản người tìm việc để sử dụng chức năng này!');'</script>");
+                return;
+            }
+            Response.Redirect("/ntv-nop-ho-so-truc-tuyen/" + _sNews_Seo_Url);
+        }
         protected void btnTheodoi_Click(object sender, EventArgs e)
         {
             int customerId = Utils.CIntDef(Session["userId"]);

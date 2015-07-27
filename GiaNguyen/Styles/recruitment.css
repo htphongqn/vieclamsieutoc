@@ -1,9 +1,10 @@
 @charset "utf-8";
 /* Recruitment CSS Document */
 body {
-	font-family: Tahoma, Helvetica, sans-serif;
+/*	font-family: Tahoma, Helvetica, sans-serif;*/
 	color: #555555;
-	font-size: 12px
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;*
 }
 img {
 	border: none;
@@ -39,22 +40,30 @@ img {
 /*Top menu_rec Recruitment*/
 .menu_rec {
 	position: relative;
-	background: #223191;
-	height: 40px;
+	background: #004C91;
+	min-height: 68px;
+min-width:1010px;
 }
 .menu_rec ul {
 	width: 1000px;
 	margin: 0 auto;
+	display: table
 }
 .menu_rec > ul > li {
 	float: left;
 	list-style: none outside none;
 	padding: 9px 10px;
-	background-image:url(../Images/bglinavx.png);
-	background-repeat:no-repeat;
-	background-position: top left;
+	border-right: #03345D solid 1px;
+	border-left: #0064B9 solid 1px;
 }
-.menu_rec > ul > li:first-child{ background-image:none;}
+.menu_rec > ul > li:first-child {
+	-webkit-box-shadow: -1px 0 1px 0 #03345D;
+	box-shadow: -1px 0 1px 0 #03345D;
+}
+ .menu_rec > ul > li:last-child {
+	-webkit-box-shadow: 1px 0 1px 0 #0064B9;
+	box-shadow: 1px 0 1px 0 #0064B9;
+}
 .menu_rec > ul > li > a {
 	display: inline-block;
 	font-size: 1.1em;
@@ -73,7 +82,7 @@ img {
 }
 .sub_menu_rec {
 	position: absolute;
-	top: 36px;
+	top: 35px;
 	left: 0;
 	width: 100%;
 	height: 32px;
@@ -82,7 +91,6 @@ img {
 .sub_menu_rec ul {
 	width: 1000px;
 	margin: 0 auto;
-	background: #a8a9aa
 }
 .sub_menu_rec li {
 	display: inline-block;
@@ -121,7 +129,7 @@ img {
 .hot_rec_title b {
 	float: left;
 	color: #ed2227;
-	font: bold 15px/30px Tahoma, Geneva, sanfilter-serif
+	font: bold 15px/30px /* Tahoma, Geneva, sanfilter-serif*/
 }
 .effective_rec_link {
 	float: right;
@@ -191,20 +199,21 @@ img {
 }
 .sort_status {
 	color: #293790;
-	padding: 0 10px 10px 10px
+	padding: 0 10px 10px 0px;
+font-style:italic
 }
 .sort_status b {
 	color: #ed2227
 }
 #list_career li {
-	margin: 4px 0
+	margin: 2px 0
 }
 #list_career .col_rec_item_ct {
 	background: none
 }
 #list_career .number_jobs {
 	color: #ed2227;
-	padding-left: 5px;
+	padding-left: 1px;
 	font-size: 11px;
 }
 .select_rec {
@@ -230,14 +239,12 @@ img {
 	text-align: right;
 }
 .pageList a, .pageList b {
-	color: #293790;
 	font-weight: 700;
-	margin: 0 4px;
+	margin: 0 2px;padding:2px 5px;
 }
-.pageList a:hover {
-	color: #F20000;
-	text-decoration: underline;
-}
+.pageList b{ background:#085597; color:#fff}
+.pageList a{ border: solid 1px #ddd; color:#085597}
+ 
 #handbook_search_jobs {
 	padding-top: 0
 }
@@ -322,6 +329,7 @@ img {
 	padding: 3px 0 5px;
 	margin:3px 0;
 	clear:both;
+	float:left;
 	
 }
 ul.searchList {
@@ -367,7 +375,6 @@ ul.searchList li a:hover {
 .navBarTxt {
 	color: #ed2227;
  
-	font: bold 15px/30px Tahoma, Geneva, sans-serif;
 }
 .resumes_status {
 	margin: 10px 0
@@ -442,12 +449,14 @@ color:#000;
   .job_name {
 	cursor:pointer;
 	color: #222222;
-	width: 100%;
+	width: 300px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+ white-space:nowrap;
 	font-weight: 600
 }
+.ten-cong-viec{ float:left; max-width:250px;	overflow: hidden;
+	text-overflow: ellipsis;white-space:nowrap; width:100%;}
 /* tooltip styling */
   .tooltip_ct {
 	display:none;
@@ -554,7 +563,7 @@ color:#000;
 .tbUser_row {
 	clear: both;
 	line-height: 23px;
-	color: #330000;
+	color: #444;
 	padding-left: 20px;
 }
 .tbUser_col {
@@ -579,8 +588,10 @@ color:#000;
 	border: 1px solid #C6DBE0;
 	height: 60px;
 	margin: 5px 0 0;
-	padding: 5px 10px;
+	padding: 5px 0px;
 	width: 310px;
+width:100% !important;
+text-indent:10px
 }
 #recruitment .dropbox {
 	background: url(../Images/txtBg.gif) repeat-x scroll 0 0 rgba(0, 0, 0, 0);
@@ -608,35 +619,18 @@ color:#000;
 	background: none;
 }
 .btn_green01 {
-	background: #2ea12e url(../Images/greenBg.jpg) bottom left repeat-x;
+ 
+background: #085597 ;
 	border: 0 none;
 	color: #FFFFFF;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 11px;
-	padding: 3px 10px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	padding: 6px 10px;
+ 
 }
-.btn_green02 {
-	display: inline-block;
-	padding: 0 10px;
-	height: 25px;
-	background: url(../Images/greenBg02.jpg) 0 0 repeat-x;
-	color: #FFFFFF;
-	font: bold 12px/25px Arial, Helvetica, sans-serif;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	border: none;
-	cursor: pointer;
-	text-decoration: none
-}
-.btn_green01:hover, .btn_green02:hover {
-	text-decoration: none;
-	color: #FFFFFF
-}
+
+ 
 .btn_view_CV {
 	width:160px;
 	height:40px;
@@ -782,3 +776,58 @@ font:bold 11px Arial;
 #right_sidebar .block_rec { border: solid 1px #ddd}
 
 #right_sidebar .blocktitle { background:#1A30BA; color:#fff;}
+
+ /* chinh sua 11/5*/
+
+#footer_bottom .logo{ width:205px; }
+#footer_bottom .logo img{ max-width:95%}
+#header-inner{ margin-top:5px}
+.loginbox{ margin-top:5px}
+.menu_rec{background:#085597}
+#right_sidebar .blocktitle{background:#085597; padding-left:10px;}
+.nav_f{background:#085597}
+.hot_rec_title{border-bottom: solid 1px #ccc; line-height:30px}
+.hot_rec_title b{border-bottom: solid 4px #293391; color:#293391; font-size:1.45em}
+.btnTimNgay{background:#293391}
+.title_rec_home{ background:none; border-bottom: solid 1px #ccc;margin-bottom:5px}
+.title_rec_home  b{border-bottom: solid 4px #293391; color:#293391; padding-left:0; font-size:1.45em}
+.titleSort{border-bottom: solid 1px #ccc;line-height:30px;margin-bottom:5px }
+.titleSort .listJobTitle{border-bottom: solid 4px #293391; padding-left:0; padding-bottom:5px;color:#293391; font-size:1.45em }
+ul.tabs_sort_cr li{border-left:0;}
+ul.tabs_sort_cr li+li:before{ content:"|"; color:#293391; margin-right:10px}
+.boxPhones hr{ border-color: #ccc;}
+.navBarLeft h2{ line-height:30px; margin:0; padding:0}
+.navBarLeft h2 .navBarTxt{ color:#293391;border-bottom: solid 4px #293391;padding-bottom:4px; font-size:1.45em}
+.navBar{ padding:0; line-height:30px;border-bottom: solid 1px #ccc;}
+.sort_cr .block_rec .col_rec_item_ct{padding-left:0}
+.detail_w{ float:left; margin-bottom:15px}
+
+#right_sidebar{width:26% !important}
+#content_1{ width:73% !important}
+#list_career .col_rec_item{ width:25%}
+#list_career .col_rec_item_ct{ width:100%}
+
+.btn_green02 {
+	padding: 7px 15px;
+	font-size: 13px;
+	border-radius: 3px;
+	border: 0;
+	color: #fff;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+	font-weight: normal;
+	color: #fff;
+	background-color: #ec971f;
+	border-color: #d58512;
+	white-space:nowrap
+}
+.btn-sm {
+	line-height: normal !important;
+	font-weight: normal !important
+}
+.loginbox  .thongTinTaiKhoan:last-child{ display:none; position:absolute; width:200px; padding-bottom:5px; padding-top:0px; top:99%; left:0; z-index:99; background:#fff; border: solid 1px #ddd; border-top:0}
+.loginbox:hover  .thongTinTaiKhoan:last-child{ display:block}
+.tbUser_row input[type="button" i], .tbUser_row input[type="submit" i], .tbUser_row input[type="reset" i], .tbUser_row input[type="file" i]::-webkit-file-upload-button, .tbUser_row button {
+ padding: 0;
+ border: 0px outset buttonface;
+}

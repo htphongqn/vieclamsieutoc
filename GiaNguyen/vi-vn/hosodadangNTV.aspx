@@ -42,7 +42,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMain" runat="server">
-    <div class="page" id="recruitment">
+    <% if (Session["user"] != null && Session["user_fullname"] != null && Session["user_quyen"] != null && Convert.ToInt32(Session["user_quyen"]) == 1)
+       { %>
+  <div class="page" id="recruitment">
     <div id="main"> 
       <uc2:BannerTopNTV ID="BannerTopNTV1" runat="server" />
       <div class="block"> 
@@ -307,4 +309,12 @@
     <div class="clearfix"></div>
     <uc1:boxPhone ID="boxPhone1" runat="server" />
   </div>
+  <% }
+  else { %>
+  <div class="page" id="recruitment">
+    <div id="main"> 
+        <div style="-moz-border-radius:8px; border:1px solid #CCCCCC;padding:30px 0;text-align:center;margin: 0px 0 30px 0">Bạn chưa đăng nhập tài khoản người tìm việc!<br>Hãy đăng nhập để thực hiện thao tác này hoặc nhấn vào <a href="/" style="color:#2D91D4">đây</a> để về trang chủ.</div>
+     </div>
+  </div>
+  <% } %>
 </asp:Content>

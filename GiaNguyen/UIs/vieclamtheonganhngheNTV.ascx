@@ -124,7 +124,8 @@
                     <ItemTemplate>                            
                             <div class="resumes_td align_l">
                             <div style="position: relative">
-                                <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# Eval("NEWS_TITLE")%></a> 
+                               <div class="ten-cong-viec"> <a href="<%# GetLinkNTV(Eval("NEWS_ID")) %>" class="job_name"><%# Eval("NEWS_TITLE")%></a> </div>
+								
                                 <!-- tooltip element -->
                                 <div class="tooltip_ct">
                                 <table width="420" cellpadding="5" cellspacing="1" border="0" bgcolor="#d7d7d7">

@@ -5,7 +5,7 @@
         <ul>
             <li><a href="/"><em class="iconHome"><img src="/images/icon_home.png" /></em></a></li>
             <li><a href="/trang-chu.html">Cho người tìm việc</a></li>
-            <li><a href="/nha-tuyen-dung/">Cho nhà tuyển dụng</a></li>
+            <li><a href="/nha-tuyen-dung.html">Cho nhà tuyển dụng</a></li>
             <li><a href="javascript:void(0)">Hổ trợ: 0908 169 044</a></li>
             <li><a href="/gop-y">Góp ý</a></li>
             <li><a href="/huong-dan-su-dung">Hướng dẫn sử dụng</a></li>

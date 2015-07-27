@@ -30,8 +30,8 @@ namespace CatTrang.vi_vn
                 }
                 else
                 {
-                    Session.Abandon();
-                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản nhà tuyển dụng!');location.href='/nha-tuyen-dung.html'</script>");
+                    //Response.Write("<script>alert('Bạn cần đăng nhập tài khoản nhà tuyển dụng!');location.href='/nha-tuyen-dung.html'</script>");
+                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản nhà tuyển dụng!');</script>");
                 }
             }
         }

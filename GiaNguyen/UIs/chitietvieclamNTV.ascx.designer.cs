@@ -28,7 +28,7 @@ namespace CatTrang.UIs {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkNophoso;
+        protected global::System.Web.UI.WebControls.LinkButton linkNophoso;
         
         /// <summary>
         /// lbLuotxem control.
@@ -208,7 +208,7 @@ namespace CatTrang.UIs {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkNophoso2;
+        protected global::System.Web.UI.WebControls.LinkButton linkNophoso2;
         
         /// <summary>
         /// lbNguoilienhe control.

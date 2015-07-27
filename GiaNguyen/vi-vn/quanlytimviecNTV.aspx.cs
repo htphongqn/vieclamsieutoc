@@ -32,7 +32,8 @@ namespace CatTrang.vi_vn
                 }
                 else
                 {
-                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản người tìm việc!');location.href='/trang-chu.html'</script>");
+                    //Response.Write("<script>alert('Bạn cần đăng nhập tài khoản người tìm việc!');location.href='/trang-chu.html'</script>");
+                    Response.Write("<script>alert('Bạn cần đăng nhập tài khoản người tìm việc!');</script>");
                 }
             }
         }
